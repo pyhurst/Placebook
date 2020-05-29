@@ -9,9 +9,9 @@ const businessSeed = [
   {
     name: "UFC Gym",
     category: "Gym",
-    address: "",
+    address: "644 N Orleans St, Chicago, IL 60654",
     phone: "312-555-5555",
-    reservations: {},
+    reservations: [],
     times: {
         open: 0700,
         close: 2100,
@@ -22,9 +22,9 @@ const businessSeed = [
   {
     name: "Chicago Public Library",
     category: "Library",
-    address: "",
+    address: "310 W Division St, Chicago, IL 60610",
     phone: "312-777-3333",
-    reservations: {},
+    reservations: [],
     times: {
         open: 0800,
         close: 1700,
@@ -35,9 +35,9 @@ const businessSeed = [
   {
     name: "Museum of Contemporary Art",
     category: "Education",
-    address: "",
+    address: "220 E Chicago Ave, Chicago, IL 60611",
     phone: "312-434-4343",
-    reservations: {},
+    reservations: [],
     times: {
         open: 1000,
         close: 2000,
@@ -48,7 +48,7 @@ const businessSeed = [
   {
     name: "Pinstripes Bowling",
     category: "Entertainment",
-    address: "",
+    address: "435 E Illinois St, Chicago, IL 60611",
     phone: "312-334-2222",
     reservations: 4,
     times: {
@@ -61,9 +61,9 @@ const businessSeed = [
   {
     name: "CorePower Yoga",
     category: "Gym",
-    address: "",
+    address: "227 E Ontario St Suite 202, Chicago, IL 60611",
     phone: "312-334-2222",
-    reservations: {},
+    reservations: [],
     times: {
         open: 0800,
         close: 1900,
@@ -71,6 +71,19 @@ const businessSeed = [
         capacity: 20
     }
   },
+  {
+    name: "Custom Business",
+    category: "Other",
+    address: "200 E Example St Suite 202, Chicago, IL 60610",
+    phone: "312-345-4564",
+    reservations: [],
+    times: {
+        open: 0800,
+        close: 1900,
+        timeslot_length: 1,
+        capacity: 10
+    }
+  }
 ];
 
 const userSeed = [
@@ -78,66 +91,100 @@ const userSeed = [
         username: "johnsmith",
         password: "password1234",
         email: "jsmith@gmail.com",
-        reservations: {
+        reservations: [{
             business: "CorePower Yoga",
             timeslot: 1600,
-            date: ""
-        }
+            date: "2020-06-01"
+        }]
     },
     {
         username: "janedoe",
         password: "mypassword",
         email: "jdoe1@gmail.com",
-        reservations: {
+        reservations: [{
             business: "UFC Gym",
             timeslot: 0900,
-            date: ""
-        }
+            date: "2020-06-01"
+        }]
     },
     {
-        username: "",
-        password: "",
-        email: "",
-        reservations: {
-            business: "",
-            timeslot: 4
-        }
+        username: "emilyresch",
+        password: "emilyspass",
+        email: "eresch@gmail.com",
+        reservations: [{
+            business: "UFC Gym",
+            timeslot: 1100,
+            date: "2020-06-01"
+        }]
     },
     {
-        username: "",
-        password: "",
-        email: "",
-        reservations: {
-            business: "",
-            timeslot: 4
-        }
+        username: "philhurst",
+        password: "philspass",
+        email: "phil@gmail.com",
+        reservations: [{
+            business: "Museum of Contemporary Art",
+            timeslot: 1300,
+            date: "2020-06-03"
+        }]
     },
     {
-        username: "",
-        password: "",
-        email: "",
-        reservations: {
-            business: "",
-            timeslot: 4
-        }
+        username: "blapete",
+        password: "petespass",
+        email: "peter@yahoo.com",
+        reservations: [{
+            business: "Pinstripes Bowling",
+            timeslot: 2130,
+            date: "2020-06-01"
+        }]
     },
     {
-        username: "",
-        password: "",
-        email: "",
-        reservations: {
-            business: "",
-            timeslot: 4
-        }
+        username: "jimmyneutron",
+        password: "candybars",
+        email: "smartypants@gmail.com",
+        reservations: [{
+            business: "Chicago Public Library",
+            timeslot: 1000,
+            date: "2020-06-01"
+        }]
     },
     {
-        username: "",
-        password: "",
-        email: "",
-        reservations: {
-            business: "",
-            timeslot: 4
-        }
+        username: "spiderman",
+        password: "spiderpass",
+        email: "shootwebs@gmail.com",
+        reservations: [{
+            business: "CorePower Yoga",
+            timeslot: 0800,
+            date: "2020-06-02"
+        }]
     },
+    {
+      username: "businessman",
+      password: "password",
+      email: "mybusiness@gmail.com"
+    }
 
-]
+];
+
+db.Business.remove({})
+  .then(() => db.Business.collection.insertMany(businessSeed))
+  .then(data => {
+    console.log(data.result.n + " business records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+db.User.remove({})
+  .then(() => db.User.collection.insertMany(userSeed))
+  .then(data => {
+    console.log(data.result.n + " user records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+
