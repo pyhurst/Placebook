@@ -1,10 +1,13 @@
 import React from "react";
 import "./Main.css";
+import Carousel from "../../components/Carousel/Carousel";
+import Jumbotron from "../../components/Jumbotron/Jumbotron";
 
 const Main = () => {
   return (
     <div id="main">
-      <h1>this is our main page</h1>
+      <Jumbotron />
+      <Carousel />
     </div>
   );
 };
