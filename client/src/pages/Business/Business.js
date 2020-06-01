@@ -3,7 +3,7 @@ import Jumbotron from "../../components/Jumbotron/JumbotronBusinessPage/Jumbotro
 
 const Business = () => {
   return (
-    <div id="business">
+    <div>
       <Jumbotron />
     </div>
   );

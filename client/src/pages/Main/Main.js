@@ -4,10 +4,12 @@ import Jumbotron from "../../components/Jumbotron/JumbotronHomePage/Jumbotron";
 
 const Main = () => {
   return (
-    <div id="main">
-      <Jumbotron />
+    <section>
+      <div id="main">
+        <Jumbotron />
+      </div>
       <Carousel />
-    </div>
+    </section>
   );
 };
 

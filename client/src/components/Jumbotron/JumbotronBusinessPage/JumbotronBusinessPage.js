@@ -1,6 +1,7 @@
 import React from "react";
 import {
   MDBJumbotron,
+  MDBBtn,
   MDBContainer,
   MDBRow,
   MDBCol,
@@ -13,6 +14,7 @@ import {
   MDBCardText,
 } from "mdbreact";
 import SectionContainer from "./SectionContainer";
+import Mallpicture from "../../../Images/mall.jpg";
 
 const JumbotronPage = () => {
   return (
@@ -20,23 +22,22 @@ const JumbotronPage = () => {
       <MDBContainer className="mt-5">
         <MDBRow className="mt-5">
           <MDBCol>
-            <SectionContainer noBorder header="Jumbotron with image">
+            <SectionContainer noBorder>
               <MDBJumbotron className="text-center">
                 <MDBCardTitle className="card-title h4 pb-2">
                   <strong>Scheduling for your business</strong>
                 </MDBCardTitle>
-                <MDBCardImage
-                  src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg"
-                  className="img-fluid"
-                />
+                <MDBCardImage src={Mallpicture} className="img-fluid" />
                 <MDBCardBody>
                   <MDBCardTitle className="indigo-text h5 m-4">
-                    Photography
+                    Placeholder
                   </MDBCardTitle>
                   <MDBCardText>
                     Sed ut perspiciatis unde omnis iste natus sit voluptatem
                     accusantium doloremque laudantium, totam rem aperiam.
                   </MDBCardText>
+                  <MDBBtn color="primary">Learn More</MDBBtn>
+                  <hr />
 
                   <MDBNav className="justify-content-center">
                     <MDBNavLink to="#!">
