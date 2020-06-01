@@ -16,4 +16,7 @@ router.route("/all").get(placeController.findAll).post(placeController.create);
 //     .put(placeController.update)
 //     .delete(placeController.remove);
 
+router
+    .route("/add")
+    .post(placeController.create);
 module.exports = router;

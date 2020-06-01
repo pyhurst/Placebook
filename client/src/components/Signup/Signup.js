@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useStoreContext } from "../../utils/UserContext";
+import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 
 const Signup = () => {
@@ -7,7 +7,7 @@ const Signup = () => {
   const passwordRef = useRef();
   const emailRef = useRef();
   // const { username, password, email, reservations } = useContext(UserContext);
-  const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useUserContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();

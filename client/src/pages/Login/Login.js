@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
-import { useStoreContext } from "../../utils/UserContext";
+import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 
 const Login = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
 
-  const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useUserContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
