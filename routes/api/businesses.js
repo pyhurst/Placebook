@@ -18,5 +18,5 @@ router.route("/all").get(placeController.findAll).post(placeController.create);
 
 router
     .route("/add")
-    .post()
+    .post(placeController.create);
 module.exports = router;

@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
-import { useStoreContext } from "../../utils/UserContext";
+import React, { useRef, useContext } from "react";
+import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 
-const Signup = () => {
+const BusinessInputs = () => {
     const businessNameRef = useRef();
     const categoryRef = useRef();
     const addressRef = useRef();
@@ -12,36 +12,38 @@ const Signup = () => {
     const closeTimeRef = useRef();
     const timeSlotLengthRef = useRef();
     const capacityRef = useRef();
-    // const { username, password, email, reservations } = useContext(UserContext);
-    const [state, dispatch] = useStoreContext();
+    const { _id } = useUserContext();
+    // const [state, dispatch] = useUserContext();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('clicked');
-        console.log(usernameRef.current.value)
         API.addBusiness(
             {
+                _id: _id,
                 name: businessNameRef.current.value,
                 category: categoryRef.current.value,
                 address: addressRef.current.value,
                 city: cityRef.current.value,
                 phone: phoneRef.current.value,
-                open: openTimeRef.current.value,
-                close: closeTimeRef.current.value,
-                timeslot_length: timeSlotLengthRef.current.value,
-                capacity: capacityRef.current.value,
+                times: {
+                    open: openTimeRef.current.value,
+                    close: closeTimeRef.current.value,
+                    timeslot_length: timeSlotLengthRef.current.value,
+                    capacity: capacityRef.current.value,
+                }
             }
         )
             .then(result => {
-                // console.log(result);
-                dispatch(
-                    {
-                        type: "ADD_USER",
-                        username: result.data.username,
-                        email: result.data.email,
-                        reservations: result.data.reservations
-                    }
-                )
+                console.log(result);
+                // dispatch(
+                //     {
+                //         type: "ADD_USER",
+                //         username: result.data.username,
+                //         email: result.data.email,
+                //         reservations: result.data.reservations
+                //     }
+                // )
             })
             .catch(err => console.log(err));
 
@@ -120,4 +122,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default BusinessInputs;

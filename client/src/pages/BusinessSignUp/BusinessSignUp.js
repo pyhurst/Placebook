@@ -1,11 +1,12 @@
 import React from 'react';
 import Signup from '../../components/Signup/Signup';
-// import BusinessInput from '../../components/'
+import BusinessInputs from '../../components/BusinessInput/BusinessInput';
 
 const BusinessSignUp = () => {
     return (
         <div id="BusinessSignUp">
             <Signup />
+            <BusinessInputs />
         </div>
     );
 };
