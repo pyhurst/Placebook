@@ -13,10 +13,13 @@ router
 //     .post(placeController.create);
 
 // Matches with "/api/businesses/:id"
-router
-    .route("/:id")
-    .get(placeController.findById)
-    .put(placeController.update)
-    .delete(placeController.remove);
+// router
+//     .route("/:id")
+//     .get(placeController.findById)
+//     .put(placeController.update)
+//     .delete(placeController.remove);
 
+router
+    .route("/add")
+    .post()
 module.exports = router;

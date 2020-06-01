@@ -6,6 +6,7 @@ const businessSchema = new Schema({
     name: { type: String, required: true },
     category: { type: String, required: true },
     address: String,
+    city: { type: String, required: true },
     phone: { type: String, required: true},
     reservations: { type: Array },
     times: {
