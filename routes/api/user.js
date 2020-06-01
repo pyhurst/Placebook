@@ -46,7 +46,9 @@ router
         (req, res) => {
             console.log('Logged in: ', req.user);
             var userInfo = {
-                username: req.user.username
+                username: req.user.username,
+                email: req.user.email,
+                reservations: req.user.reservations
             };
             res.send(userInfo);
         }

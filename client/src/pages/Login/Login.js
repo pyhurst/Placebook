@@ -6,11 +6,32 @@ const Login = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
 
+  const [state, dispatch] = useStoreContext();
+
   const handleSubmit = e => {
     e.preventDefault();
     console.log('Clicked')
 
-    
+    API.userLogin(
+      {
+        username: usernameRef.current.value,
+        password: passwordRef.current.value
+      }
+    )
+    .then(result => {
+      console.log('Login Response: ')
+      console.log(result);
+      if (result.status === 200) {
+        dispatch(
+          {
+            type: "ADD_USER",
+            username: result.data.username,
+            email: result.data.email,
+            reservations: result.data.reservations
+          }
+        )
+      }
+    }).catch(err => console.log(err));
   }
 
   return (
