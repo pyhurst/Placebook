@@ -1,14 +1,15 @@
 import React from "react";
-import Dropdown from "../../components/Dropdown/Dropdown";
-import API from "../utils/API";
-import "./Main.css";
+import Carousel from "../../components/Carousel/Carousel";
+import Jumbotron from "../../components/Jumbotron/JumbotronHomePage/Jumbotron";
 
 const Main = () => {
   return (
-    <div id="main">
-      <h1>this is our main page</h1>
-      <Dropdown />
-    </div>
+    <section>
+      <div id="main">
+        <Jumbotron />
+      </div>
+      <Carousel />
+    </section>
   );
 };
 
