@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const Test = () => {
-    return (
-        <h1>this is our Test page</h1>
-    )
-}
+const Business = () => {
+  return (
+    <div id="userHome">
+      <h1>This is the user home page</h1>
+    </div>
+  );
+};
 
-export default Test;
+export default Business;

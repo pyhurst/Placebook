@@ -1,14 +1,12 @@
 import React from "react";
-import './Business.css'
-
+import Jumbotron from "../../components/Jumbotron/JumbotronBusinessPage/JumbotronBusinessPage";
 
 const Business = () => {
-    return (
-        <div id="business">
-            <h1>This is the Business page</h1>
-        </div>
-
-    )
-}
+  return (
+    <div>
+      <Jumbotron />
+    </div>
+  );
+};
 
 export default Business;
