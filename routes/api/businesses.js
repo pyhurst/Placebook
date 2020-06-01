@@ -2,10 +2,7 @@ const router = require("express").Router();
 const placeController = require("../../controllers/placeController");
 
 // Matches with "/api/businesses"
-router
-    .route("/")
-    .get(placeController.findAll)
-    .post(placeController.create);
+router.route("/all").get(placeController.findAll).post(placeController.create);
 
 // matches /api/businesses/add, add a new business
 // router

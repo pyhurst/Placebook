@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
-// import API from "../../utils/API";
+import API from "../../utils/API";
 
 const Business = () => {
+  const [business, setBusiness] = useState([]);
+
+  useEffect(() => {
+    loadBusiness();
+  }, []);
+
+  function loadBusiness() {
+    console.log("test1");
+    API.getBusiness()
+      .then((res) => {
+        console.log(res);
+        // setBusiness(res.data)
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
-    <div class="container">
-      <div class="section">
+    <div className="container">
+      <div className="section">
         <h1>(Business Image)</h1>
         <ul>
           <li>-Name</li>
@@ -15,7 +31,7 @@ const Business = () => {
           <li>-Hours</li>
         </ul>
       </div>
-      <div class="section">
+      <div className="section">
         <Calendar />
       </div>
     </div>
