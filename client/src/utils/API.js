@@ -2,13 +2,13 @@
 import axios from "axios";
 
 export default {
-  getBusiness: function (query) {
-    return axios.get("/api/businesses");
+  getBusiness: function () {
+    return axios.get("/api/businesses/all");
   },
-  addUser: function(userData) {
+  addUser: function (userData) {
     return axios.post("/api/user/signup", userData);
   },
-  userLogin: function(userData) {
+  userLogin: function (userData) {
     return axios.post("/api/user/login", userData);
-  }
+  },
 };
