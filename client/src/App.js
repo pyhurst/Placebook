@@ -10,6 +10,7 @@ import { StoreProvider } from "./utils/UserContext";
 import Businesspage from "./pages/BusinessPage/BusinessPage";
 import Userpage from "./pages/UserHome/UserHome";
 import BusinessHome from "./pages/BusinessHome/BusinessHome";
+import BusinessSignUp from "./pages/BusinessSignUp/BusinessSignUp";
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path="/business/page" component={Businesspage} />
             <Route exact path="/business/home" component={BusinessHome} />
             <Route exact path="/user/home" component={Userpage} />
+            <Route exact path="/businessSignUp" component={BusinessSignUp} />
           </StoreProvider>
         </div>
       </Router>
