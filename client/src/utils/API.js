@@ -6,7 +6,9 @@ export default {
     return axios.get("/api/business");
   },
   addUser: function(userData) {
-    console.log(userData)
-    return axios.post("/api/user/signup", userData)
+    return axios.post("/api/user/signup", userData);
+  },
+  userLogin: function(userData) {
+    return axios.post("/api/user/login", userData);
   }
 };

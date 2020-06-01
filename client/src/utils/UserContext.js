@@ -1,34 +1,36 @@
 import React, { createContext, useReducer, useContext } from 'react';
 
-const UserContext = createContext();
+const StoreContext = createContext();
+const { Provider } = StoreContext;
 
-const userReducer = (state, action) => {
+const reducer = (state, action) => {
     switch (action.type) {
         case "ADD_USER":
             return {
                 ...state,
-                username: state.username,
-                password: state.password,
-                email: state.email
+                username: action.username,
+                // password: action.password,
+                email: action.email,
+                reservations: [action.reservations]
             };
         default:
             return state;
     }
 };
 
-const UserProvider = ({ value = [] }) => {
-    const [state, dispatch] = useReducer(userReducer, {
+const StoreProvider = ({ value = [], ...props }) => {
+    const [state, dispatch] = useReducer(reducer, {
         username: "",
-        password: "",
+        // password: "",
         email: "",
         reservations: []
     });
 
-    return <UserContext.Provider value={[state, dispatch]} />
+    return <Provider value={[state, dispatch]} {...props}/>
 }
 
-const useUserContext = () => {
-    return useContext(UserContext);
+const useStoreContext = () => {
+    return useContext(StoreContext);
 };
 
-export { UserProvider, useUserContext };
+export { StoreProvider, useStoreContext };

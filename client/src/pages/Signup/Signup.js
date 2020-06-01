@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-// import { useUserContext } from "../../utils/UserContext";
+import { useStoreContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 
 const Signup = () => {
@@ -7,7 +7,7 @@ const Signup = () => {
   const passwordRef = useRef();
   const emailRef = useRef();
   // const { username, password, email, reservations } = useContext(UserContext);
-  // const [state, dispatch] = useUserContext();
+  const [state, dispatch] = useStoreContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,13 +21,15 @@ const Signup = () => {
       }
     )
       .then(result => {
-        console.log(result);
-        // dispatch(
-        //   {
-        //     type: "ADD_USER",
-        //     reservations: 
-        //   }
-        // )
+        // console.log(result);
+        dispatch(
+          {
+            type: "ADD_USER",
+            username: result.data.username,
+            email: result.data.email,
+            reservations: result.data.reservations
+          }
+        )
       })
       .catch(err => console.log(err));
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/user');
-// const passport = require('../../passport');
+const passport = require('../../passport');
 
 router
     .route('/signup')
@@ -35,38 +35,44 @@ router
         });
     });
 
-// router.post('/api/login', function (req, res, next) {
-//     console.log('routes/user.js, login, req.body: ');
-//     console.log(req.body);
-//     next();
-// },
-//     passport.authenticate('local'),
-//     (req, res) => {
-//         console.log('Logged in: ', req.user);
-//         var userInfo = {
-//             username: req.user.username
-//         };
-//         res.send(userInfo);
-//     }
-// );
+router
+    .route('/login')
+    .post(function (req, res, next) {
+        console.log('routes/user.js, login, req.body: ');
+        console.log(req.body);
+        next();
+    },
+        passport.authenticate('local'),
+        (req, res) => {
+            console.log('Logged in: ', req.user);
+            var userInfo = {
+                username: req.user.username
+            };
+            res.send(userInfo);
+        }
+    );
 
-// router.get('/api/user', (req, res) => {
-//     console.log('====== User! ======');
-//     console.log(req.user);
-//     if (req.user) {
-//         res.json({ user: req.user });
-//     } else {
-//         res.json({ user: null });
-//     }
-// });
+router
+    .route('/user')
+    .get((req, res) => {
+    console.log('====== User! ======');
+    console.log(req.user);
+    if (req.user) {
+        res.json({ user: req.user });
+    } else {
+        res.json({ user: null });
+    }
+});
 
-// router.post('/logout', (req, res) => {
-//     if (req.user) {
-//         req.logout();
-//         res.send({ message: 'Logging out' });
-//     } else {
-//         res.send({ message: 'No user to log out' });
-//     }
-// });
+router
+    .route('/logout')
+    .post((req, res) => {
+    if (req.user) {
+        req.logout();
+        res.send({ message: 'Logging out' });
+    } else {
+        res.send({ message: 'No user to log out' });
+    }
+});
 
 module.exports = router;
