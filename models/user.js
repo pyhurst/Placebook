@@ -12,12 +12,23 @@ const userSchema = new Schema({
 
 userSchema.methods = {
   checkPassword: function (inputPassword) {
-    return bcrypt.compareSync(inputPassword, this.password)
+    return bcrypt.compareSync(inputPassword, this.password);
   },
   hashPassword: plainTextPassword => {
-    return bcrypt.hashSync(plainTextPassword, 10)
+    return bcrypt.hashSync(plainTextPassword, 10);
   }
 }
+
+userSchema.pre('save', function (next) {
+  if (!this.password) {
+    console.log('models/user.js ====== No password provided ======');
+    next();
+  } else {
+    console.log('models/user.js hashPassword in pre save');
+    this.password = this.hashPassword(this.password);
+    next();
+  }
+});
 
 const User = mongoose.model("User", userSchema);
 
