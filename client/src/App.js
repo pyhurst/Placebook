@@ -7,6 +7,8 @@ import Business from "./pages/Business/Business";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import { StoreProvider } from "./utils/UserContext";
+import Businesspage from "./pages/BusinessHome/BusinessHome";
+import Userpage from "./pages/UserHome/UserHome";
 
 class App extends Component {
   render() {
@@ -20,6 +22,8 @@ class App extends Component {
             <Route exact path="/business" component={Business} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/business/home" component={Businesspage} />
+            <Route exact path="/user/home" component={Userpage} />
           </StoreProvider>
         </div>
       </Router>
