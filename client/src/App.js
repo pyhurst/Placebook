@@ -5,6 +5,7 @@ import Main from "./pages/Main/Main";
 import About from "./pages/About/About";
 import Business from "./pages/Business/Business";
 import Signup from "./pages/Signup/Signup";
+import Login from "./pages/Login/Login";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Route exact path="/about" component={About} />
           <Route exact path="/business" component={Business} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={Login} />
         </div>
       </Router>
     );

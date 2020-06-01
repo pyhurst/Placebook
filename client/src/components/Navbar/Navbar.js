@@ -43,7 +43,7 @@ class Navbar extends Component {
               <Link to="/signup" id="sign-up" className="button">
                 <strong>Sign up</strong>
               </Link>
-              <Link to="#" className="button is-light">
+              <Link to="/login" className="button is-light">
                 Log in
               </Link>
             </div>
