@@ -5,4 +5,8 @@ export default {
   getBusiness: function (query) {
     return axios.get("/api/business");
   },
+  addUser: function(userData) {
+    console.log(userData)
+    return axios.post("/api/user/signup", userData)
+  }
 };
