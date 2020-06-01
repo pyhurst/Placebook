@@ -33,6 +33,21 @@ router.post('/api/signup', (req, res) => {
     });
 });
 
+router.post('/api/login', function (req, res, next) {
+    console.log('routes/user.js, login, req.body: ');
+    console.log(req.body);
+    next();
+},
+    passport.authenticate('local'),
+    (req, res) => {
+        console.log('Logged in: ', req.user);
+        var userInfo = {
+            username: req.user.username
+        };
+        res.send(userInfo);
+    }
+);
+
 router.post('/logout', (req, res) => {
     if (req.user) {
         req.logout();
