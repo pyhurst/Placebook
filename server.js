@@ -5,6 +5,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const passport = require('./passport');
 const dbConnection = require('./connection');
+const routes = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -39,8 +40,12 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
+//Mongoose
+// const mongoose = require("mongoose");
+
+
 // Define API routes here
-const user = require('./routes/api/user');
+app.use(routes);
 
 // Send every other request to the React app
 // Define any API routes before this runs

@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default {
   getBusiness: function (query) {
-    return axios.get("/api/business");
+    return axios.get("/api/businesses");
   },
   addUser: function(userData) {
     return axios.post("/api/user/signup", userData);
