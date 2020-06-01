@@ -48,6 +48,16 @@ router.post('/api/login', function (req, res, next) {
     }
 );
 
+router.get('/api/user', (req, res) => {
+    console.log('====== User! ======');
+    console.log(req.user);
+    if (req.user) {
+        res.json({ user: req.user });
+    } else {
+        res.json({ user: null });
+    }
+});
+
 router.post('/logout', (req, res) => {
     if (req.user) {
         req.logout();
