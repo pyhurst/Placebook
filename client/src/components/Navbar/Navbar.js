@@ -40,7 +40,7 @@ class Navbar extends Component {
           </div>
           <div className="navbar-item">
             <div className="buttons">
-              <Link to="#" id="sign-up" className="button">
+              <Link to="/signup" id="sign-up" className="button">
                 <strong>Sign up</strong>
               </Link>
               <Link to="#" className="button is-light">
