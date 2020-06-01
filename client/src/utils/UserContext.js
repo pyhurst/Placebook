@@ -9,7 +9,6 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 username: action.username,
-                // password: action.password,
                 email: action.email,
                 reservations: [action.reservations]
             };
@@ -21,7 +20,6 @@ const reducer = (state, action) => {
 const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
         username: "",
-        // password: "",
         email: "",
         reservations: []
     });
