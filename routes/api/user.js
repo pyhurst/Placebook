@@ -32,3 +32,14 @@ router.post('/api/signup', (req, res) => {
         }
     });
 });
+
+router.post('/logout', (req, res) => {
+    if (req.user) {
+        req.logout();
+        res.send({ message: 'Logging out' });
+    } else {
+        res.send({ message: 'No user to log out' });
+    }
+});
+
+module.exports = router;
