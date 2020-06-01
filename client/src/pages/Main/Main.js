@@ -1,6 +1,6 @@
 import React from "react";
 import Dropdown from "../../components/Dropdown/Dropdown";
-import API from "../utils/API";
+// import API from "../utils/API";
 import "./Main.css";
 
 const Main = () => {
