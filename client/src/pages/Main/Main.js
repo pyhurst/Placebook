@@ -1,7 +1,6 @@
 import React from "react";
-import "./Main.css";
 import Carousel from "../../components/Carousel/Carousel";
-import Jumbotron from "../../components/Jumbotron/Jumbotron";
+import Jumbotron from "../../components/Jumbotron/JumbotronHomePage/Jumbotron";
 
 const Main = () => {
   return (
