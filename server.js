@@ -8,7 +8,7 @@ const dbConnection = require("./connection");
 const routes = require("./routes");
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
 // Define middleware here
 app.use(morgan("dev"));
@@ -48,7 +48,6 @@ app.use(routes);
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
-
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
