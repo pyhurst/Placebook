@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Calendar from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
 import API from "../../utils/API";
+import Time from "../../components/Timeslots/Timeslots";
 
 const Business = () => {
   const [business, setBusiness] = useState({
@@ -58,8 +59,12 @@ const Business = () => {
       </div>
       <div className="section">
         <div className="row">
-          <div className="column">
+          <div className="column is-two-fifths-desktop is-full-mobile is-full-tablet">
             <Calendar />
+          </div>
+          <div className="column is-three-fifths-desktop is-full-mobile is-full-tablet">
+            <h1>Date: putdatehere</h1>
+            <Time />
           </div>
         </div>
       </div>

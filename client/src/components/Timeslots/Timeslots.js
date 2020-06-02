@@ -1,101 +1,74 @@
 import React from "react";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBTable,
-  MDBTableBody,
-  MDBTableHead,
-} from "mdbreact";
-// import DocsLink from "../components/docsLink";
-import SectionContainer from "../../components/SectionMDB/SectionContainer";
+// import "./Timeslots.css";
 
-const Table = (props) => {
-  const data = {
-    columns: [
-      {
-        label: "Time",
-        field: "id",
-        sort: "asc",
-      },
-      {
-        label: "Availablity",
-        field: "heading0",
-        sort: "asc",
-      },
-    ],
-    rows: [
-      {
-        id: "7am",
-        heading0: "person",
-      },
-      {
-        id: "8am",
-        heading0: "person",
-      },
-      {
-        id: "9am",
-        heading0: "person",
-      },
-      {
-        id: "10am",
-        heading0: "person",
-      },
-      {
-        id: "11am",
-        heading0: "person",
-      },
-      {
-        id: "12pm",
-        heading0: "person",
-      },
-      {
-        id: "1pm",
-        heading0: "person",
-      },
-      {
-        id: "2pm",
-        heading0: "person",
-      },
-      {
-        id: "3pm",
-        heading0: "person",
-      },
-      {
-        id: "4pm",
-        heading0: "person",
-      },
-      {
-        id: "5pm",
-        heading0: "person",
-      },
-      {
-        id: "6pm",
-        heading0: "person",
-      },
-    ],
-  };
-
+const Timeblock = () => {
   return (
-    <MDBContainer className="mt-3">
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer noBorder header="Today's Schedule">
-            <MDBCard>
-              <MDBCardBody>
-                <MDBTable responsive>
-                  <MDBTableHead columns={data.columns} />
-                  <MDBTableBody rows={data.rows} />
-                </MDBTable>
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+    <div className="container">
+      <div id="hour-9" className="row time-block">
+        <div className="col-2 hour">9AM</div>
+        <input id="input-9" className="col-9"></input>
+        <button id="button-9" className="col-1 saveBtn time-9">
+          Save
+        </button>
+      </div>
+      <div id="hour-10" className="row time-block">
+        <div className="col-2 hour">10AM</div>
+        <input id="input-10" className="col-9"></input>
+        <button id="button-10" className="col-1 saveBtn time-10">
+          Save
+        </button>
+      </div>
+      <div id="hour-11" className="row time-block">
+        <div className="col-2 hour">11AM</div>
+        <input id="input-11" className="col-9"></input>
+        <button id="button-11" className="col-1 saveBtn time-11">
+          Save
+        </button>
+      </div>
+      <div id="hour-12" className="row time-block">
+        <div className="col-2 hour">12PM</div>
+        <input id="input-12" className="col-9"></input>
+        <button id="button-12" className="col-1 saveBtn time-12">
+          Save
+        </button>
+      </div>
+      <div id="hour-13" className="row time-block">
+        <div className="col-2 hour">1PM</div>
+        <input id="input-13" className="col-9"></input>
+        <button id="button-13" className="col-1 saveBtn time-13">
+          Save
+        </button>
+      </div>
+      <div id="hour-14" className="row time-block">
+        <div className="col-2 hour">2PM</div>
+        <input id="input-14" className="col-9"></input>
+        <button id="button-14" className="col-1 saveBtn time-14">
+          Save
+        </button>
+      </div>
+      <div id="hour-15" className="row time-block">
+        <div className="col-2 hour">3PM</div>
+        <input id="input-15" className="col-9"></input>
+        <button id="button-15" className="col-1 saveBtn time-15">
+          Save
+        </button>
+      </div>
+      <div id="hour-16" className="row time-block">
+        <div className="col-2 hour">4PM</div>
+        <input id="input-16" className="col-9"></input>
+        <button id="button-16" className="col-1 saveBtn time-16">
+          Save
+        </button>
+      </div>
+      <div id="hour-17" className="row time-block">
+        <div className="col-2 hour">5PM</div>
+        <input id="input-17" className="col-9"></input>
+        <button id="button-17" className="col-1 saveBtn time-17">
+          Save
+        </button>
+      </div>
+    </div>
   );
 };
 
-export default Table;
+export default Timeblock;

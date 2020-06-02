@@ -1,21 +1,21 @@
 import React from "react";
 import Calendar from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
+import Card from "../../components/Card/Card";
+import Jumbo from "../../components/Jumbotron/JumbotronBusinessHome/JumbotronBusinessHome";
 
 const BusinessHome = () => {
   return (
     <div className="container">
-      <h3>Business Name</h3>
-      <ul>
-        <li>location</li>
-      </ul>
+      <Jumbo />
       <div className="section">
         <div className="columns">
           <div className="column">
             <Calendar />
           </div>
           <div className="column">
-            <h1>Schedule:</h1>
+            <h6>Date:</h6>
+            <p>Your appointments:</p>
           </div>
         </div>
       </div>
