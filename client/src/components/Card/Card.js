@@ -10,6 +10,8 @@ import {
 } from "mdbreact";
 
 const Card = () => {
+
+
   return (
     <MDBCol>
       <MDBCard style={{ width: "15rem" }}>

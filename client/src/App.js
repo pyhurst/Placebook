@@ -10,6 +10,7 @@ import { StoreProvider } from "./utils/UserContext";
 import Businesspage from "./pages/BusinessPage/BusinessPage";
 import Userpage from "./pages/UserHome/UserHome";
 import BusinessHome from "./pages/BusinessHome/BusinessHome";
+import { BizProvider } from "./utils/BusinessContext";
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
         <div>
           <StoreProvider>
             <Navbar />
+            <BizProvider>
             <Route exact path="/" component={Main} />
             <Route exact path="/about" component={About} />
             <Route exact path="/business" component={Business} />
@@ -26,6 +28,7 @@ class App extends Component {
             <Route exact path="/business/page" component={Businesspage} />
             <Route exact path="/business/home" component={BusinessHome} />
             <Route exact path="/user/home" component={Userpage} />
+            </BizProvider>
           </StoreProvider>
         </div>
       </Router>

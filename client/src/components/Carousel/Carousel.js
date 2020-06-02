@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Card from "../Card/Card";
 import "./Carousel.css";
+import { useStoreContext } from "../../utils/BusinessContext";
+import API from "../../utils/API";
+
 
 const responsive = {
   superLargeDesktop: {
@@ -23,28 +26,42 @@ const responsive = {
   },
 };
 
-function myCarousel() {
+function MyCarousel() {
+
+  const [state, dispatch] = useStoreContext();
+
+  const getBusiness = () => {
+    API.getBusiness()
+      .then(results => {
+        dispatch({
+          type: "UPDATE_BIZ",
+          business: results
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    getBusiness();
+  }, []);
+
+
+
+
   return (
-    <div id="carousel">
-      <Carousel responsive={responsive}>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-      </Carousel>
+    <div id="carousel" responsive={responsive}>
+      {/* {state.business.map(biz => {
+        <Card key={biz._id}>
+          name={biz.name}
+          category={biz.category}
+          address={biz.address}
+          city={biz.city}
+          phone={biz.phone}
+        </Card>
+      })} */}
+      <Card />
     </div>
   );
 }
 
-export default myCarousel;
+export default MyCarousel;
