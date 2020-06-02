@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
@@ -8,10 +7,9 @@ import {
   MDBCardText,
   MDBCol,
 } from "mdbreact";
+import { Link } from "react-router-dom";
 
-function Card(props) {
-
-
+const Card = (props) => {
   return (
     <div>
       <MDBCol>
@@ -25,7 +23,7 @@ function Card(props) {
             <MDBCardTitle>{props.name}</MDBCardTitle>
             <MDBCardText>{props.city}</MDBCardText>
             <MDBCardText>{props.address}</MDBCardText>
-            <MDBBtn href="#">Link to business page</MDBBtn>
+            <Link to="/business/page">View</Link>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
