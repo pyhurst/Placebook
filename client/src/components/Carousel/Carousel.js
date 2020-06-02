@@ -30,18 +30,6 @@ function myCarousel() {
         <div>
           <Card />
         </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
-        <div>
-          <Card />
-        </div>
       </Carousel>
     </div>
   );

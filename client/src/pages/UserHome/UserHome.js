@@ -1,12 +1,15 @@
 import React from "react";
+import "bulma/css/bulma.css";
 
 const Business = () => {
   return (
-    <div>
-      <h1>Welcome, username</h1>
-      <ul>
-        <li>list appointments</li>
-      </ul>
+    <div className="container">
+      <div className="section">
+        <div className="columns">
+          <div className="column">Welcome, username</div>
+          <div className="column">Your upcoming appointments:</div>
+        </div>
+      </div>
     </div>
   );
 };
