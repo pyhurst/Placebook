@@ -11,7 +11,10 @@ export default {
   userLogin: function (userData) {
     return axios.post("/api/user/login", userData);
   },
-  addBusiness: function(businessData) {
-    return axios.post("/api/businesses/add", businessData)
-  }
+  addBusiness: function (businessData) {
+    return axios.post("/api/businesses/add", businessData);
+  },
+  getBusinessById: function (id) {
+    return axios.get("/api/businesses/" + id);
+  },
 };
