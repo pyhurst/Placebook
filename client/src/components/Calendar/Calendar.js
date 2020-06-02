@@ -7,7 +7,10 @@ class Calendarapp extends Component {
     date: new Date(),
   };
 
-  onChange = (date) => this.setState({ date });
+  onChange = (date) => {
+    this.setState({ date });
+    console.log(date);
+  };
 
   render() {
     return (

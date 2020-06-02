@@ -1,9 +1,15 @@
 import React from "react";
+import "bulma/css/bulma.css";
 
 const Business = () => {
   return (
-    <div id="userHome">
-      <h1>This is the user home page</h1>
+    <div className="container">
+      <div className="section">
+        <div className="columns">
+          <div className="column">Welcome, username</div>
+          <div className="column">Your upcoming appointments:</div>
+        </div>
+      </div>
     </div>
   );
 };

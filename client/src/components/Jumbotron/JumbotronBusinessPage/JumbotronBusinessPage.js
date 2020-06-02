@@ -13,7 +13,7 @@ import {
   MDBCardBody,
   MDBCardText,
 } from "mdbreact";
-import SectionContainer from "./SectionContainer";
+import SectionContainer from "../../SectionMDB/SectionContainer";
 import Mallpicture from "../../../Images/mall.jpg";
 
 const JumbotronPage = () => {
@@ -36,7 +36,9 @@ const JumbotronPage = () => {
                     Sed ut perspiciatis unde omnis iste natus sit voluptatem
                     accusantium doloremque laudantium, totam rem aperiam.
                   </MDBCardText>
-                  <MDBBtn color="primary" href="/businessSignUp">Sign Up</MDBBtn>
+                  <MDBBtn color="primary" href="/businessSignUp">
+                    Sign Up
+                  </MDBBtn>
                   <hr />
 
                   <MDBNav className="justify-content-center">
