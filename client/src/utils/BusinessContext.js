@@ -8,17 +8,18 @@ const reducer = (state, action) => {
         case "UPDATE_BIZ":
             return {
                 ...state,
-                name: action.name,
-                category: action.category,
-                times: {
-                  open: action.open,
-                  close: action.close
-                },
-                address: action.address,
-                city: action.city,
-                phone: action.phone,
-                ownerId: action.ownerId,
-                reservations: [action.reservations]
+                business: [action.business],
+                // name: action.name,
+                // category: action.category,
+                // times: {
+                //   open: action.open,
+                //   close: action.close
+                // },
+                // address: action.address,
+                // city: action.city,
+                // phone: action.phone,
+                // ownerId: action.ownerId,
+                // reservations: [action.reservations]
 
             };
         default:
@@ -28,6 +29,7 @@ const reducer = (state, action) => {
 
 const BizProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
+      business: [],
       name: "",
       category: "",
       times: {

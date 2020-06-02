@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Card from "../Card/Card";
 import "./Carousel.css";
 import { useStoreContext } from "../../utils/BusinessContext";
 import API from "../../utils/API";
+import axios from "axios";
 
 
 const responsive = {
@@ -26,42 +27,71 @@ const responsive = {
   },
 };
 
-function MyCarousel() {
+class MyCarousel extends React.Component {
 
-  const [state, dispatch] = useStoreContext();
+  // const [state, setState] = useState({
+  //   business: []
+  // });
+  state = {
+    business: []
+  }
 
-  const getBusiness = () => {
-    API.getBusiness()
-      .then(results => {
-        dispatch({
-          type: "UPDATE_BIZ",
-          business: results
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
-  useEffect(() => {
-    getBusiness();
-  }, []);
+  componentDidMount() {
+    axios.get("/api/businesses/all")
+    .then(results => {
+      console.log(results.data)
+      this.setState(this.state.business = results.data)
+      console.log("test")
+      console.log(this.state.business)
+    })
+    .catch(err => console.log(err));
+  }
 
 
+  // useEffect(() => {
+  //   axios.get("/api/businesses/all")
+  //     .then(results => {
+  //       console.log(results.data)
+  //       setState({...state, business: [results.data]})
+  //       console.log("test")
+  //       console.log(state)
+  //     })
+  //     .catch(err => console.log(err));
+  // }, []);
+
+  // function loadBusinesses() {
+    // Axios.get("/api/businesses/all")
+    //   .then(results => {
+    //     console.log(results.data)
+    //     setState(...state, results.data)
+    //     console.log("test")
+    //     console.log(state)
+    //   })
+    //   .catch(err => console.log(err));
+  // };
 
 
+
+
+
+render() {
   return (
-    <div id="carousel" responsive={responsive}>
-      {/* {state.business.map(biz => {
-        <Card key={biz._id}>
-          name={biz.name}
-          category={biz.category}
-          address={biz.address}
-          city={biz.city}
-          phone={biz.phone}
-        </Card>
-      })} */}
-      <Card />
+    <div>
+      {/* <h1>{state.business}</h1> */}
+      <Carousel responsive={responsive}>
+        {this.state.business.map(biz => {
+         return <Card key={biz._id}
+            name={biz.name}
+            category={biz.category}
+            address={biz.address}
+            city={biz.city}
+            phone={biz.phone} />
+        })}
+       </Carousel>
+
     </div>
   );
+}
 }
 
 export default MyCarousel;

@@ -9,25 +9,27 @@ import {
   MDBCol,
 } from "mdbreact";
 
-const Card = () => {
+function Card(props) {
 
 
   return (
-    <MDBCol>
-      <MDBCard style={{ width: "15rem" }}>
-        <MDBCardImage
-          className="img-fluid"
-          src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
-          waves
-        />
-        <MDBCardBody>
-          <MDBCardTitle>Business name</MDBCardTitle>
-          <MDBCardText>Business Type; City</MDBCardText>
-          <MDBCardText>Hours</MDBCardText>
-          <MDBBtn href="#">Link to business page</MDBBtn>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
+    <div>
+      <MDBCol>
+        <MDBCard style={{ width: "15rem" }}>
+          <MDBCardImage
+            className="img-fluid"
+            src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+            waves
+          />
+          <MDBCardBody>
+            <MDBCardTitle>{props.name}</MDBCardTitle>
+            <MDBCardText>{props.city}</MDBCardText>
+            <MDBCardText>{props.address}</MDBCardText>
+            <MDBBtn href="#">Link to business page</MDBBtn>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+    </div>
   );
 };
 
