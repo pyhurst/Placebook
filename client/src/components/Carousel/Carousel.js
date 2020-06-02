@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Card from "../Card/Card";
 import "./Carousel.css";
-import { useStoreContext } from "../../utils/BusinessContext";
 import API from "../../utils/API";
-import axios from "axios";
 
 const responsive = {
   superLargeDesktop: {
@@ -27,16 +25,12 @@ const responsive = {
 };
 
 class MyCarousel extends React.Component {
-  // const [state, setState] = useState({
-  //   business: []
-  // });
   state = {
     business: [],
   };
 
   componentDidMount() {
-    axios
-      .get("/api/businesses/all")
+    API.getBusiness()
       .then((results) => {
         console.log(results.data);
         this.setState((this.state.business = results.data));
@@ -46,32 +40,9 @@ class MyCarousel extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  // useEffect(() => {
-  //   axios.get("/api/businesses/all")
-  //     .then(results => {
-  //       console.log(results.data)
-  //       setState({...state, business: [results.data]})
-  //       console.log("test")
-  //       console.log(state)
-  //     })
-  //     .catch(err => console.log(err));
-  // }, []);
-
-  // function loadBusinesses() {
-  // Axios.get("/api/businesses/all")
-  //   .then(results => {
-  //     console.log(results.data)
-  //     setState(...state, results.data)
-  //     console.log("test")
-  //     console.log(state)
-  //   })
-  //   .catch(err => console.log(err));
-  // };
-
   render() {
     return (
       <div>
-        {/* <h1>{state.business}</h1> */}
         <Carousel responsive={responsive}>
           {this.state.business.map((biz) => {
             return (
