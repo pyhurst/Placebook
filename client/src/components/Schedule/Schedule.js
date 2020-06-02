@@ -2,7 +2,7 @@ import React from 'react';
 import "./Schedule.css";
 
 const Schedule = (props) => {
-    const [arrayState, setArrayState] = React.useState([]);
+    const [timeblockState, setTimeblockState] = React.useState([]);
     const array = [];
 
     function timeblocks() {
@@ -24,18 +24,25 @@ const Schedule = (props) => {
 
     function pushArray(blockCount) {
         for (let i = 0; i < blockCount; i++) {
-            array.push("hi");
+            array.push(props.openTime + i);
         }
     }
 
     React.useEffect(() => {
         const newArray = timeblocks();
-        setArrayState(newArray);
+        // console.log(newArray)
+        setTimeblockState(newArray);
     }, []);
 
     return (
         <div>
-            {arrayState.map(e => <div className='schedule'>Hello</div>)}
+            {timeblockState.map(e => (
+                <div className='schedule' >
+                <h4>Time: {e}</h4>
+                <h4>{props.capacity} spots left!</h4>
+                <button className="reserveBtn" id={e} >Reserve!</button>
+                </div>
+            ))}
         </div>
     );
 };
