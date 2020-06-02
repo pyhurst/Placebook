@@ -15,10 +15,10 @@ const reducer = (state, action) => {
         ownerId: action.ownerId,
         reservations: [action.reservations],
         times: {
-          open: action.open,
-          close: action.close,
-          timeslot_length: action.timeslot_length,
-          capacity: action.capacity,
+          open: action.times.open,
+          close: action.times.close,
+          timeslot_length: action.times.timeslot_length,
+          capacity: action.times.capacity,
         },
       };
     default:
