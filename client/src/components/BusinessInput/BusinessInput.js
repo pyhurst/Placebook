@@ -1,6 +1,7 @@
 import React, { useRef, useContext } from "react";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
+import Dropdown from "../Dropdown/Dropdown";
 
 const BusinessInputs = () => {
     const businessNameRef = useRef();
@@ -17,6 +18,8 @@ const BusinessInputs = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('clicked');
+        console.log(openTimeRef.current);
+        console.log(closeTimeRef);
         API.addBusiness(
             {
                 ownerId: userContext[0]._id,
@@ -88,17 +91,19 @@ const BusinessInputs = () => {
                     ref={phoneRef}
                 />
                 <label for="openTime">Business Open Time: </label>
+                <Dropdown time="times" />
                 <input
-                    type="number"
-                    name="openTime"
-                    id="openTimeInput"
+                    type="text"
+                    name="address"
+                    id="addressInput"
                     ref={openTimeRef}
                 />
                 <label for="closeTime">Business Close Time: </label>
+                <Dropdown time="times" />
                 <input
-                    type="number"
-                    name="closeTime"
-                    id="closeTimeInput"
+                    type="text"
+                    name="address"
+                    id="addressInput"
                     ref={closeTimeRef}
                 />
                 <label for="timeSlotLength">Length of Timeslots: </label>
