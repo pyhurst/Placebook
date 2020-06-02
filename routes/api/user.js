@@ -48,7 +48,8 @@ router
             var userInfo = {
                 username: req.user.username,
                 email: req.user.email,
-                reservations: req.user.reservations
+                reservations: req.user.reservations,
+                _id: req.user._id
             };
             res.send(userInfo);
         }
