@@ -65,7 +65,7 @@ const Business = () => {
           </div>
           <div className="column is-three-fifths-desktop is-full-mobile is-full-tablet">
             <h1>Date: putdatehere</h1>
-            <Schedule />
+            <Schedule openTime={7} closeTime={20} timeslot={60} capacity={30}/>
           </div>
         </div>
       </div>
