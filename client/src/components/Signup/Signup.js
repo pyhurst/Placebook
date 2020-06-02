@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useStoreContext } from "../../utils/UserContext";
+import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 
 const Signup = () => {
@@ -7,33 +7,29 @@ const Signup = () => {
   const passwordRef = useRef();
   const emailRef = useRef();
   // const { username, password, email, reservations } = useContext(UserContext);
-  const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useUserContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('clicked');
-    console.log(usernameRef.current.value)
-    API.addUser(
-      {
-        username: usernameRef.current.value,
-        password: passwordRef.current.value,
-        email: emailRef.current.value
-      }
-    )
-      .then(result => {
+    console.log("clicked");
+    console.log(usernameRef.current.value);
+    API.addUser({
+      username: usernameRef.current.value,
+      password: passwordRef.current.value,
+      email: emailRef.current.value,
+    })
+      .then((result) => {
         // console.log(result);
-        dispatch(
-          {
-            type: "ADD_USER",
-            username: result.data.username,
-            email: result.data.email,
-            reservations: result.data.reservations
-          }
-        )
+        dispatch({
+          type: "ADD_USER",
+          username: result.data.username,
+          email: result.data.email,
+          reservations: result.data.reservations,
+          _id: result.data._id,
+        });
       })
-      .catch(err => console.log(err));
-
-  }
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div id="Signup">
@@ -47,12 +43,7 @@ const Signup = () => {
           ref={usernameRef}
         />
         <label for="email">Email: </label>
-        <input
-          type="text"
-          name="email"
-          id="emailInput"
-          ref={emailRef}
-        />
+        <input type="text" name="email" id="emailInput" ref={emailRef} />
         <label for="password">Password: </label>
         <input
           type="text"

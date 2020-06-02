@@ -36,7 +36,7 @@ const JumbotronPage = () => {
                     Sed ut perspiciatis unde omnis iste natus sit voluptatem
                     accusantium doloremque laudantium, totam rem aperiam.
                   </MDBCardText>
-                  <MDBBtn color="primary">Learn More</MDBBtn>
+                  <MDBBtn color="primary" href="/businessSignUp">Sign Up</MDBBtn>
                   <hr />
 
                   <MDBNav className="justify-content-center">
