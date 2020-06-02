@@ -17,7 +17,7 @@ const Card = (props) => {
     console.log(props._id);
     API.getBusinessById(props._id)
       .then((result) => {
-        // console.log(result);
+        console.log(result);
         dispatch({
           type: "UPDATE_BIZ",
           businessId: result.data._id,
