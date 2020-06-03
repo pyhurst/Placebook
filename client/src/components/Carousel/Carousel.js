@@ -26,41 +26,71 @@ const responsive = {
 };
 
 class MyCarousel extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
   state = {
     business: [],
   };
 
+
+
   componentDidMount() {
+    console.log(this.props.businessCategory)
     API.getBusiness()
       .then((results) => {
-        console.log(results.data);
+        // console.log(results.data);
         this.setState((this.state.business = results.data));
         console.log("test");
-        console.log(this.state.business);
+        // console.log(this.state.business);
       })
       .catch((err) => console.log(err));
   }
 
   render() {
-    return (
-      <div>
-        <Carousel responsive={responsive}>
-          {this.state.business.map((biz) => {
-            return (
-              <Card
-                key={biz._id}
-                _id={biz._id}
-                name={biz.name}
-                category={biz.category}
-                address={biz.address}
-                city={biz.city}
-                phone={biz.phone}
-              />
-            );
-          })}
-        </Carousel>
-      </div>
-    );
+    if (this.props.businessCategory.length != 0) {
+      return (
+        <div>
+          <Carousel responsive={responsive}>
+            {this.props.businessCategory.map((biz) => {
+              return (
+                <Card
+                  key={biz._id}
+                  _id={biz._id}
+                  name={biz.name}
+                  category={biz.category}
+                  address={biz.address}
+                  city={biz.city}
+                  phone={biz.phone}
+                />
+              )
+            })}
+          </Carousel>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Carousel responsive={responsive}>
+            {this.state.business.map((biz) => {
+              return (
+                <Card
+                  key={biz._id}
+                  _id={biz._id}
+                  name={biz.name}
+                  category={biz.category}
+                  address={biz.address}
+                  city={biz.city}
+                  phone={biz.phone}
+                />
+              );
+            })}
+          </Carousel>
+        </div>
+
+      );
+    }
   }
 }
 
