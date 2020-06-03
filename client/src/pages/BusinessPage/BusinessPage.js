@@ -24,9 +24,9 @@ function Business() {
 
 
 
-  function loadBusiness() {
-    console.log("test1");
-    console.log(bizContext[0]);
+  // function loadBusiness() {
+  //   console.log("test1");
+  //   console.log(bizContext[0]);
     // API.getBusiness()
     //   .then((res) => {
     //     setBusiness({
@@ -45,10 +45,10 @@ function Business() {
     //     console.log(res);
     //   })
     //   .catch((err) => console.log(err));
-  }
-  useEffect(() => {
-    loadBusiness();
-  }, [bizContext]);
+  // }
+  // useEffect(() => {
+  //   loadBusiness();
+  // });
 
   return (
     <div className="container">
@@ -60,7 +60,7 @@ function Business() {
           <li>Opens at: {bizContext[0].times.open}</li>
           <li>Closes at: {bizContext[0].times.close}</li>
           <li>Owner Id: {bizContext[0].ownerId}</li>
-          <li>Timeslots: {bizContext[0].times.timeslot_length}</li>
+          <li>Timeslots: {bizContext[0].times.timeslot_length} Minutes</li>
         </ul>
       </div>
       <div className="section">
@@ -70,7 +70,7 @@ function Business() {
           </div>
           <div className="column is-three-fifths-desktop is-full-mobile is-full-tablet">
             <h1>Date: putdatehere</h1>
-            <Schedule openTime={7} closeTime={10} timeslot={15} capacity={30}/>
+            <Schedule />
           </div>
         </div>
       </div>

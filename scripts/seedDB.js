@@ -18,7 +18,7 @@ const businessSeed = [
     address: "644 N Orleans St, Chicago, IL 60654",
     phone: "312-555-5555",
     city: "Chicago",
-    ownerId: "5ed53422d58c3e451893c9b3",
+    ownerId: "5ed798003184ef1988a28b5a",
     reservations: [],
   },
   {
@@ -33,7 +33,7 @@ const businessSeed = [
     address: "310 W Division St, Chicago, IL 60610",
     phone: "312-777-3333",
     city: "Chicago",
-    ownerId: "5ed53422d58c3e451893c9b4",
+    ownerId: "5ed798003184ef1988a28b5b",
     reservations: [],
   },
   {
@@ -48,7 +48,7 @@ const businessSeed = [
     address: "220 E Chicago Ave, Chicago, IL 60611",
     phone: "312-434-4343",
     city: "Chicago",
-    ownerId: "5ed53422d58c3e451893c9b5",
+    ownerId: "5ed798003184ef1988a28b5c",
     reservations: []
   },
   {
@@ -61,7 +61,7 @@ const businessSeed = [
       capacity: 30,
     },
     city: "Chicago",
-    ownerId: "5ed53422d58c3e451893c9b6",
+    ownerId: "5ed798003184ef1988a28b5d",
     address: "435 E Illinois St, Chicago, IL 60611",
     phone: "312-334-2222",
     reservations: []
@@ -76,7 +76,7 @@ const businessSeed = [
       capacity: 20,
     },
     city: "Chicago",
-    ownerId: "5ed53422d58c3e451893c9b7",
+    ownerId: "5ed798003184ef1988a28b5e",
     address: "227 E Ontario St Suite 202, Chicago, IL 60611",
     phone: "312-334-2222",
     reservations: [],
@@ -91,7 +91,7 @@ const businessSeed = [
       capacity: 10,
     },
     city: "Chicago",
-    ownerId: "5ed53422d58c3e451893c9b8",
+    ownerId: "5ed798003184ef1988a28b5f",
     address: "200 E Example St Suite 202, Chicago, IL 60610",
     phone: "312-345-4564",
     reservations: [],

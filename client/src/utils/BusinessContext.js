@@ -26,6 +26,21 @@ const reducer = (state, action) => {
   }
 };
 
+//reservations: [
+//   {
+//      date: "06-05-20",
+//      time: 7,
+//      capacity: 46,
+//      ids: [1, 2 ,19, 30]
+//   },
+//   {
+//      date: "06-05-20",
+//      time: 8,
+//      capacity: 48,
+//      ids: [18, 32]
+//   },
+// ]
+
 const BizProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     businessId: "",
