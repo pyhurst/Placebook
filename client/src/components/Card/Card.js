@@ -26,12 +26,13 @@ const Card = (props) => {
           phone: result.data.phone,
           reservations: [result.data.reservations],
           times: {
-            open: result.data.open,
-            close: result.data.close,
-            timeslot_length: result.data.timeslot_length,
-            capacity: result.data.capacity,
+            open: result.data.times.open,
+            close: result.data.times.close,
+            timeslot_length: result.data.times.timeslot_length,
+            capacity: result.data.times.capacity,
           },
         });
+        // console.log(state);
       })
       .catch((err) => console.log(err));
   };
