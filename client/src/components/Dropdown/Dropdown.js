@@ -8,10 +8,9 @@ import {
 } from "reactstrap";
 import API from "../../utils/API";
 
-const DropdownEl = () => {
+const DropdownEl = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-<<<<<<< HEAD
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   if (props.time === "times") {
@@ -47,51 +46,20 @@ const DropdownEl = () => {
       </Dropdown>
     )
   } else {
-
-    return (
-      <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-        <DropdownToggle caret>Business Type</DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem>Gyms</DropdownItem>
-          <DropdownItem>Salons</DropdownItem>
-          <DropdownItem>Hardware</DropdownItem>
-          <DropdownItem>Retail</DropdownItem>
-          <DropdownItem>etc</DropdownItem>
-          <DropdownItem>etc</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-    );
-  }
-};
-
-export default DropdownEl;
-=======
-  // const [category, setCategory] = useState({
-  //   categories: []
-  // })
-
-  const handleOnClick = (e) => {
-    const event = e.target.value
-    // console.log(event)
-
-
-    API.getBusiness()
-      // .then(res => console.log(res.data))
-      .then(res => res.data.filter(function(business){
-        if (event === business.category){
-          console.log("test")
-        }
-  
-      }))
-      
-  }
-
-    useEffect(() => {
-
-    }, [])
-    // console.log(category); 
-
-    const toggle = () => setDropdownOpen((prevState) => !prevState);
+    // const [category, setCategory] = useState({
+    //   categories: []
+    // })
+    const handleOnClick = (e) => {
+      const event = e.target.value
+      // console.log(event)
+      API.getBusiness()
+        // .then(res => console.log(res.data))
+        .then(res => res.data.filter(function (business) {
+          if (event === business.category) {
+            console.log("test")
+          }
+        }))
+    }
 
     return (
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
@@ -107,7 +75,7 @@ export default DropdownEl;
         </DropdownMenu>
       </Dropdown>
     );
-  };
+  }
+};
 
-  export default DropdownEl;
->>>>>>> master
+export default DropdownEl;
