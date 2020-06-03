@@ -2,6 +2,7 @@ import React from "react";
 import "bulma/css/bulma.css";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Business = () => {
   const userContext = useUserContext();
@@ -18,11 +19,14 @@ const Business = () => {
   };
 
   return (
-    <div className="container">
-      <div className="section">
-        <div className="columns">
-          <div className="column">Welcome, {userContext[0].username}</div>
-          <div className="column">Appointments: {renderAppointments()}</div>
+    <div>
+      <Navbar />
+      <div className="container">
+        <div className="section">
+          <div className="columns">
+            <div className="column">Welcome, {userContext[0].username}</div>
+            <div className="column">Appointments: {renderAppointments()}</div>
+          </div>
         </div>
       </div>
     </div>
