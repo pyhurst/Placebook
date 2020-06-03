@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../Images/logo.png";
 import { Link } from "react-router-dom";
+import API from "../../utils/API";
+import { useUserContext } from "../../utils/UserContext";
 
 import "bulma/css/bulma.css";
 
 const Navbar = (props) => {
   //do a ternary if !pops.user render action buttons, else render
   //a button that will take them to /user/home
+
+  // useEffect(() => {
+  //   API.getBusinessById(id)
+  //     .then((result) => {
+  //       dispatch({
+  //         type: "UPDATE_BIZ",
+  //         businessId: result.data._id,
+  //         name: result.data.name,
+  //         address: result.data.address,
+  //         phone: result.data.phone,
+  //         reservations: [result.data.reservations],
+  //         times: {
+  //           open: result.data.times.open,
+  //           close: result.data.times.close,
+  //           timeslot_length: result.data.times.timeslot_length,
+  //           capacity: result.data.times.capacity,
+  //         },
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
+
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">

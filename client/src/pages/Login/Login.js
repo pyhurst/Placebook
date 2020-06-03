@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Login = () => {
   const usernameRef = useRef();
@@ -33,25 +34,29 @@ const Login = () => {
   };
 
   return (
-    <div id="Signup">
-      <h1>this is our Signup page</h1>
-      <form>
-        <label for="username">Username: </label>
-        <input
-          type="text"
-          name="username"
-          id="usernameInput"
-          ref={usernameRef}
-        />
-        <label for="password">Password: </label>
-        <input
-          type="text"
-          name="password"
-          id="passwordInput"
-          ref={passwordRef}
-        />
-        <button onClick={handleSubmit}>Sign Up</button>
-      </form>
+    <div>
+      <Navbar />
+
+      <div id="Signup">
+        <h1>this is our Signup page</h1>
+        <form>
+          <label for="username">Username: </label>
+          <input
+            type="text"
+            name="username"
+            id="usernameInput"
+            ref={usernameRef}
+          />
+          <label for="password">Password: </label>
+          <input
+            type="text"
+            name="password"
+            id="passwordInput"
+            ref={passwordRef}
+          />
+          <button onClick={handleSubmit}>Sign Up</button>
+        </form>
+      </div>
     </div>
   );
 };
