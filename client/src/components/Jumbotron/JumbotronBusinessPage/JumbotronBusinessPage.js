@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {
   MDBJumbotron,
   MDBBtn,
@@ -36,9 +37,9 @@ const JumbotronPage = () => {
                     Sed ut perspiciatis unde omnis iste natus sit voluptatem
                     accusantium doloremque laudantium, totam rem aperiam.
                   </MDBCardText>
-                  <MDBBtn color="primary" href="/businessSignUp">
+                  <Link color="primary" to="/businessSignUp">
                     Sign Up
-                  </MDBBtn>
+                  </Link>
                   <hr />
 
                   <MDBNav className="justify-content-center">

@@ -12,15 +12,14 @@ const BusinessInputs = () => {
     const closeTimeRef = useRef();
     const timeSlotLengthRef = useRef();
     const capacityRef = useRef();
-    const { _id } = useUserContext();
+    const userContext = useUserContext();
     // const [state, dispatch] = useUserContext();
-
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('clicked');
         API.addBusiness(
             {
-                _id: _id,
+                ownerId: userContext[0]._id,
                 name: businessNameRef.current.value,
                 category: categoryRef.current.value,
                 address: addressRef.current.value,
