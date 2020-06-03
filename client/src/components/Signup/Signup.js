@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
+import "./Signup.css";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
@@ -33,9 +34,9 @@ const Signup = () => {
   };
 
   return (
-    <div id="Signup">
-      <h1>this is our Signup page</h1>
-      <form>
+    <div id="Signup" className="container">
+      <h1>Signup for Placebook</h1>
+      <form className="signup-form">
         <label for="username">Username: </label>
         <input
           type="text"
