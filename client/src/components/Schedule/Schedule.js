@@ -12,22 +12,39 @@ const Schedule = () => {
         // console.log(bizContext[0].times.open)
         if (bizContext[0].times.timeslot_length === 60) {
             const blockCount = bizContext[0].times.close - bizContext[0].times.open;
-            pushArray(blockCount);
+            for (let i = 0; i < blockCount; i++) {
+                array.push(bizContext[0].times.open + i);
+            }
             return array;
         } else if (bizContext[0].times.timeslot_length === 30) {
             const blockCount = (bizContext[0].times.close - bizContext[0].times.open) * 2;
+            let oddCount = 0
+            let evenCount = 0
             for (let i = 0; i < blockCount; i++) {
-                array.push(bizContext[0].times.open + i);
-            //     if(i % 2 === undefined || i % 2 === 0){
-            //         array.push(bizContext[0].times.open + i);
-            //     } else {
-            //         array.push(bizContext[0].times.open + ":30")
-            //     }
+                // array.push(bizContext[0].times.open + i);
+                if(i % 2 === undefined || i % 2 === 0){
+                    array.push(bizContext[0].times.open + evenCount);
+                    evenCount++;
+                } else {
+                    array.push(bizContext[0].times.open + oddCount + ":30")
+                    oddCount++;
+                }
             }
             return array;
         } else {
             const blockCount = (bizContext[0].times.close - bizContext[0].times.open) * 4;
-            pushArray(blockCount);
+            // let oddCount = 0
+            // let evenCount = 0
+            for (let i = 0; i < blockCount; i++) {
+                array.push(bizContext[0].times.open + i);
+            //     if(i % 2 === undefined || i % 2 === 0){
+            //         array.push(bizContext[0].times.open + evenCount);
+            //         evenCount++;
+            //     } else {
+            //         array.push(bizContext[0].times.open + oddCount + ":15")
+            //         oddCount++;
+            //     }
+            }
             return array;
         }
     }

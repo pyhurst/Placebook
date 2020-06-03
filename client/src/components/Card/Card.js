@@ -13,29 +13,29 @@ import API from "../../utils/API";
 
 const Card = (props) => {
   const [state, dispatch] = useBizContext();
-  const linkClicked = (e) => {
-    console.log(props._id);
-    API.getBusinessById(props._id)
-      .then((result) => {
-        console.log(result);
-        dispatch({
-          type: "UPDATE_BIZ",
-          businessId: result.data._id,
-          name: result.data.name,
-          address: result.data.address,
-          phone: result.data.phone,
-          reservations: [result.data.reservations],
-          times: {
-            open: result.data.times.open,
-            close: result.data.times.close,
-            timeslot_length: result.data.times.timeslot_length,
-            capacity: result.data.times.capacity,
-          },
-        });
-        // console.log(state);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const linkClicked = (e) => {
+  //   console.log(props._id);
+  //   API.getBusinessById(props._id)
+  //     .then((result) => {
+  //       console.log(result);
+  //       dispatch({
+  //         type: "UPDATE_BIZ",
+  //         businessId: result.data._id,
+  //         name: result.data.name,
+  //         address: result.data.address,
+  //         phone: result.data.phone,
+  //         reservations: [result.data.reservations],
+  //         times: {
+  //           open: result.data.times.open,
+  //           close: result.data.times.close,
+  //           timeslot_length: result.data.times.timeslot_length,
+  //           capacity: result.data.times.capacity,
+  //         },
+  //       });
+  //       // console.log(state);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <div>
@@ -51,7 +51,7 @@ const Card = (props) => {
             <MDBCardText>{props.city}</MDBCardText>
             <MDBCardText>{props.address}</MDBCardText>
             <MDBCardText>{props._id}</MDBCardText>
-            <Link to="/business/page" onClick={linkClicked}>
+            <Link to={"/business/page/" + props._id}>
               View
             </Link>
           </MDBCardBody>

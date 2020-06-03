@@ -1,11 +1,17 @@
 import React from "react";
 import "bulma/css/bulma.css";
 import { useUserContext } from "../../utils/UserContext";
+import API from "../../utils/API";
 
 const Business = () => {
   const userContext = useUserContext();
   console.log("user context should be here");
   console.log(userContext);
+  // useEffect(()=> {
+  //   API.getMyInfo().then(success => {
+  //     //set the context to my user
+  //   })
+  // })
 
   const renderAppointments = () => {
     console.log(userContext[0].reservations[0]);

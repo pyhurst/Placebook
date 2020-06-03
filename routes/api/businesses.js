@@ -8,6 +8,14 @@ router.route("/all").get(placeController.findAll).post(placeController.create);
 // router
 //     .route("/add")
 //     .post(placeController.create);
+// router.route('/protected')
+//     .get(function(req, res) {
+//         if (req.user) {
+//             //access granted
+//         } else {
+//             // send away
+//         }
+//     })
 
 // Matches with "/api/businesses/:id"
 router.route("/:id").get(placeController.findOne);
