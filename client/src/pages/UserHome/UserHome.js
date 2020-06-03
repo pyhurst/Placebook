@@ -1,31 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "bulma/css/bulma.css";
+import Navbar from "../../components/Navbar/Navbar";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
-import Navbar from "../../components/Navbar/Navbar";
 
 const Business = () => {
-  const userContext = useUserContext();
-  console.log("user context should be here");
-  console.log(userContext);
-  // useEffect(()=> {
-  //   API.getMyInfo().then(success => {
-  //     //set the context to my user
-  //   })
-  // })
+  const [userState, userDispatch] = useUserContext();
+  useEffect(() => {
+    API.checkUser()
+      .then((userResult) => {
+        console.log(userResult);
+        userDispatch({
+          type: "ADD_USER",
+          username: userResult.data.user.username,
+          email: userResult.data.user.email,
+          reservations: userResult.data.user.reservations,
+          _id: userResult.data.user._id,
+        });
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-  const renderAppointments = () => {
-    console.log(userContext[0].reservations[0]);
+  const navBar = () => {
+    if (userState.username === "") {
+      console.log("it is an empty string");
+      return <Navbar />;
+    } else {
+      console.log("there is a user logged in");
+      console.log(userState);
+      return <Navbar user="user" />;
+    }
   };
 
   return (
     <div>
-      <Navbar />
+      {navBar()}
       <div className="container">
         <div className="section">
           <div className="columns">
-            <div className="column">Welcome, {userContext[0].username}</div>
-            <div className="column">Appointments: {renderAppointments()}</div>
+            <div className="column">Welcome, {userState.username} </div>
+            <div className="column">Appointments: </div>
           </div>
         </div>
       </div>

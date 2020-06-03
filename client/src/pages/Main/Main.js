@@ -8,6 +8,7 @@ class Main extends React.Component {
   // const [state, dispatch] = useStoreContext();
   state = {
     businessCategory: [],
+    user: "",
   };
 
   handleOnClick = (e) => {
@@ -23,15 +24,37 @@ class Main extends React.Component {
       });
   };
 
-  // useEffect(() => {}, []);
+  componentDidMount() {
+    API.checkUser()
+      .then((res) => {
+        console.log("test");
+        console.log(res);
+        this.setState({ user: res.data.user });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  navBar = () => {
+    if (this.state.user === null) {
+      console.log("it is an empty string");
+      return <Navbar />;
+    } else {
+      console.log("there is a user logged in");
+      return <Navbar user="user" />;
+    }
+  };
+
   render() {
     return (
-      <section>
-        <div id="main">
-          <Jumbotron handleOnClick={this.handleOnClick} />
-        </div>
-        <MyCarousel businessCategory={this.state.businessCategory} />
-      </section>
+      <div>
+        {this.navBar()}
+        <section>
+          <div id="main">
+            <Jumbotron handleOnClick={this.handleOnClick} />
+          </div>
+          <MyCarousel businessCategory={this.state.businessCategory} />
+        </section>
+      </div>
     );
   }
 }

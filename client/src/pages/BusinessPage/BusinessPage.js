@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Calendar from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
 import API from "../../utils/API";
-import Time from "../../components/Timeslots/Timeslots";
 import Schedule from "../../components/Schedule/Schedule";
 import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
@@ -46,10 +45,19 @@ function Business() {
       .catch((err) => console.log(err));
   }, []);
 
+  const navBar = () => {
+    if (userState.username === "") {
+      console.log("it is an empty string");
+      return <Navbar />;
+    } else {
+      console.log("there is a user logged in");
+      return <Navbar user="user" />;
+    }
+  };
+
   return (
     <div>
-      <Navbar />
-
+      {navBar()}
       <div className="container">
         <div className="section">
           <ul>
