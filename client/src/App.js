@@ -26,7 +26,7 @@ class App extends Component {
             <Route exact path="/business" component={Business} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/business/page" component={Businesspage} />
+            <Route exact path="/business/page/:id" component={Businesspage} />
             <Route exact path="/business/home" component={BusinessHome} />
             <Route exact path="/user/home" component={Userpage} />
             </BizProvider>
