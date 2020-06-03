@@ -48,11 +48,11 @@ const Card = (props) => {
           />
           <MDBCardBody>
             <MDBCardTitle>{props.name}</MDBCardTitle>
-            <MDBCardText>{props.city}</MDBCardText>
+            <MDBCardText>{props.category}</MDBCardText>
             <MDBCardText>{props.address}</MDBCardText>
-            <MDBCardText>{props._id}</MDBCardText>
+            {/* <MDBCardText></MDBCardText> */}
             <Link to="/business/page" onClick={linkClicked}>
-              View
+              View Business
             </Link>
           </MDBCardBody>
         </MDBCard>
