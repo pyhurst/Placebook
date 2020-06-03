@@ -8,16 +8,16 @@ const JumboEl = (props) => {
       <Jumbotron>
         <h1 className="display-3">Placebook</h1>
         <p className="lead">
-          The pandemic has changed our way of doing business. Find a business
-          and book your appointment today using Placebook.
+          COVID-19 is changing the way we do business. Find a business
+          and book your appointment today using Placebook!
         </p>
         <hr className="my-2" />
         <p>
-          Can't find a business? Let us know and will we reach out to the
+          Can't find the business you're looking for? Let us know and will we reach out to the
           owners.
         </p>
 
-        <Dropdown />
+        <Dropdown handleOnClick={props.handleOnClick}/>
       </Jumbotron>
     </div>
   );

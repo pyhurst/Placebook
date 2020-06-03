@@ -23,7 +23,7 @@ const businessSeed = [
   },
   {
     name: "Chicago Public Library",
-    category: "Library",
+    category: "Education",
     times: {
       open: 8,
       close: 17,
