@@ -11,54 +11,47 @@ import API from "../../utils/API";
 const DropdownEl = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const [category, setCategory] = useState({
-    category: []
-  })
-
-
-
+  // const [category, setCategory] = useState({
+  //   categories: []
+  // })
 
   const handleOnClick = (e) => {
     const event = e.target.value
-    console.log(event)
+    // console.log(event)
 
 
     API.getBusiness()
-    .then(results => {
-        if(event === results.data[0].category){
-          // setCategory(results.data[0].category)
-          console.log("match")
-          console.log(category)
-          }else{
-            console.log("no match")
-          }
-    
-    })
-    // console.log("I was clicked")
-    // console.log(e.target.value)
+      // .then(res => console.log(res.data))
+      .then(res => res.data.filter(function(business){
+        if (event === business.category){
+          console.log("test")
+        }
+  
+      }))
+      
   }
 
-  useEffect(() => {
-    
-  }, [])
-  // console.log(category); 
+    useEffect(() => {
 
-  const toggle = () => setDropdownOpen((prevState) => !prevState);
+    }, [])
+    // console.log(category); 
 
-  return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle caret>View Businesses by Category</DropdownToggle>
-      <DropdownMenu>
-        <DropdownItem value="Gym" onClick={handleOnClick}>Gym</DropdownItem>
-        <DropdownItem value="Salon" onClick={handleOnClick}>Salons</DropdownItem>
-        <DropdownItem value="Hardware" onClick={handleOnClick}>Hardware</DropdownItem>
-        <DropdownItem value="Retail" onClick={handleOnClick}>Retail</DropdownItem>
-        <DropdownItem value="Education" onClick={handleOnClick}>Education</DropdownItem>
-        <DropdownItem value="Recreation" onClick={handleOnClick}>Recreation</DropdownItem>
-        <DropdownItem value="Other" onClick={handleOnClick}>Other</DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
-  );
-};
+    const toggle = () => setDropdownOpen((prevState) => !prevState);
 
-export default DropdownEl;
+    return (
+      <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+        <DropdownToggle caret>View Businesses by Category</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem value="Gym" onClick={handleOnClick}>Gym</DropdownItem>
+          <DropdownItem value="Salon" onClick={handleOnClick}>Salons</DropdownItem>
+          <DropdownItem value="Hardware" onClick={handleOnClick}>Hardware</DropdownItem>
+          <DropdownItem value="Retail" onClick={handleOnClick}>Retail</DropdownItem>
+          <DropdownItem value="Education" onClick={handleOnClick}>Education</DropdownItem>
+          <DropdownItem value="Recreation" onClick={handleOnClick}>Recreation</DropdownItem>
+          <DropdownItem value="Other" onClick={handleOnClick}>Other</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+  };
+
+  export default DropdownEl;

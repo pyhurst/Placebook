@@ -4,6 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import Card from "../Card/Card";
 import "./Carousel.css";
 import API from "../../utils/API";
+import { handleOnClick } from "../Dropdown/Dropdown.js";
 
 const responsive = {
   superLargeDesktop: {
