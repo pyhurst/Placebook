@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import Card from "../Card/Card";
 import "./Carousel.css";
 import API from "../../utils/API";
-import { handleOnClick } from "../Dropdown/Dropdown.js";
+import "./Carousel.css";
 
 const responsive = {
   superLargeDesktop: {
@@ -17,11 +17,11 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 1,
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
+    items: 2,
   },
 };
 
@@ -51,7 +51,7 @@ class MyCarousel extends React.Component {
   render() {
     if (this.props.businessCategory.length != 0) {
       return (
-        <div>
+        <div id="carouselContainer">
           <Carousel responsive={responsive}>
             {this.props.businessCategory.map((biz) => {
               return (
@@ -71,7 +71,7 @@ class MyCarousel extends React.Component {
       );
     } else {
       return (
-        <div>
+        <div id="carouselContainer">
           <Carousel responsive={responsive}>
             {this.state.business.map((biz) => {
               return (
