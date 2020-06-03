@@ -1,16 +1,17 @@
 import React, { useRef } from "react";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
+import "./Signup.css";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const emailRef = useRef();
-  // const { username, password, email, reservations } = useContext(UserContext);
   const [state, dispatch] = useUserContext();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log("clicked");
     console.log(usernameRef.current.value);
     API.addUser({
@@ -19,7 +20,8 @@ const Signup = () => {
       email: emailRef.current.value,
     })
       .then((result) => {
-        // console.log(result);
+        console.log("test");
+        console.log(result);
         dispatch({
           type: "ADD_USER",
           username: result.data.username,
@@ -32,9 +34,9 @@ const Signup = () => {
   };
 
   return (
-    <div id="Signup">
-      <h1>this is our Signup page</h1>
-      <form>
+    <div id="Signup" className="container">
+      <h1>Signup for Placebook</h1>
+      <form className="signup-form">
         <label for="username">Username: </label>
         <input
           type="text"
@@ -51,7 +53,9 @@ const Signup = () => {
           id="passwordInput"
           ref={passwordRef}
         />
-        <button onClick={handleSubmit}>Sign Up</button>
+        <Link to="/user/home" onClick={handleSubmit}>
+          Sign Up
+        </Link>
       </form>
     </div>
   );
