@@ -5,16 +5,19 @@ import API from "../../utils/API";
 import Time from "../../components/Timeslots/Timeslots";
 import Schedule from "../../components/Schedule/Schedule";
 import { useBizContext } from "../../utils/BusinessContext";
+import { useUserContext } from "../../utils/UserContext";
 import { useParams } from "react-router-dom";
 
 function Business() {
-  const {id} = useParams();
-  const [state, dispatch] = useBizContext();
+  const { id } = useParams();
+  const [bizState, bizDispatch] = useBizContext();
+  const [userState, userDispatch] = useUserContext();
+
 
   useEffect(() => {
     API.getBusinessById(id).then(result => {
 
-      dispatch({
+      bizDispatch({
         type: "UPDATE_BIZ",
         businessId: result.data._id,
         name: result.data.name,
@@ -27,22 +30,35 @@ function Business() {
           timeslot_length: result.data.times.timeslot_length,
           capacity: result.data.times.capacity,
         },
-      });
+      })
+    });
+
+    API.checkUser().then(userResult => {
+      console.log(userResult)
+      userDispatch({
+        type: "ADD_USER",
+        username: userResult.data.user.username,
+        email: userResult.data.user.email,
+        reservations: userResult.data.user.reservations,
+        _id: userResult.data.user._id,
+      })
     })
-    .catch((err) => console.log(err));
-  },[])
+      .catch((err) => console.log(err));
+
+  }, [])
 
   return (
     <div className="container">
       <div className="section">
         <ul>
-          <li>{state.name}</li>
-          <li>{state.address}</li>
-          <li>{state.phone}</li>
-          <li>Opens at: {state.times.open}</li>
-          <li>Closes at: {state.times.close}</li>
-          <li>Owner Id: {state.ownerId}</li>
-          <li>Timeslots: {state.times.timeslot_length} Minutes</li>
+          <li>{bizState.name}</li>
+          <li>Name: {userState.username}</li>
+          <li>{bizState.address}</li>
+          <li>{bizState.phone}</li>
+          <li>Opens at: {bizState.times.open}</li>
+          <li>Closes at: {bizState.times.close}</li>
+          <li>Owner Id: {bizState.ownerId}</li>
+          <li>Timeslots: {bizState.times.timeslot_length} Minutes</li>
         </ul>
       </div>
       <div className="section">
