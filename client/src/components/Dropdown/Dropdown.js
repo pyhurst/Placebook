@@ -49,29 +49,29 @@ const DropdownEl = (props) => {
     // const [category, setCategory] = useState({
     //   categories: []
     // })
-    const handleOnClick = (e) => {
-      const event = e.target.value
-      // console.log(event)
-      API.getBusiness()
-        // .then(res => console.log(res.data))
-        .then(res => res.data.filter(function (business) {
-          if (event === business.category) {
-            console.log("test")
-          }
-        }))
-    }
+    // const handleOnClick = (e) => {
+    //   const event = e.target.value
+    //   // console.log(event)
+    //   API.getBusiness()
+    //     // .then(res => console.log(res.data))
+    //     .then(res => res.data.filter(function (business) {
+    //       if (event === business.category) {
+    //         console.log("test")
+    //       }
+    //     }))
+    // }
 
     return (
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle caret>View Businesses by Category</DropdownToggle>
         <DropdownMenu>
-          <DropdownItem value="Gym" onClick={handleOnClick}>Gym</DropdownItem>
-          <DropdownItem value="Salon" onClick={handleOnClick}>Salons</DropdownItem>
-          <DropdownItem value="Hardware" onClick={handleOnClick}>Hardware</DropdownItem>
-          <DropdownItem value="Retail" onClick={handleOnClick}>Retail</DropdownItem>
-          <DropdownItem value="Education" onClick={handleOnClick}>Education</DropdownItem>
-          <DropdownItem value="Recreation" onClick={handleOnClick}>Recreation</DropdownItem>
-          <DropdownItem value="Other" onClick={handleOnClick}>Other</DropdownItem>
+          <DropdownItem value="Gym" onClick={props.handleOnClick}>Gym</DropdownItem>
+          <DropdownItem value="Salon" onClick={props.handleOnClick}>Salons</DropdownItem>
+          <DropdownItem value="Hardware" onClick={props.handleOnClick}>Hardware</DropdownItem>
+          <DropdownItem value="Retail" onClick={props.handleOnClick}>Retail</DropdownItem>
+          <DropdownItem value="Education" onClick={props.handleOnClick}>Education</DropdownItem>
+          <DropdownItem value="Recreation" onClick={props.handleOnClick}>Recreation</DropdownItem>
+          <DropdownItem value="Other" onClick={props.handleOnClick}>Other</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );
