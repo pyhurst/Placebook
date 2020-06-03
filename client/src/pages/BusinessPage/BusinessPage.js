@@ -5,29 +5,42 @@ import API from "../../utils/API";
 import Time from "../../components/Timeslots/Timeslots";
 import Schedule from "../../components/Schedule/Schedule";
 import { useBizContext } from "../../utils/BusinessContext";
+import { useUserContext } from "../../utils/UserContext";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
 function Business() {
   const { id } = useParams();
-  const [state, dispatch] = useBizContext();
+  const [bizState, bizDispatch] = useBizContext();
+  const [userState, userDispatch] = useUserContext();
 
   useEffect(() => {
-    API.getBusinessById(id)
-      .then((result) => {
-        dispatch({
-          type: "UPDATE_BIZ",
-          businessId: result.data._id,
-          name: result.data.name,
-          address: result.data.address,
-          phone: result.data.phone,
-          reservations: [result.data.reservations],
-          times: {
-            open: result.data.times.open,
-            close: result.data.times.close,
-            timeslot_length: result.data.times.timeslot_length,
-            capacity: result.data.times.capacity,
-          },
+    API.getBusinessById(id).then((result) => {
+      bizDispatch({
+        type: "UPDATE_BIZ",
+        businessId: result.data._id,
+        name: result.data.name,
+        address: result.data.address,
+        phone: result.data.phone,
+        reservations: [result.data.reservations],
+        times: {
+          open: result.data.times.open,
+          close: result.data.times.close,
+          timeslot_length: result.data.times.timeslot_length,
+          capacity: result.data.times.capacity,
+        },
+      });
+    });
+
+    API.checkUser()
+      .then((userResult) => {
+        console.log(userResult);
+        userDispatch({
+          type: "ADD_USER",
+          username: userResult.data.user.username,
+          email: userResult.data.user.email,
+          reservations: userResult.data.user.reservations,
+          _id: userResult.data.user._id,
         });
       })
       .catch((err) => console.log(err));
@@ -36,16 +49,18 @@ function Business() {
   return (
     <div>
       <Navbar />
+
       <div className="container">
         <div className="section">
           <ul>
-            <li>{state.name}</li>
-            <li>{state.address}</li>
-            <li>{state.phone}</li>
-            <li>Opens at: {state.times.open}</li>
-            <li>Closes at: {state.times.close}</li>
-            <li>Owner Id: {state.ownerId}</li>
-            <li>Timeslots: {state.times.timeslot_length} Minutes</li>
+            <li>{bizState.name}</li>
+            <li>Name: {userState.username}</li>
+            <li>{bizState.address}</li>
+            <li>{bizState.phone}</li>
+            <li>Opens at: {bizState.times.open}</li>
+            <li>Closes at: {bizState.times.close}</li>
+            <li>Owner Id: {bizState.ownerId}</li>
+            <li>Timeslots: {bizState.times.timeslot_length} Minutes</li>
           </ul>
         </div>
         <div className="section">
