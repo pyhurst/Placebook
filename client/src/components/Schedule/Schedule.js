@@ -1,12 +1,17 @@
 import React from 'react';
 import "./Schedule.css";
 import { useBizContext } from "../../utils/BusinessContext";
+import { useUserContext } from "../../utils/UserContext";
+import API from "../../utils/API";
+import { Redirect } from 'react-router-dom';
 
 
 const Schedule = () => {
     const bizContext = useBizContext();
     const [timeblockState, setTimeblockState] = React.useState([]);
     const array = [];
+    const [state, dispatch] = useUserContext();
+
 
     function timeblocks() {
         // console.log(bizContext[0].times.open)
@@ -22,7 +27,7 @@ const Schedule = () => {
             let evenCount = 0
             for (let i = 0; i < blockCount; i++) {
                 // array.push(bizContext[0].times.open + i);
-                if(i % 2 === undefined || i % 2 === 0){
+                if (i % 2 === undefined || i % 2 === 0) {
                     array.push(bizContext[0].times.open + evenCount);
                     evenCount++;
                 } else {
@@ -37,13 +42,13 @@ const Schedule = () => {
             // let evenCount = 0
             for (let i = 0; i < blockCount; i++) {
                 array.push(bizContext[0].times.open + i);
-            //     if(i % 2 === undefined || i % 2 === 0){
-            //         array.push(bizContext[0].times.open + evenCount);
-            //         evenCount++;
-            //     } else {
-            //         array.push(bizContext[0].times.open + oddCount + ":15")
-            //         oddCount++;
-            //     }
+                //     if(i % 2 === undefined || i % 2 === 0){
+                //         array.push(bizContext[0].times.open + evenCount);
+                //         evenCount++;
+                //     } else {
+                //         array.push(bizContext[0].times.open + oddCount + ":15")
+                //         oddCount++;
+                //     }
             }
             return array;
         }
@@ -59,15 +64,27 @@ const Schedule = () => {
         const newArray = timeblocks();
         // console.log(newArray)
         setTimeblockState(newArray);
-    },[bizContext]);
+    }, [bizContext]);
+
+    const userCheck = () => {
+        API.checkUser().then(result => {
+            // console.log(result);
+            if (result === null) {
+                return window.location.href = "/login"
+            } else {
+                console.log(state)
+            }
+        })
+            .catch((err) => console.log(err));
+    }
 
     return (
         <div>
             {timeblockState.map(e => (
                 <div className='schedule' >
-                <h4>Time: {e}</h4>
-                <h4>{bizContext[0].times.capacity} spots left!</h4>
-                <button className="reserveBtn" id={e} >Reserve!</button>
+                    <h4>Time: {e}</h4>
+                    <h4>{bizContext[0].times.capacity} spots left!</h4>
+                    <button className="reserveBtn" id={e} onClick={userCheck} >Reserve!</button>
                 </div>
             ))}
         </div>

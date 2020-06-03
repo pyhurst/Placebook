@@ -17,4 +17,7 @@ export default {
   getBusinessById: function (id) {
     return axios.get("/api/businesses/" + id);
   },
+  checkUser: function () {
+    return axios.get("/api/user/user")
+  }
 };
