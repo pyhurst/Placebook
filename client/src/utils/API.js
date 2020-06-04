@@ -7,6 +7,9 @@ export default {
   addUser: function (userData) {
     return axios.post("/api/user/signup", userData);
   },
+  userLogout: function (id) {
+    return axios.post("api/user/logout", id);
+  },
   userLogin: function (userData) {
     return axios.post("/api/user/login", userData);
   },

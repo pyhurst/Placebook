@@ -1,10 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import logo from "../../Images/logo.png";
 import { Link } from "react-router-dom";
+import API from "../../utils/API";
+import { useUserContext } from "../../utils/UserContext";
 
 import "bulma/css/bulma.css";
 
 const Navbar = (props) => {
+  const userState = useUserContext();
+  const loGout = () => {
+    API.userLogout(userState).then((e) => {
+      console.log("worked");
+    });
+  };
+
   if (props.user === "user") {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -40,7 +49,7 @@ const Navbar = (props) => {
               <Link to="/user/home">My Homepage</Link>
             </div>
             <div id="actionButtons" className="buttons">
-              <Link to="/login" className="button is-light">
+              <Link to="/" className="button is-light" onClick={loGout}>
                 Log Out
               </Link>
             </div>

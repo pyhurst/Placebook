@@ -24,10 +24,8 @@ const About = () => {
 
   const navBar = () => {
     if (userState.username === "") {
-      console.log("it is an empty string");
       return <Navbar />;
     } else {
-      console.log("there is a user logged in");
       return <Navbar user="user" />;
     }
   };

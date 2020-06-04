@@ -23,10 +23,8 @@ const Business = () => {
 
   const navBar = () => {
     if (userState.username === "") {
-      console.log("it is an empty string");
       return <Navbar />;
     } else {
-      console.log("there is a user logged in");
       console.log(userState);
       return <Navbar user="user" />;
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Calendar from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
 import API from "../../utils/API";
@@ -33,7 +33,6 @@ function Business() {
 
     API.checkUser()
       .then((userResult) => {
-        console.log(userResult);
         userDispatch({
           type: "ADD_USER",
           username: userResult.data.user.username,
@@ -47,10 +46,8 @@ function Business() {
 
   const navBar = () => {
     if (userState.username === "") {
-      console.log("it is an empty string");
       return <Navbar />;
     } else {
-      console.log("there is a user logged in");
       return <Navbar user="user" />;
     }
   };
