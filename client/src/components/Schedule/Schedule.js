@@ -3,14 +3,13 @@ import "./Schedule.css";
 import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
-import { Redirect } from "react-router-dom";
 const Schedule = ({ dataSelectedDate }) => {
   const bizContext = useBizContext();
   const [timeblockState, setTimeblockState] = React.useState([]);
   const array = [];
   const [state, dispatch] = useUserContext();
+
   function timeblocks() {
-    // console.log(bizContext[0].times.open)
     if (bizContext[0].times.timeslot_length === 60) {
       const blockCount = bizContext[0].times.close - bizContext[0].times.open;
       for (let i = 0; i < blockCount; i++) {
@@ -31,7 +30,6 @@ const Schedule = ({ dataSelectedDate }) => {
       let oddCount = 0;
       let evenCount = 0;
       for (let i = 0; i < blockCount; i++) {
-        // array.push(bizContext[0].times.open + i);
         if (i % 2 === undefined || i % 2 === 0) {
           if (bizContext[0].times.open + evenCount === 24) {
             array.push(bizContext[0].times.open + evenCount - 12 + " AM");
@@ -66,18 +64,8 @@ const Schedule = ({ dataSelectedDate }) => {
     } else {
       const blockCount =
         (bizContext[0].times.close - bizContext[0].times.open) * 4;
-      // let thirdCount = 0
-      // let secondCount = 0
-      // let firstCount = 0
       for (let i = 0; i < blockCount; i++) {
         array.push(bizContext[0].times.open + i);
-        // if (i % 3 === 0) {
-        //     array.push(bizContext[0].times.open + oddCount + ":45")
-        //     thirdCount++;
-        // } else {
-        //     array.push(bizContext[0].times.open + oddCount + ":15")
-        //     oddCount++;
-        // }
       }
       return array;
     }
@@ -87,20 +75,16 @@ const Schedule = ({ dataSelectedDate }) => {
       array.push(bizContext[0].times.open + i);
     }
   }
+
   React.useEffect(() => {
     const newArray = timeblocks();
-    // console.log(newArray)
     setTimeblockState(newArray);
   }, [bizContext]);
+
   const userCheck = (time) => {
-    // API.checkUser().then(result => {
-    // console.log(result);
     if (state.username === "") {
       return (window.location.href = "/login");
     } else {
-      console.log(state);
-      console.log(bizContext);
-      console.log(time);
       // API.reservation(bizContext[0].businessId,
       //     {
       //         reservations: {
@@ -140,9 +124,8 @@ const Schedule = ({ dataSelectedDate }) => {
         }
       });
     }
-    // })
-    //     .catch((err) => console.log(err));
   };
+
   return (
     <div>
       {timeblockState.map((time) => (

@@ -7,12 +7,20 @@ import { useUserContext } from "../../utils/UserContext";
 import "bulma/css/bulma.css";
 
 const Navbar = (props) => {
-  const userState = useUserContext();
+  const [userState, userDispatch] = useUserContext();
   const loGout = () => {
-    API.userLogout(userState).then((e) => {});
+    API.userLogout(userState).then((e) => {
+      userDispatch({
+        username: "",
+        email: "",
+        reservations: [],
+        _id: "",
+      });
+      console.log("worked");
+    });
   };
 
-  if (props.user === "user") {
+  if (props.status === "user") {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">

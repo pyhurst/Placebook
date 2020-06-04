@@ -7,20 +7,16 @@ import { STATES } from "mongoose";
 
 const Business = () => {
   const [userState, userDispatch] = useUserContext();
-  // const [navState, setNavState] = useState({
-  //   navStatus: null,
-  // });
-
-  // let userStatus;
+  let userStatus;
   useEffect(() => {
-    // userStatus = 0;
+    userStatus = 0;
     API.checkUser()
       .then((userResult) => {
-        console.log("checkUser result:", userResult);
+        console.log("checkUser result:", userResult.data.user);
         if (userResult.data.user === null) {
-          // setNavState({ ...navState, navStatus: 0 });
-          console.log("the user is null");
+          console.log("we are logged out");
         } else {
+          userStatus = 1;
           userDispatch({
             type: "ADD_USER",
             username: userResult.data.user.username,
@@ -28,22 +24,20 @@ const Business = () => {
             reservations: userResult.data.user.reservations,
             _id: userResult.data.user._id,
           });
-          // setNavState({ ...navState, navStatus: 1 });
         }
       })
 
       .catch((err) => console.log(err));
   }, []);
 
-  // const navBar = () => {
-  //   if (navState.navStatus === null) {
-  //     console.log("navState is null", navState);
-  //     return <Navbar />;
-  //   } else if (navState.navStatus !== null) {
-  //     console.log("the user status is not null", navState);
-  //     return <Navbar status="user" />;
-  //   }
-  // };
+  const navBar = () => {
+    if (userStatus === 0) {
+      console.log("the user status is 0");
+      return <Navbar />;
+    } else {
+      return <Navbar status="user" />;
+    }
+  };
 
   return (
     <div>
