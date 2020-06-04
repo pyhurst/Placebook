@@ -19,13 +19,13 @@ export default {
   getBusinessById: function (id) {
     return axios.get("/api/businesses/" + id);
   },
-  checkUser: function (userData) {
-    return axios.get("/api/user/user", userData);
+  checkUser: function () {
+    return axios.get("/api/user/user");
   },
   reservation: function (id, businessData) {
-    return axios.post("/api/businesses/" + id, businessData)
+    return axios.post("/api/businesses/" + id, businessData);
   },
   updateReservation: function (id, businessData) {
-    return axios.post("/api/businesses/reserve/" + id, businessData)
-  }
+    return axios.post("/api/businesses/reserve/" + id, businessData);
+  },
 };

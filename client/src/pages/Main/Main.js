@@ -11,12 +11,12 @@ class Main extends React.Component {
   };
 
   componentDidMount() {
-    console.log("component mounted");
-    // API.checkUser()
-    //   .then((res) => {
-    //     this.setState({ username: res.data.username });
-    //   })
-    //   .catch((err) => console.log(err));
+    API.checkUser()
+      .then((userResult) => {
+        this.setState({ username: userResult.data.user.username });
+      })
+
+      .catch((err) => console.log(err));
   }
 
   handleOnClick = (e) => {
@@ -28,25 +28,21 @@ class Main extends React.Component {
   };
 
   navBar = () => {
-<<<<<<< HEAD
-    if (this.state.username === null) {
-      console.log("it is an empty string");
-=======
-    if (this.state.user === null) {
->>>>>>> master
-      return <Navbar />;
+    if (this.state.username) {
+      return <Navbar status="user" />;
     } else {
-      return <Navbar user="user" />;
+      return <Navbar />;
     }
   };
 
   render() {
     return (
       <div>
-        <Navbar />
+        {this.navBar()}
         <section>
           <div id="main">
             <Jumbotron handleOnClick={this.handleOnClick} />
+            {this.state.username ? <h1>Hi, {this.state.username}</h1> : ""}
           </div>
           <MyCarousel businessCategory={this.state.businessCategory} />
         </section>

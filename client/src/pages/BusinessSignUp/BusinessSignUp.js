@@ -5,7 +5,6 @@ import Navbar from "../../components/Navbar/Navbar";
 const BusinessSignUp = () => {
   return (
     <div>
-      <Navbar />
       <div id="BusinessSignUp">
         <Signup />
         <BusinessInputs />

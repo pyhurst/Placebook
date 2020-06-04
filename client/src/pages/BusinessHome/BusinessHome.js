@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
 import Jumbo from "../../components/Jumbotron/JumbotronBusinessHome/JumbotronBusinessHome";
@@ -7,12 +7,13 @@ import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 
 const BusinessHome = () => {
-  const [userState, userDispatch] = useUserContext();
+  const userDispatch = useUserContext();
+  const [userAuth, setuserAuth] = useState("");
 
   useEffect(() => {
     API.checkUser()
       .then((userResult) => {
-        console.log(userResult);
+        setuserAuth(userResult.data.user.username);
         userDispatch({
           type: "ADD_USER",
           username: userResult.data.user.username,
@@ -25,10 +26,11 @@ const BusinessHome = () => {
   }, []);
 
   const navBar = () => {
-    if (userState.username === "") {
-      return <Navbar />;
+    console.log("navbar function");
+    if (userAuth !== "") {
+      return <Navbar status="user" />;
     } else {
-      return <Navbar user="user" />;
+      return <Navbar />;
     }
   };
 

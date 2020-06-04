@@ -17,7 +17,6 @@ const Login = () => {
     })
       .then((result) => {
         if (result.status === 200) {
-          console.log("the response:", result);
           dispatch({
             type: "ADD_USER",
             username: result.data.username,
@@ -36,25 +35,21 @@ const Login = () => {
       <div id="Login">
         <h1>this is our Login page</h1>
         <form>
-          <label for="username">Username: </label>
+          <label htmlFor="username">Username: </label>
           <input
             type="text"
             name="username"
             id="usernameInput"
             ref={usernameRef}
           />
-          <label for="password">Password: </label>
+          <label htmlFor="password">Password: </label>
           <input
             type="text"
             name="password"
             id="passwordInput"
             ref={passwordRef}
           />
-<<<<<<< HEAD
-          <Link to="/user/home" onClick={handleSubmit}>
-=======
           <Link onClick={handleSubmit} to="/user/home">
->>>>>>> master
             Log in
           </Link>
         </form>

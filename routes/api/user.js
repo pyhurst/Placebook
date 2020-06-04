@@ -5,7 +5,7 @@ const passport = require("../../passport");
 
 router.route("/signup").post((req, res) => {
   console.log("user signup");
-  console.log(req);
+  console.log(req.body);
 
   const { username, password, email } = req.body;
   console.log(username, password, email);
