@@ -3,10 +3,9 @@ import "./Schedule.css";
 import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
-import { Redirect } from 'react-router-dom';
 
 
-const Schedule = ({dataSelectedDate}) => {
+const Schedule = ({ dataSelectedDate }) => {
     const bizContext = useBizContext();
     const [timeblockState, setTimeblockState] = React.useState([]);
     const array = [];
@@ -97,7 +96,7 @@ const Schedule = ({dataSelectedDate}) => {
         setTimeblockState(newArray);
     }, [bizContext]);
 
-    const userCheck = (time) => {
+    const userCheck = (time, dataSelectedDate) => {
         // API.checkUser().then(result => {
         // console.log(result);
         if (state.username === "") {
@@ -106,50 +105,54 @@ const Schedule = ({dataSelectedDate}) => {
             console.log(state)
             console.log(bizContext)
             console.log(time)
-            // API.reservation(bizContext[0].businessId, 
+            console.log(dataSelectedDate)
+            API.reservation(bizContext[0].businessId,
+                {
+                    time: time,
+                    date: dataSelectedDate,
+                    capacity: bizContext[0].times.capacity - 1,
+                    customerIds: [state._id]
+                }
+            ).then(result => {
+                console.log(result);
+            })
+            // API.getReservation(bizContext[0].businessId, 
             //     {
-            //         reservations: {
-            //             time: time,
-            //             date: "06-20-20",
-            //             capacity: bizContext[0].times.capacity,
-            //             customerIds: [state._id]
-            //         }
+            //         time: time,
+            //         date: dataSelectedDate
             //     }).then(result => {
             //     console.log(result);
+            // const newResult = result.data.reservations.filter(res => {
+            //     return res.time === time;
             // })
-            API.getBusinessById(bizContext[0].businessId, time).then(result => {
-                console.log(result);
-                const newResult = result.data.reservations.filter(e => {
-                    return e.time === time;
-                })
-                console.log(newResult)
-                if (newResult[0] === undefined) {
-                    API.reservation(bizContext[0].businessId,
-                        {
-                            time: time,
-                            date: "06-20-20",
-                            capacity: bizContext[0].times.capacity - 1,
-                            customerIds: [state._id]
-                        }
-                    ).then(response => {
-                        console.log(response);
-                    })
-                } else {
-                    console.log(newResult)
-                    newResult[0].capacity--;
-                    newResult[0].customerIds.push(state._id)
-                    API.updateReservation(bizContext[0].businessId, newResult[0])
-                        .then(e => {
-                            console.log(e);
-                        })
-                    console.log(newResult)
-                }
-            });
+            // console.log(newResult)
+            //     if (newResult[0] === undefined) {
+            //         API.reservation(bizContext[0].businessId,
+            //             {
+            //                 time: time,
+            //                 date: dataSelectedDate,
+            //                 capacity: bizContext[0].times.capacity - 1,
+            //                 customerIds: [state._id]
+            //             }
+            //         ).then(response => {
+            //             console.log(response);
+            //         })
+            //     } else {
+            //         console.log(newResult)
+            //         newResult[0].capacity--;
+            //         newResult[0].customerIds.push(state._id)
+            //         API.updateReservation(bizContext[0].businessId, newResult[0])
+            //             .then(updatedRes => {
+            //                 console.log(updatedRes);
+            //             })
+            //         console.log(newResult)
+            //     }
+            // });
+            // }
+            // })
+            //     .catch((err) => console.log(err));
         }
-        // })
-        //     .catch((err) => console.log(err));
     }
-
 
     return (
         <div>
@@ -157,7 +160,7 @@ const Schedule = ({dataSelectedDate}) => {
                 <div className='schedule' >
                     <h4>Time: {time}</h4>
                     <h4>{bizContext[0].times.capacity} spots left!</h4>
-                    <button className="reserveBtn" id={time} onClick={() => userCheck(time)} >Reserve!</button>
+                    <button className="reserveBtn" onClick={() => userCheck(time, dataSelectedDate)} >Reserve!</button>
                 </div>
             ))}
         </div>

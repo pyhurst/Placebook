@@ -24,7 +24,7 @@ function Business() {
         name: result.data.name,
         address: result.data.address,
         phone: result.data.phone,
-        reservations: [result.data.reservations],
+        reservations: result.data.reservations,
         times: {
           open: result.data.times.open,
           close: result.data.times.close,
@@ -98,7 +98,7 @@ function Business() {
               <h1>Selected date: {date.toLocaleDateString()}</h1>
               {/* <h1>Date: {`${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`}</h1> */}
               {/* <Schedule date={bizState.date}/> */}
-              <Schedule dataSelectedDate={date} />
+              <Schedule dataSelectedDate={date.toLocaleDateString()} />
               {/* bizstate.date */}
             </div>
           </div>

@@ -1,4 +1,7 @@
 const db = require("../models");
+// const { uuid } = require('uuidv4');
+const shortid = require('shortid');
+
 
 module.exports = {
   //business CRUD
@@ -13,9 +16,38 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  update: function (req, res) {
-    db.Business.findOneAndUpdate({ _id: req.params.id }, { $push: { reservations: req.body } },{new: true})
-      .then((dbModel) => res.json(dbModel))
+  addReservation: function (req, res) {
+ 
+    console.log(shortid.generate());
+    db.Business.findById({ _id: req.params.id })
+      // { 
+      //   $push: 
+      //   { 
+      //     reservations: req.body 
+      //   } 
+      // },
+      // {new: true})
+      .then((dbModel) => {
+        console.log(dbModel);
+        const obj = {};
+        for (let i = 0; i < dbModel.reservations.length; i++) {
+          if(dbModel[i].date === req.body.date){
+            if(dbModel[i].time === req.body.time){
+              if(dbModel[i].customerIds.length <= dbModel[i].capacity){
+                // push customer id into customerids array
+              } else {
+                // sorry this spot is full, please sign up for another slot
+              }
+            } else {
+              // create reservation object with necessary data
+            }
+          } else {
+            // create reservation object with necessary data
+          }
+        }
+
+        res.json(dbModel)
+      })
       .catch((err) => res.status(422).json(err));
   },
   remove: function (req, res) {
@@ -39,6 +71,12 @@ module.exports = {
       },
       {new: true}
     ).then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+  },
+  findReservation: function (req, res) {
+    console.log(req.body)
+    db.Business.findOne({_id: req.params.id, "reservations.time": req.body.time, "reservations.date": req.body.date})
+    .then((dbModel) => res.json(dbModel))
     .catch((err) => res.status(422).json(err));
   }
   // conditionalUpdate: function (req, res) {

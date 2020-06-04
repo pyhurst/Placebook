@@ -27,5 +27,8 @@ export default {
   },
   updateReservation: function (id, businessData) {
     return axios.post("/api/businesses/reserve/" + id, businessData)
-  }
+  },
+  getReservation: function (id, resData) {
+    return axios.post("/api/businesses/reservation/" + id, resData);
+  },
 };

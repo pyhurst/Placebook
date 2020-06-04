@@ -19,11 +19,17 @@ router.route("/all").get(placeController.findAll).post(placeController.create);
 
 router.route("/reserve/:id")
     .post(placeController.updateReservation)
+// .get(placeController.findReservation)
+
+router.route("/reservation/:id")
+    .post(placeController.findReservation)
+
+
 
 // Matches with "/api/businesses/:id"
 router.route("/:id")
     .get(placeController.findOne)
-    .post(placeController.update);
+    .post(placeController.addReservation);
 //   .put(placeController.update)
 //   .delete(placeController.remove);
 
