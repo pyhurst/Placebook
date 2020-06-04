@@ -94,7 +94,7 @@ const Navbar = (props) => {
         </div>
         <div className="navbar-end">
           <div id="business-link" className="navbar-item">
-            <Link to="/business">For Businesses</Link>
+            <Link to="/business/pitch">For Businesses</Link>
           </div>
           <div className="navbar-item">
             <div id="actionButtons" className="buttons">

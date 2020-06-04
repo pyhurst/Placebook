@@ -23,12 +23,16 @@ export default {
     return axios.get("/api/user/user");
   },
   reservation: function (id, businessData) {
-    return axios.post("/api/businesses/" + id, businessData)
+    return axios.post("/api/businesses/" + id, businessData);
   },
   updateReservation: function (id, businessData) {
+<<<<<<< HEAD
     return axios.post("/api/businesses/reserve/" + id, businessData)
   },
   getReservation: function (id, resData) {
     return axios.post("/api/businesses/reservation/" + id, resData);
+=======
+    return axios.post("/api/businesses/reserve/" + id, businessData);
+>>>>>>> master
   },
 };

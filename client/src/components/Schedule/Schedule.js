@@ -4,13 +4,11 @@ import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 
-
 const Schedule = ({ dataSelectedDate }) => {
     const bizContext = useBizContext();
     const [timeblockState, setTimeblockState] = React.useState([]);
     const array = [];
     const [state, dispatch] = useUserContext();
-
 
     function timeblocks() {
         if (bizContext[0].times.timeslot_length === 60) {
@@ -80,82 +78,88 @@ const Schedule = ({ dataSelectedDate }) => {
         }
     }
 
-    React.useEffect(() => {
-        const newArray = timeblocks();
-        setTimeblockState(newArray);
-    }, [bizContext]);
+        React.useEffect(() => {
+            const newArray = timeblocks();
+            setTimeblockState(newArray);
+        }, [bizContext]);
 
-    const userCheck = (time, dataSelectedDate) => {
-        // API.checkUser().then(result => {
-        // console.log(result);
-        if (state.username === "") {
-            return window.location.href = "/login"
-        } else {
-            console.log(state)
-            console.log(bizContext)
-            console.log(time)
-            console.log(dataSelectedDate)
-            API.reservation(bizContext[0].businessId,
-                {
-                    time: time,
-                    date: dataSelectedDate,
-                    capacity: bizContext[0].times.capacity - 1,
-                    customerIds: [state._id]
-                }
-            ).then(result => {
-                console.log(result);
-            })
-            // API.getReservation(bizContext[0].businessId, 
-            //     {
-            //         time: time,
-            //         date: dataSelectedDate
-            //     }).then(result => {
-            //     console.log(result);
-            // const newResult = result.data.reservations.filter(res => {
-            //     return res.time === time;
-            // })
-            // console.log(newResult)
-            //     if (newResult[0] === undefined) {
-            //         API.reservation(bizContext[0].businessId,
-            //             {
-            //                 time: time,
-            //                 date: dataSelectedDate,
-            //                 capacity: bizContext[0].times.capacity - 1,
-            //                 customerIds: [state._id]
-            //             }
-            //         ).then(response => {
-            //             console.log(response);
-            //         })
-            //     } else {
-            //         console.log(newResult)
-            //         newResult[0].capacity--;
-            //         newResult[0].customerIds.push(state._id)
-            //         API.updateReservation(bizContext[0].businessId, newResult[0])
-            //             .then(updatedRes => {
-            //                 console.log(updatedRes);
-            //             })
-            //         console.log(newResult)
-            //     }
-            // });
-            // }
-            // })
-            //     .catch((err) => console.log(err));
+        const userCheck = (time, dataSelectedDate) => {
+            // API.checkUser().then(result => {
+            // console.log(result);
+            if (state.username === "") {
+                return window.location.href = "/login"
+            } else {
+                console.log(state)
+                console.log(bizContext)
+                console.log(time)
+                console.log(dataSelectedDate)
+                API.reservation(bizContext[0].businessId,
+                    {
+                        time: time,
+                        date: dataSelectedDate,
+                        capacity: bizContext[0].times.capacity - 1,
+                        customerIds: [state._id]
+                    }
+                ).then(result => {
+                    console.log(result);
+                })
+                // API.getReservation(bizContext[0].businessId, 
+                //     {
+                //         time: time,
+                //         date: dataSelectedDate
+                //     }).then(result => {
+                //     console.log(result);
+                // const newResult = result.data.reservations.filter(res => {
+                //     return res.time === time;
+                // })
+                // console.log(newResult)
+                //     if (newResult[0] === undefined) {
+                //         API.reservation(bizContext[0].businessId,
+                //             {
+                //                 time: time,
+                //                 date: dataSelectedDate,
+                //                 capacity: bizContext[0].times.capacity - 1,
+                //                 customerIds: [state._id]
+                //             }
+                //         ).then(response => {
+                //             console.log(response);
+                //         })
+                //     } else {
+                //         console.log(newResult)
+                //         newResult[0].capacity--;
+                //         newResult[0].customerIds.push(state._id)
+                //         API.updateReservation(bizContext[0].businessId, newResult[0])
+                //             .then(updatedRes => {
+                //                 console.log(updatedRes);
+                //             })
+                //         console.log(newResult)
+                //     }
+                // });
+                // }
+                // })
+                    .catch((err) => console.log(err));
+            }
         }
-    }
+
+        return (
+            <div>
+                {timeblockState.map((time) => (
+                    <div className="schedule">
+                        <h4>Time: {time}</h4>
+                        <h4>{bizContext[0].times.capacity} spots left!</h4>
+                        <button
+                            className="reserveBtn"
+                            onClick={() => userCheck(time, dataSelectedDate)}
+                        >
+                            Reserve!
+                        </button>
+
+                    </div>
+                ))}
+            </div>
+
+        )
+    };
 
 
-
-    return (
-        <div>
-            {timeblockState.map(time => (
-                <div className='schedule' >
-                    <h4>Time: {time}</h4>
-                    <h4>{bizContext[0].times.capacity} spots left!</h4>
-                    <button className="reserveBtn" onClick={() => userCheck(time, dataSelectedDate)} >Reserve!</button>
-                </div>
-            ))}
-        </div>
-    );
-};
-
-export default Schedule;
+    export default Schedule;
