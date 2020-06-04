@@ -4,11 +4,14 @@ import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 
-const Schedule = () => {
-  const bizContext = useBizContext();
-  const [timeblockState, setTimeblockState] = React.useState([]);
-  const array = [];
-  const [state, dispatch] = useUserContext();
+
+
+const Schedule = ({dataSelectedDate}) => {
+    const bizContext = useBizContext();
+    const [timeblockState, setTimeblockState] = React.useState([]);
+    const array = [];
+    const [state, dispatch] = useUserContext();
+
 
   function timeblocks() {
     if (bizContext[0].times.timeslot_length === 60) {
@@ -128,19 +131,18 @@ const Schedule = () => {
     }
   };
 
-  return (
-    <div>
-      {timeblockState.map((time) => (
-        <div className="schedule">
-          <h4>Time: {time}</h4>
-          <h4>{bizContext[0].times.capacity} spots left!</h4>
-          <button
-            className="reserveBtn"
-            id={time}
-            onClick={() => userCheck(time)}
-          >
-            Reserve!
-          </button>
+
+
+    return (
+        <div>
+            {timeblockState.map(time => (
+                <div className='schedule' >
+                    <h4>Time: {time}</h4>
+                    <h4>{bizContext[0].times.capacity} spots left!</h4>
+                    <button className="reserveBtn" id={time} onClick={() => userCheck(time)} >Reserve!</button>
+                </div>
+            ))}
+
         </div>
       ))}
     </div>

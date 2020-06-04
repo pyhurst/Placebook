@@ -63,6 +63,7 @@ const BusinessInputs = () => {
                     ref={businessNameRef}
                 />
                 <label for="category">Category: </label>
+                <Dropdown cat="cat" />
                 <input
                     type="text"
                     name="category"
