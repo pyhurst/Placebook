@@ -21,11 +21,9 @@ const Business = () => {
       .catch((err) => console.log(err));
   }, []);
 
-<<<<<<< HEAD
   // const renderAppointments = () => {
   //   console.log(userContext[0].reservations[0]);
   // };
-=======
   const navBar = () => {
     if (userState.username === "") {
       return <Navbar />;
@@ -34,7 +32,6 @@ const Business = () => {
       return <Navbar user="user" />;
     }
   };
->>>>>>> master
 
   return (
     <div>
@@ -42,11 +39,7 @@ const Business = () => {
       <div className="container">
         <div className="section">
           <div className="columns">
-<<<<<<< HEAD
-            <div className="column">Welcome, {userContext[0].username}</div>
-=======
             <div className="column">Welcome, {userState.username} </div>
->>>>>>> master
             <div className="column">Appointments: </div>
           </div>
         </div>
