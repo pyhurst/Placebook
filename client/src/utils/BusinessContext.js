@@ -49,7 +49,7 @@ const reducer = (state, action) => {
 
 const BizProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
-    date: "",
+    date: new Date(),
     businessId: "",
     name: "",
     address: "",

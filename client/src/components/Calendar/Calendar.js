@@ -14,15 +14,17 @@ function Calendarapp(){
   //   date: new Date(),
   // };
 const [dateContext, dispatch] = useBizContext();
-const [date, setDate] = useState(new Date())
+// const [date, setDate] = useState(new Date())
 // console.log(bizContext)
 console.log(dateContext)
   const onChange = (clickedDate) => {
-    setDate(clickedDate);
-    dispatch({
-      type: "UPDATE_DATE",
-      date: "hello"
-    })
+    // setDate(clickedDate);
+    // dispatch({
+    //   type: "UPDATE_BIZ",
+    //   date: clickedDate.getDate()
+    // })
+    // console.log(date)
+    console.log(clickedDate.getDate())
     console.log(dateContext);
     
   };
@@ -30,7 +32,7 @@ console.log(dateContext)
   // render() {
     return (
       <div>
-        <Calendar onChange={onChange} value={date} />
+        <Calendar onChange={onChange} value={dateContext.date} />
       </div>
     );
   // }

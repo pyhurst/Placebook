@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import Calendar from "../../components/Calendar/Calendar";
+import React, { useEffect, useState } from "react";
+import Calendarapp from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
 import API from "../../utils/API";
 import Schedule from "../../components/Schedule/Schedule";
@@ -12,8 +12,8 @@ function Business() {
   const { id } = useParams();
   const [bizState, bizDispatch] = useBizContext(); //use dispatch to change
   const [userState, userDispatch] = useUserContext();
-  const [date, setDate] = useState(Date.now);
-  console.log(date)
+  // const [date, setDate] = useState(new Date());
+  // console.log(date)
 
   useEffect(() => {
     API.getBusinessById(id).then((result) => {
@@ -34,14 +34,14 @@ function Business() {
       });
     });
 
-   API.getBusiness()
-   .then((res) => {
-     console.log(res.data);
-     bizDispatch({
-       type: "UPDATE_DATE",
-       date: res.data.date
-     })
-   })
+    // API.getBusiness()
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     bizDispatch({
+    //       type: "UPDATE_DATE",
+    //       date: res.data.date
+    //     })
+    //   })
 
 
     API.checkUser()
@@ -57,7 +57,7 @@ function Business() {
       .catch((err) => console.log(err));
   }, []);
 
-  
+
   // const handleOnChange = (date) => {
   //   setDate(date);
   //   console.log(date);
@@ -91,12 +91,13 @@ function Business() {
         <div className="section">
           <div className="row">
             <div className="column is-two-fifths-desktop is-full-mobile is-full-tablet">
-              <Calendar />
+              <Calendarapp />
               {/* <Calendar handleOnChange={handleOnChange} value={date}/> */}
             </div>
             <div className="column is-three-fifths-desktop is-full-mobile is-full-tablet">
-              {/* <h1>Date: putdatehere</h1> */}
-              <Schedule date={bizState.date}/> 
+              <h1>Date: {bizState.date}</h1>
+              {/* <Schedule date={bizState.date}/> */}
+              <Schedule />
               {/* bizstate.date */}
             </div>
           </div>
