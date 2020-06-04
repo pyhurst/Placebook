@@ -3,6 +3,7 @@ import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import { Jumbotron } from "reactstrap";
 
 const Login = () => {
   const usernameRef = useRef();
@@ -33,8 +34,10 @@ const Login = () => {
   return (
     <div>
       <Navbar />
+      <Jumbotron>
       <div id="Login">
-        <h1>this is our Login page</h1>
+        <h1>Login to Placebook</h1>
+        <h5>New here? Sign up for an account to log in.</h5>
         <form>
           <label for="username">Username: </label>
           <input
@@ -55,6 +58,7 @@ const Login = () => {
           </Link>
         </form>
       </div>
+      </Jumbotron>
     </div>
   );
 };

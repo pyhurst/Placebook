@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import { Jumbotron } from "reactstrap";
 
 const Signup = () => {
   const usernameRef = useRef();
@@ -26,8 +27,10 @@ const Signup = () => {
   return (
     <div>
       <Navbar />
-      <div id="Signup" className="container">
+      {/* <div id="Signup" className="container"> */}
+        <Jumbotron>
         <h1>Signup for Placebook</h1>
+
         <form className="signup-form">
           <label for="username">Username: </label>
           <input
@@ -49,8 +52,9 @@ const Signup = () => {
             Sign Up
           </Link>
         </form>
+        </Jumbotron>
       </div>
-    </div>
+    // </div>
   );
 };
 
