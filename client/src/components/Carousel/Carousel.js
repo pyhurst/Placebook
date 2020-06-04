@@ -28,16 +28,13 @@ const responsive = {
 class MyCarousel extends React.Component {
   constructor(props) {
     super(props);
-
   }
   state = {
     business: [],
   };
 
-
-
   componentDidMount() {
-    console.log(this.props.businessCategory)
+    console.log(this.props.businessCategory);
     API.getBusiness()
       .then((results) => {
         // console.log(results.data);
@@ -64,7 +61,7 @@ class MyCarousel extends React.Component {
                   city={biz.city}
                   phone={biz.phone}
                 />
-              )
+              );
             })}
           </Carousel>
         </div>
@@ -88,7 +85,6 @@ class MyCarousel extends React.Component {
             })}
           </Carousel>
         </div>
-
       );
     }
   }

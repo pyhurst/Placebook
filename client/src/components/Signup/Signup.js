@@ -12,17 +12,12 @@ const Signup = () => {
   const [state, dispatch] = useUserContext();
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    console.log("clicked");
-    console.log(usernameRef.current.value);
     API.addUser({
       username: usernameRef.current.value,
       password: passwordRef.current.value,
       email: emailRef.current.value,
     })
       .then((result) => {
-        console.log("test");
-        console.log(result);
         dispatch({
           type: "ADD_USER",
           username: result.data.username,
