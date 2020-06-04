@@ -98,9 +98,9 @@ const Schedule = () => {
     }, [bizContext]);
 
     const userCheck = (time) => {
-        API.checkUser().then(result => {
+        // API.checkUser().then(result => {
             // console.log(result);
-            if (result.data.user === null) {
+            if (state.username === "") {
                 return window.location.href = "/login"
             } else {
                 console.log(state)
@@ -109,17 +109,17 @@ const Schedule = () => {
                 API.reservation(bizContext[0].businessId, 
                     {
                         reservations: {
-                            time: time
-                            // date: "06-20-20",
-                            // capacity: bizContext[0].capacity,
-                            // customerIds: [state._id]
+                            time: time,
+                            date: "06-20-20",
+                            capacity: bizContext[0].times.capacity,
+                            customerIds: [state._id]
                         }
                     }).then(result => {
                     console.log(result);
                 })
             }
-        })
-            .catch((err) => console.log(err));
+        // })
+        //     .catch((err) => console.log(err));
     }
 
     return (
