@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "./Schedule.css";
 import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
@@ -12,89 +12,78 @@ const Schedule = ({ dataSelectedDate }) => {
     const [state, dispatch] = useUserContext();
 
 
-    function timeblocks() {
-        // console.log(bizContext[0].times.open)
-        if (bizContext[0].times.timeslot_length === 60) {
-            const blockCount = bizContext[0].times.close - bizContext[0].times.open;
-            for (let i = 0; i < blockCount; i++) {
-                if (bizContext[0].times.open + i === 24) {
-                    array.push(bizContext[0].times.open + i - 12 + " AM");
-                } else if (bizContext[0].times.open + i === 12) {
-                    array.push(bizContext[0].times.open + i + " PM");
-                } else if (bizContext[0].times.open + i > 12) {
-                    array.push(bizContext[0].times.open + i - 12 + " PM");
-                } else {
-                    array.push(bizContext[0].times.open + i + " AM");
-                }
-            }
-            return array;
-        } else if (bizContext[0].times.timeslot_length === 30) {
-            const blockCount = (bizContext[0].times.close - bizContext[0].times.open) * 2;
-            let oddCount = 0
-            let evenCount = 0
-            for (let i = 0; i < blockCount; i++) {
-                // array.push(bizContext[0].times.open + i);
-                if (i % 2 === undefined || i % 2 === 0) {
-                    if (bizContext[0].times.open + evenCount === 24) {
-                        array.push(bizContext[0].times.open + evenCount - 12 + " AM")
-                        evenCount++;
-                    } else if (bizContext[0].times.open + evenCount > 12) {
-                        array.push(bizContext[0].times.open + evenCount - 12 + " PM")
-                        evenCount++;
-                    } else if (bizContext[0].times.open + evenCount === 12) {
-                        array.push(bizContext[0].times.open + evenCount + " PM")
-                        evenCount++;
-                    } else {
-                        array.push(bizContext[0].times.open + evenCount + " AM");
-                        evenCount++;
-                    }
-                } else {
-                    if (bizContext[0].times.open + oddCount === 24) {
-                        array.push(bizContext[0].times.open + oddCount - 12 + ":30 AM")
-                        oddCount++;
-                    } else if (bizContext[0].times.open + oddCount > 12) {
-                        array.push(bizContext[0].times.open + oddCount - 12 + ":30 PM")
-                        oddCount++;
-                    } else if (bizContext[0].times.open + oddCount === 12) {
-                        array.push(bizContext[0].times.open + oddCount + ":30 PM")
-                        oddCount++;
-                    } else {
-                        array.push(bizContext[0].times.open + oddCount + ":30 AM")
-                        oddCount++;
-                    }
-                }
-            }
-            return array;
+  function timeblocks() {
+    if (bizContext[0].times.timeslot_length === 60) {
+      const blockCount = bizContext[0].times.close - bizContext[0].times.open;
+      for (let i = 0; i < blockCount; i++) {
+        if (bizContext[0].times.open + i === 24) {
+          array.push(bizContext[0].times.open + i - 12 + " AM");
+        } else if (bizContext[0].times.open + i === 12) {
+          array.push(bizContext[0].times.open + i + " PM");
+        } else if (bizContext[0].times.open + i > 12) {
+          array.push(bizContext[0].times.open + i - 12 + " PM");
         } else {
-            const blockCount = (bizContext[0].times.close - bizContext[0].times.open) * 4;
-            // let thirdCount = 0
-            // let secondCount = 0
-            // let firstCount = 0
-            for (let i = 0; i < blockCount; i++) {
-                array.push(bizContext[0].times.open + i);
-                // if (i % 3 === 0) {
-                //     array.push(bizContext[0].times.open + oddCount + ":45")
-                //     thirdCount++;
-                // } else {
-                //     array.push(bizContext[0].times.open + oddCount + ":15")
-                //     oddCount++;
-                // }
-            }
-            return array;
+          array.push(bizContext[0].times.open + i + " AM");
         }
-    }
-
-    function pushArray(blockCount) {
-        for (let i = 0; i < blockCount; i++) {
-            array.push(bizContext[0].times.open + i);
+      }
+      return array;
+    } else if (bizContext[0].times.timeslot_length === 30) {
+      const blockCount =
+        (bizContext[0].times.close - bizContext[0].times.open) * 2;
+      let oddCount = 0;
+      let evenCount = 0;
+      for (let i = 0; i < blockCount; i++) {
+        if (i % 2 === undefined || i % 2 === 0) {
+          if (bizContext[0].times.open + evenCount === 24) {
+            array.push(bizContext[0].times.open + evenCount - 12 + " AM");
+            evenCount++;
+          } else if (bizContext[0].times.open + evenCount > 12) {
+            array.push(bizContext[0].times.open + evenCount - 12 + " PM");
+            evenCount++;
+          } else if (bizContext[0].times.open + evenCount === 12) {
+            array.push(bizContext[0].times.open + evenCount + " PM");
+            evenCount++;
+          } else {
+            array.push(bizContext[0].times.open + evenCount + " AM");
+            evenCount++;
+          }
+        } else {
+          if (bizContext[0].times.open + oddCount === 24) {
+            array.push(bizContext[0].times.open + oddCount - 12 + ":30 AM");
+            oddCount++;
+          } else if (bizContext[0].times.open + oddCount > 12) {
+            array.push(bizContext[0].times.open + oddCount - 12 + ":30 PM");
+            oddCount++;
+          } else if (bizContext[0].times.open + oddCount === 12) {
+            array.push(bizContext[0].times.open + oddCount + ":30 PM");
+            oddCount++;
+          } else {
+            array.push(bizContext[0].times.open + oddCount + ":30 AM");
+            oddCount++;
+          }
         }
+      }
+      return array;
+    } else {
+      const blockCount =
+        (bizContext[0].times.close - bizContext[0].times.open) * 4;
+      for (let i = 0; i < blockCount; i++) {
+        array.push(bizContext[0].times.open + i);
+      }
+      return array;
     }
+  }
 
-    React.useEffect(() => {
-        const newArray = timeblocks();
-        // console.log(newArray)
-        setTimeblockState(newArray);
-    }, [bizContext]);
+  function pushArray(blockCount) {
+    for (let i = 0; i < blockCount; i++) {
+      array.push(bizContext[0].times.open + i);
+    }
+  }
+
+  React.useEffect(() => {
+    const newArray = timeblocks();
+    setTimeblockState(newArray);
+  }, [bizContext]);
 
     const userCheck = (time, dataSelectedDate) => {
         // API.checkUser().then(result => {
@@ -153,6 +142,8 @@ const Schedule = ({ dataSelectedDate }) => {
             //     .catch((err) => console.log(err));
         }
     }
+  };
+
 
     return (
         <div>
@@ -163,8 +154,11 @@ const Schedule = ({ dataSelectedDate }) => {
                     <button className="reserveBtn" onClick={() => userCheck(time, dataSelectedDate)} >Reserve!</button>
                 </div>
             ))}
+
         </div>
-    );
+      ))}
+    </div>
+  );
 };
 
 export default Schedule;
