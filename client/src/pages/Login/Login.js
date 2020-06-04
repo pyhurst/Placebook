@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 import Navbar from "../../components/Navbar/Navbar";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const usernameRef = useRef();
@@ -10,14 +11,13 @@ const Login = () => {
   const [state, dispatch] = useUserContext();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
     API.userLogin({
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     })
       .then((result) => {
         if (result.status === 200) {
+          console.log("the response:", result);
           dispatch({
             type: "ADD_USER",
             username: result.data.username,
@@ -33,7 +33,6 @@ const Login = () => {
   return (
     <div>
       <Navbar />
-
       <div id="Login">
         <h1>this is our Login page</h1>
         <form>
@@ -51,7 +50,9 @@ const Login = () => {
             id="passwordInput"
             ref={passwordRef}
           />
-          <button onClick={handleSubmit}>Log in</button>
+          <Link onClick={handleSubmit} to="/user/home">
+            Log in
+          </Link>
         </form>
       </div>
     </div>
