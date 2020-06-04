@@ -14,7 +14,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   update: function (req, res) {
-    db.Business.findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.Business.findOneAndUpdate({ _id: req.params.id }, { $push: { reservations: req.body } },{new: true})
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -29,4 +29,26 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  updateReservation: function (req, res) {
+    db.Business.findOneAndUpdate({_id: req.params.id , "reservations.time": req.body.time}, 
+      {
+        $set: {
+          "reservations.$.capacity": req.body.capacity,
+          "reservations.$.customerIds": req.body.customerIds,
+        }
+      },
+      {new: true}
+    ).then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+  }
+  // conditionalUpdate: function (req, res) {
+  //   db.Business.findById({ _id: req.params.id })
+  //     .then((dbModel) => {
+  //       const newResult = dbModel.data.reservations.filter(e => {
+  //         return e.time === req.body.time;
+  //       })
+  //       res.json(newResult)
+  //     })
+  //     .catch((err) => res.status(422).json(err));
+  // }
 };

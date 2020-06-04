@@ -35,8 +35,6 @@ class Main extends React.Component {
     console.log("huuuuuu");
     console.log(this.state);
     console.log("bye");
-    // console.log("logstate");
-    // console.log(this.state);
   };
 
   navBar = () => {

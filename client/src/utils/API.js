@@ -22,4 +22,10 @@ export default {
   checkUser: function (userData) {
     return axios.get("/api/user/user", userData);
   },
+  reservation: function (id, businessData) {
+    return axios.post("/api/businesses/" + id, businessData)
+  },
+  updateReservation: function (id, businessData) {
+    return axios.post("/api/businesses/reserve/" + id, businessData)
+  }
 };

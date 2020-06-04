@@ -19,7 +19,26 @@ const businessSeed = [
     phone: "312-555-5555",
     city: "Chicago",
     ownerId: "5ed798003184ef1988a28b5a",
-    reservations: [],
+    reservations: [
+      {
+        time: "2 PM",
+        date: "06-20-20",
+        capacity: 15,
+        customerIds: ["5ed8f5c1ff864a46106f2e09"]
+      },
+      {
+        time: "5 PM",
+        date: "06-20-20",
+        capacity: 15,
+        customerIds: ["5ed8f5c1ff864a46106f2e09"]
+      },
+      {
+        time: "8 AM",
+        date: "06-20-20",
+        capacity: 15,
+        customerIds: ["5ed8f5c1ff864a46106f2e09"]
+      }
+    ],
   },
   {
     name: "Chicago Public Library",

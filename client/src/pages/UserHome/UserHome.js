@@ -22,6 +22,9 @@ const Business = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  // const renderAppointments = () => {
+  //   console.log(userContext[0].reservations[0]);
+  // };
   const navBar = () => {
     if (userState.username === "") {
       return <Navbar />;

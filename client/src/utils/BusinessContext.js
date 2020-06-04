@@ -19,8 +19,13 @@ const reducer = (state, action) => {
           close: action.times.close,
           timeslot_length: action.times.timeslot_length,
           capacity: action.times.capacity,
-        },
-      };
+        }
+      }
+    case "POST_RES":
+      return {
+        reservations: [action.reservations]
+      }
+
     default:
       return state;
   }
