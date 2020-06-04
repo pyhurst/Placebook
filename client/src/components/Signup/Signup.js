@@ -32,16 +32,16 @@ const Signup = () => {
         <h1>Signup for Placebook</h1>
 
         <form className="signup-form">
-          <label for="username">Username: </label>
+          <label htmlFor="username">Username: </label>
           <input
             type="text"
             name="username"
             id="usernameInput"
             ref={usernameRef}
           />
-          <label for="email">Email: </label>
+          <label htmlFor="email">Email: </label>
           <input type="text" name="email" id="emailInput" ref={emailRef} />
-          <label for="password">Password: </label>
+          <label htmlFor="password">Password: </label>
           <input
             type="text"
             name="password"

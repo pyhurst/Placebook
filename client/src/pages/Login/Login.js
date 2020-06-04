@@ -18,7 +18,6 @@ const Login = () => {
     })
       .then((result) => {
         if (result.status === 200) {
-          console.log("the response:", result);
           dispatch({
             type: "ADD_USER",
             username: result.data.username,
@@ -39,14 +38,14 @@ const Login = () => {
         <h1>Login to Placebook</h1>
         <h5>New here? Sign up for an account to log in.</h5>
         <form>
-          <label for="username">Username: </label>
+          <label htmlFor="username">Username: </label>
           <input
             type="text"
             name="username"
             id="usernameInput"
             ref={usernameRef}
           />
-          <label for="password">Password: </label>
+          <label htmlFor="password">Password: </label>
           <input
             type="text"
             name="password"

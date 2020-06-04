@@ -11,16 +11,15 @@ import Navbar from "../../components/Navbar/Navbar";
 
 function Business() {
   const { id } = useParams();
-  const [bizState, bizDispatch] = useBizContext(); //use dispatch to change
+  const [bizState, bizDispatch] = useBizContext();
   const [userState, userDispatch] = useUserContext();
   const [date, setDate] = useState(new Date());
-  // console.log(date)
+  const [userAuth, setuserAuth] = useState("");
 
   useEffect(() => {
     API.getBusinessById(id).then((result) => {
       bizDispatch({
         type: "UPDATE_BIZ",
-        // date: result.data.date,
         businessId: result.data._id,
         name: result.data.name,
         address: result.data.address,
@@ -35,18 +34,9 @@ function Business() {
       });
     });
 
-    // API.getBusiness()
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     bizDispatch({
-    //       type: "UPDATE_DATE",
-    //       date: res.data.date
-    //     })
-    //   })
-
-
     API.checkUser()
       .then((userResult) => {
+        setuserAuth(userResult.data.user.username);
         userDispatch({
           type: "ADD_USER",
           username: userResult.data.user.username,
@@ -58,18 +48,12 @@ function Business() {
       .catch((err) => console.log(err));
   }, []);
 
-
-  // const handleOnChange = (date) => {
-  //   setDate(date);
-  //   console.log(date);
-  // };
-
-
   const navBar = () => {
-    if (userState.username === "") {
-      return <Navbar />;
+    console.log("navbar function");
+    if (userAuth !== "") {
+      return <Navbar status="user" />;
     } else {
-      return <Navbar user="user" />;
+      return <Navbar />;
     }
   };
 

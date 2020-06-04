@@ -3,15 +3,11 @@ import "./Schedule.css";
 import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
-
-
-
-const Schedule = ({dataSelectedDate}) => {
-    const bizContext = useBizContext();
-    const [timeblockState, setTimeblockState] = React.useState([]);
-    const array = [];
-    const [state, dispatch] = useUserContext();
-
+const Schedule = ({ dataSelectedDate }) => {
+  const bizContext = useBizContext();
+  const [timeblockState, setTimeblockState] = React.useState([]);
+  const array = [];
+  const [state, dispatch] = useUserContext();
 
   function timeblocks() {
     if (bizContext[0].times.timeslot_length === 60) {
@@ -74,7 +70,6 @@ const Schedule = ({dataSelectedDate}) => {
       return array;
     }
   }
-
   function pushArray(blockCount) {
     for (let i = 0; i < blockCount; i++) {
       array.push(bizContext[0].times.open + i);
@@ -145,5 +140,4 @@ const Schedule = ({dataSelectedDate}) => {
         </div>
   );
 };
-
 export default Schedule;
