@@ -49,7 +49,7 @@ const businessSeed = [
     phone: "312-434-4343",
     city: "Chicago",
     ownerId: "5ed798003184ef1988a28b5c",
-    reservations: []
+    reservations: [],
   },
   {
     name: "Pinstripes Bowling",
@@ -64,7 +64,7 @@ const businessSeed = [
     ownerId: "5ed798003184ef1988a28b5d",
     address: "435 E Illinois St, Chicago, IL 60611",
     phone: "312-334-2222",
-    reservations: []
+    reservations: [],
   },
   {
     name: "CorePower Yoga",
