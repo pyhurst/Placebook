@@ -78,8 +78,10 @@ const Schedule = () => {
             .catch((err) => console.log(err));
     }
 
+
     return (
         <div>
+            <h1>Date: {bizContext.date}</h1>
             {timeblockState.map(e => (
                 <div className='schedule' >
                     <h4>Time: {e}</h4>

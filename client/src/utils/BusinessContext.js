@@ -8,6 +8,7 @@ const reducer = (state, action) => {
     case "UPDATE_BIZ":
       return {
         ...state,
+        date: action.date,
         businessId: action.businessId,
         name: action.name,
         address: action.address,
@@ -21,6 +22,11 @@ const reducer = (state, action) => {
           capacity: action.times.capacity,
         },
       };
+    case "UPDATE_DATE":
+      return {
+        ...state,
+        date: action.date
+      }
     default:
       return state;
   }
@@ -43,6 +49,7 @@ const reducer = (state, action) => {
 
 const BizProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
+    date: "",
     businessId: "",
     name: "",
     address: "",
