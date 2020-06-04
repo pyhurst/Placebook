@@ -5,7 +5,7 @@ import { useBizContext } from "../../utils/BusinessContext";
 
 console.log(useBizContext);
 
-function Calendarapp(){
+function Calendarapp({handleOnChange}){
   // constructor(props) {
   //   super(props);
    
@@ -18,6 +18,7 @@ const [dateContext, dispatch] = useBizContext();
 // console.log(bizContext)
 console.log(dateContext)
   const onChange = (clickedDate) => {
+    handleOnChange(clickedDate)
     // setDate(clickedDate);
     // dispatch({
     //   type: "UPDATE_BIZ",

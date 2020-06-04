@@ -6,7 +6,7 @@ import API from "../../utils/API";
 import { Redirect } from 'react-router-dom';
 
 
-const Schedule = () => {
+const Schedule = ({dataSelectedDate}) => {
     const bizContext = useBizContext();
     const [timeblockState, setTimeblockState] = React.useState([]);
     const array = [];

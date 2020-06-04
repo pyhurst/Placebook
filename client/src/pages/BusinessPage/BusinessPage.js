@@ -12,14 +12,14 @@ function Business() {
   const { id } = useParams();
   const [bizState, bizDispatch] = useBizContext(); //use dispatch to change
   const [userState, userDispatch] = useUserContext();
-  // const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date());
   // console.log(date)
 
   useEffect(() => {
     API.getBusinessById(id).then((result) => {
       bizDispatch({
         type: "UPDATE_BIZ",
-        date: result.data.date,
+        // date: result.data.date,
         businessId: result.data._id,
         name: result.data.name,
         address: result.data.address,
@@ -91,13 +91,14 @@ function Business() {
         <div className="section">
           <div className="row">
             <div className="column is-two-fifths-desktop is-full-mobile is-full-tablet">
-              <Calendarapp />
+              <Calendarapp handleOnChange={setDate} />
               {/* <Calendar handleOnChange={handleOnChange} value={date}/> */}
             </div>
             <div className="column is-three-fifths-desktop is-full-mobile is-full-tablet">
-              <h1>Date: {bizState.date}</h1>
+              <h1>Selected date: {date.toLocaleDateString()}</h1>
+              {/* <h1>Date: {`${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`}</h1> */}
               {/* <Schedule date={bizState.date}/> */}
-              <Schedule />
+              <Schedule dataSelectedDate={date} />
               {/* bizstate.date */}
             </div>
           </div>
