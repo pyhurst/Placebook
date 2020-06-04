@@ -26,7 +26,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         date: action.date
+        }
+    case "POST_RES":
+      return {
+        reservations: [action.reservations]
       }
+
     default:
       return state;
   }
