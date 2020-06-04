@@ -29,6 +29,16 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  updateReservation: function (req, res) {
+    db.Business.findOneAndUpdate({_id: req.params.id , "reservations.time": req.body.time},
+      {
+        $set: {
+          "reservations.$.capacity": req.body.capacity
+        }
+      }
+    ).then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+  }
   // conditionalUpdate: function (req, res) {
   //   db.Business.findById({ _id: req.params.id })
   //     .then((dbModel) => {

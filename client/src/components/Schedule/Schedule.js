@@ -136,6 +136,13 @@ const Schedule = () => {
                     })
                 } else {
                     console.log(newResult)
+                    newResult[0].capacity--;
+                    newResult[0].customerIds.push(state._id)
+                    API.updateReservation(bizContext[0].businessId, newResult[0])
+                        .then(e => {
+                            console.log(e);
+                        })
+                    console.log(newResult)
                 }
             });
         }
