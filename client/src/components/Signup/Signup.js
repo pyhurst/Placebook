@@ -18,6 +18,8 @@ const Signup = () => {
       email: emailRef.current.value,
     })
       .then((result) => {
+        console.log("hllllllllllllllllllllllllllllllllllllllllllllll");
+        console.log(result);
         dispatch({
           type: "ADD_USER",
           username: result.data.username,

@@ -33,6 +33,9 @@ function Business() {
 
     API.checkUser()
       .then((userResult) => {
+        console.log("userResult/checkuser");
+        console.log(userResult);
+        console.log(userState);
         userDispatch({
           type: "ADD_USER",
           username: userResult.data.user.username,

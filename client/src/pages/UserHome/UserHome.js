@@ -9,6 +9,7 @@ const Business = () => {
   useEffect(() => {
     API.checkUser()
       .then((userResult) => {
+        console.log("touch");
         console.log(userResult);
         userDispatch({
           type: "ADD_USER",

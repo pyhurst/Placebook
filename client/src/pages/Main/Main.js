@@ -30,12 +30,17 @@ class Main extends React.Component {
   };
 
   logState = () => {
+    console.log("huuuuuu");
+    console.log(this.state.username);
+    console.log("huuuuuu");
+    console.log(this.state);
+    console.log("bye");
     // console.log("logstate");
     // console.log(this.state);
   };
 
   navBar = () => {
-    if (this.state.user === null) {
+    if (this.state.username === null) {
       console.log("it is an empty string");
       return <Navbar />;
     } else {
