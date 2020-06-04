@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./About.css";
 import { Jumbotron } from "reactstrap";
 import Navbar from "../../components/Navbar/Navbar";
+import { useUserContext } from "../../utils/UserContext";
+import API from "../../utils/API";
 
 const About = () => {
+  const [userState, userDispatch] = useUserContext();
+  useEffect(() => {
+    API.checkUser()
+      .then((userResult) => {
+        console.log(userResult);
+        userDispatch({
+          type: "ADD_USER",
+          username: userResult.data.user.username,
+          email: userResult.data.user.email,
+          reservations: userResult.data.user.reservations,
+          _id: userResult.data.user._id,
+        });
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const navBar = () => {
+    if (userState.username === "") {
+      return <Navbar />;
+    } else {
+      return <Navbar user="user" />;
+    }
+  };
+
   return (
     <div>
-      <Navbar />
+      {navBar()}
       <div id="about">
         <Jumbotron>
           <h1 className="display-3">We're Placebook.</h1>

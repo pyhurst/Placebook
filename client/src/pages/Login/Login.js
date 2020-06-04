@@ -11,15 +11,12 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Clicked");
 
     API.userLogin({
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     })
       .then((result) => {
-        console.log("Login Response: ");
-        console.log(result);
         if (result.status === 200) {
           dispatch({
             type: "ADD_USER",

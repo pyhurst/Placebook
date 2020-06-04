@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Calendar from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
 import API from "../../utils/API";
-import Time from "../../components/Timeslots/Timeslots";
 import Schedule from "../../components/Schedule/Schedule";
 import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
@@ -47,7 +46,6 @@ function Business() {
 
     API.checkUser()
       .then((userResult) => {
-        console.log(userResult);
         userDispatch({
           type: "ADD_USER",
           username: userResult.data.user.username,
@@ -66,11 +64,17 @@ function Business() {
   // };
 
 
+  const navBar = () => {
+    if (userState.username === "") {
+      return <Navbar />;
+    } else {
+      return <Navbar user="user" />;
+    }
+  };
 
   return (
     <div>
-      <Navbar />
-
+      {navBar()}
       <div className="container">
         <div className="section">
           <ul>
