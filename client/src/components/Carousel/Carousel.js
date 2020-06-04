@@ -34,13 +34,9 @@ class MyCarousel extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.props.businessCategory);
     API.getBusiness()
       .then((results) => {
-        // console.log(results.data);
         this.setState((this.state.business = results.data));
-        console.log("test");
-        // console.log(this.state.business);
       })
       .catch((err) => console.log(err));
   }

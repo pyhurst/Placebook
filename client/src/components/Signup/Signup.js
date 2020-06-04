@@ -18,13 +18,7 @@ const Signup = () => {
       email: emailRef.current.value,
     })
       .then((result) => {
-        dispatch({
-          type: "ADD_USER",
-          username: result.data.username,
-          email: result.data.email,
-          reservations: result.data.reservations,
-          _id: result.data._id,
-        });
+        console.log("this", result);
       })
       .catch((err) => console.log(err));
   };
@@ -51,7 +45,7 @@ const Signup = () => {
             id="passwordInput"
             ref={passwordRef}
           />
-          <Link to="/user/home" onClick={handleSubmit}>
+          <Link to="/login" onClick={handleSubmit}>
             Sign Up
           </Link>
         </form>

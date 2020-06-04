@@ -11,13 +11,12 @@ class Main extends React.Component {
   };
 
   componentDidMount() {
-    API.checkUser()
-      .then((res) => {
-        console.log("didmount");
-        console.log(res);
-        this.setState({ username: res.data.username });
-      })
-      .catch((err) => console.log(err));
+    console.log("component mounted");
+    // API.checkUser()
+    //   .then((res) => {
+    //     this.setState({ username: res.data.username });
+    //   })
+    //   .catch((err) => console.log(err));
   }
 
   handleOnClick = (e) => {
@@ -25,21 +24,13 @@ class Main extends React.Component {
     API.getBusiness().then((res) => {
       let arr = res.data.filter((business) => event === business.category);
       this.setState((this.state.businessCategory = arr));
-      console.log(this.state.businessCategory);
     });
-  };
-
-  logState = () => {
-    // console.log("logstate");
-    // console.log(this.state);
   };
 
   navBar = () => {
     if (this.state.user === null) {
-      console.log("it is an empty string");
       return <Navbar />;
     } else {
-      console.log("there is a user logged in");
       return <Navbar user="user" />;
     }
   };
@@ -48,7 +39,6 @@ class Main extends React.Component {
     return (
       <div>
         <Navbar />
-        {this.logState()}
         <section>
           <div id="main">
             <Jumbotron handleOnClick={this.handleOnClick} />
