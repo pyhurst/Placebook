@@ -2,6 +2,7 @@ import React, { Component, useState, useContext } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useBizContext } from "../../utils/BusinessContext";
+import "./Calendar.css"
 
 console.log(useBizContext);
 

@@ -134,18 +134,15 @@ const Schedule = ({dataSelectedDate}) => {
 
 
     return (
-        <div>
+        <div className="block">
             {timeblockState.map(time => (
-                <div className='schedule' >
+                <div className='schedule' style={{borderRadius: "20px"}}>
                     <h4>Time: {time}</h4>
                     <h4>{bizContext[0].times.capacity} spots left!</h4>
-                    <button className="reserveBtn" id={time} onClick={() => userCheck(time)} >Reserve!</button>
+                    <button className="reserveBtn btn btn-danger" id={time} onClick={() => userCheck(time)} >Reserve!</button>
                 </div>
             ))}
-
         </div>
-      ))}
-    </div>
   );
 };
 

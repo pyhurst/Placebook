@@ -1,4 +1,12 @@
 .schedule {
-    border: 2px black solid;
-    padding: 1px;
+    /* border: 2px dotted darkcyan; */
+    background-color:white;
+    padding: 10px 15px;
+    margin-bottom: 5px;
 }
+
+h4:nth-child(2) {
+    text-align: right;
+}
+
+
