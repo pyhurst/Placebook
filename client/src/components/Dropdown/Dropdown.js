@@ -45,22 +45,22 @@ const DropdownEl = (props) => {
         </DropdownMenu>
       </Dropdown>
     )
+  } else if (props.cat === "cat") {
+    return (
+    <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+      <DropdownToggle caret>Category</DropdownToggle>
+      <DropdownMenu>
+        <DropdownItem value="Gym" onClick={props.handleOnClick}>Gym</DropdownItem>
+        <DropdownItem value="Salon" onClick={props.handleOnClick}>Salons</DropdownItem>
+        <DropdownItem value="Hardware" onClick={props.handleOnClick}>Hardware</DropdownItem>
+        <DropdownItem value="Retail" onClick={props.handleOnClick}>Retail</DropdownItem>
+        <DropdownItem value="Education" onClick={props.handleOnClick}>Education</DropdownItem>
+        <DropdownItem value="Recreation" onClick={props.handleOnClick}>Recreation</DropdownItem>
+        <DropdownItem value="Other" onClick={props.handleOnClick}>Other</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+    )
   } else {
-    // const [category, setCategory] = useState({
-    //   categories: []
-    // })
-    // const handleOnClick = (e) => {
-    //   const event = e.target.value
-    //   // console.log(event)
-    //   API.getBusiness()
-    //     // .then(res => console.log(res.data))
-    //     .then(res => res.data.filter(function (business) {
-    //       if (event === business.category) {
-    //         console.log("test")
-    //       }
-    //     }))
-    // }
-
     return (
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle caret>View Businesses by Category</DropdownToggle>

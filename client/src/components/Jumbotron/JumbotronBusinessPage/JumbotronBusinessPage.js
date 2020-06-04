@@ -34,8 +34,7 @@ const JumbotronPage = () => {
                     Placeholder
                   </MDBCardTitle>
                   <MDBCardText>
-                    Sed ut perspiciatis unde omnis iste natus sit voluptatem
-                    accusantium doloremque laudantium, totam rem aperiam.
+                    Click below to add your business to Placebook!
                   </MDBCardText>
                   <Link color="primary" to="/businessSignUp">
                     Sign Up
