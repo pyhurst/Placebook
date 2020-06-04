@@ -17,6 +17,9 @@ router.route("/all").get(placeController.findAll).post(placeController.create);
 //         }
 //     })
 
+// router.route("/reserve/:id")
+//     .get(placeController.conditionalUpdate)
+
 // Matches with "/api/businesses/:id"
 router.route("/:id")
     .get(placeController.findOne)

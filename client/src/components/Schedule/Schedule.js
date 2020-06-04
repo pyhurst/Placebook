@@ -99,25 +99,46 @@ const Schedule = () => {
 
     const userCheck = (time) => {
         // API.checkUser().then(result => {
-            // console.log(result);
-            if (state.username === "") {
-                return window.location.href = "/login"
-            } else {
-                console.log(state)
-                console.log(bizContext)
-                console.log(time)
-                API.reservation(bizContext[0].businessId, 
-                    {
-                        reservations: {
+        // console.log(result);
+        if (state.username === "") {
+            return window.location.href = "/login"
+        } else {
+            console.log(state)
+            console.log(bizContext)
+            console.log(time)
+            // API.reservation(bizContext[0].businessId, 
+            //     {
+            //         reservations: {
+            //             time: time,
+            //             date: "06-20-20",
+            //             capacity: bizContext[0].times.capacity,
+            //             customerIds: [state._id]
+            //         }
+            //     }).then(result => {
+            //     console.log(result);
+            // })
+            API.getBusinessById(bizContext[0].businessId, time).then(result => {
+                console.log(result);
+                const newResult = result.data.reservations.filter(e => {
+                    return e.time === time;
+                })
+                console.log(newResult)
+                if (newResult[0] === undefined) {
+                    API.reservation(bizContext[0].businessId,
+                        {
                             time: time,
                             date: "06-20-20",
                             capacity: bizContext[0].times.capacity,
                             customerIds: [state._id]
                         }
-                    }).then(result => {
-                    console.log(result);
-                })
-            }
+                    ).then(response => {
+                        console.log(response);
+                    })
+                } else {
+                    console.log(newResult)
+                }
+            });
+        }
         // })
         //     .catch((err) => console.log(err));
     }
