@@ -9,9 +9,7 @@ import "bulma/css/bulma.css";
 const Navbar = (props) => {
   const userState = useUserContext();
   const loGout = () => {
-    API.userLogout(userState).then((e) => {
-      console.log("worked");
-    });
+    API.userLogout(userState).then((e) => {});
   };
 
   if (props.user === "user") {

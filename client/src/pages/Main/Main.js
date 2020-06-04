@@ -29,14 +29,6 @@ class Main extends React.Component {
     });
   };
 
-  logState = () => {
-    console.log("huuuuuu");
-    console.log(this.state.username);
-    console.log("huuuuuu");
-    console.log(this.state);
-    console.log("bye");
-  };
-
   navBar = () => {
     if (this.state.username === null) {
       console.log("it is an empty string");
@@ -51,7 +43,6 @@ class Main extends React.Component {
     return (
       <div>
         <Navbar />
-        {this.logState()}
         <section>
           <div id="main">
             <Jumbotron handleOnClick={this.handleOnClick} />
