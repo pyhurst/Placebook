@@ -14,9 +14,9 @@ const Business = () => {
   //   })
   // })
 
-  const renderAppointments = () => {
-    console.log(userContext[0].reservations[0]);
-  };
+  // const renderAppointments = () => {
+  //   console.log(userContext[0].reservations[0]);
+  // };
 
   return (
     <div>
@@ -25,7 +25,7 @@ const Business = () => {
         <div className="section">
           <div className="columns">
             <div className="column">Welcome, {userContext[0].username}</div>
-            <div className="column">Appointments: {renderAppointments()}</div>
+            <div className="column">Appointments: </div>
           </div>
         </div>
       </div>

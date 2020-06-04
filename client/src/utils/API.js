@@ -19,4 +19,7 @@ export default {
   checkUser: function () {
     return axios.get("/api/user/user");
   },
+  reservation: function (id, businessData) {
+    return axios.post("/api/businesses/" + id, businessData)
+  }
 };

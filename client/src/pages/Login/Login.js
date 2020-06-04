@@ -37,8 +37,8 @@ const Login = () => {
     <div>
       <Navbar />
 
-      <div id="Signup">
-        <h1>this is our Signup page</h1>
+      <div id="Login">
+        <h1>this is our Login page</h1>
         <form>
           <label for="username">Username: </label>
           <input
@@ -54,7 +54,7 @@ const Login = () => {
             id="passwordInput"
             ref={passwordRef}
           />
-          <button onClick={handleSubmit}>Sign Up</button>
+          <button onClick={handleSubmit}>Log in</button>
         </form>
       </div>
     </div>
