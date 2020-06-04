@@ -128,7 +128,7 @@ const Schedule = () => {
                         {
                             time: time,
                             date: "06-20-20",
-                            capacity: bizContext[0].times.capacity,
+                            capacity: bizContext[0].times.capacity - 1,
                             customerIds: [state._id]
                         }
                     ).then(response => {
