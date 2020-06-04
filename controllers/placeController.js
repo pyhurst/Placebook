@@ -30,12 +30,14 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   updateReservation: function (req, res) {
-    db.Business.findOneAndUpdate({_id: req.params.id , "reservations.time": req.body.time},
+    db.Business.findOneAndUpdate({_id: req.params.id , "reservations.time": req.body.time}, 
       {
         $set: {
-          "reservations.$.capacity": req.body.capacity
+          "reservations.$.capacity": req.body.capacity,
+          "reservations.$.customerIds": req.body.customerIds,
         }
-      }
+      },
+      {new: true}
     ).then((dbModel) => res.json(dbModel))
     .catch((err) => res.status(422).json(err));
   }
