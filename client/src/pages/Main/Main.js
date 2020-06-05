@@ -3,20 +3,35 @@ import MyCarousel from "../../components/Carousel/Carousel.js";
 import Jumbotron from "../../components/Jumbotron/JumbotronHomePage/Jumbotron";
 import API from "../../utils/API.js";
 import Navbar from "../../components/Navbar/Navbar";
+import { UserContext } from "../../utils/UserContext";
 
 class Main extends React.Component {
+  static contextType = UserContext;
   state = {
     businessCategory: [],
+    data: null,
     username: "",
+    email: "",
+    reservations: [],
+    _id: "",
+  };
+
+  checkLocal = () => {
+    let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
+    if (storageStatus) {
+      if (storageStatus.username !== null && this.state.data === null) {
+        this.setState({
+          username: storageStatus.username,
+          email: storageStatus.email,
+          reservations: storageStatus.reservations,
+          _id: storageStatus._id,
+        });
+      }
+    }
   };
 
   componentDidMount() {
-    API.checkUser()
-      .then((userResult) => {
-        this.setState({ username: userResult.data.user.username });
-      })
-
-      .catch((err) => console.log(err));
+    this.checkLocal();
   }
 
   handleOnClick = (e) => {
@@ -27,18 +42,10 @@ class Main extends React.Component {
     });
   };
 
-  navBar = () => {
-    if (this.state.username) {
-      return <Navbar status="user" />;
-    } else {
-      return <Navbar />;
-    }
-  };
-
   render() {
     return (
       <div>
-        {this.navBar()}
+        <Navbar status={this.state.username} />
         <section>
           <div id="main">
             <Jumbotron handleOnClick={this.handleOnClick} />

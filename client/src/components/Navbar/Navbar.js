@@ -9,18 +9,22 @@ import "bulma/css/bulma.css";
 const Navbar = (props) => {
   const [userState, userDispatch] = useUserContext();
   const loGout = () => {
-    API.userLogout(userState).then((e) => {
-      userDispatch({
-        username: "",
-        email: "",
-        reservations: [],
-        _id: "",
+    API.userLogout(userState)
+      .then((e) => {
+        userDispatch({
+          username: "",
+          email: "",
+          reservations: [],
+          _id: "",
+        });
+        localStorage.removeItem("currentUser");
+      })
+      .then(() => {
+        window.location.reload();
       });
-      console.log("worked");
-    });
   };
 
-  if (props.status === "user") {
+  if (props.status) {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
