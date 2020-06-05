@@ -32,22 +32,63 @@ module.exports = {
         const filtered = dbModel.reservations.filter(element => {
           return element.time === req.body.time && element.date === req.body.date
         });
-        console.log(filtered)
-        if (filtered.length === 1) {
+        // console.log('after filtered' + dbModel)
+        // const filteredOut = dbModel.reservations.filter(element => {
+        //   return element.time !== req.body.time && element.date !== req.body.date
+        // });
+        // const mappedOut = dbModel.reservations.map(element => {
+        //   if(element.time !== req.body.time){
+        //     return element;
+        //   }
+        // })
+        // console.log("mapped", mappedOut);
+        // console.log(filtered)
+        if (filtered.length === 1 && filtered[0].customerIds.length < filtered[0].capacity) {
+          const filteredOut = [];
           console.log('need to push customerid to timeslot')
+          console.log(dbModel.reservations.length)
+          const array = dbModel;
+          console.log(array);
+          console.log(typeof array);
+          console.log(req.body.customerIds[0])
+          for (let i = 0; i < array.reservations.length; i++) {
+            if(array.reservations[i]._id !== filtered[0]._id){
+              console.log(array.reservations[i]);
+              filteredOut.push(array.reservations[i]);
+              // console.log("colin ", filteredOut);
+            }
+          }
+          console.log('after for ', filteredOut)
           filtered[0].customerIds.push(req.body.customerIds[0]);
-          console.log(filtered);
-          db.Business.updateOne({ _id: dbModel._id, "reservations._id": filtered[0]._id }, 
+          // console.log(filtered);
+          // console.log(filteredOut);
+          filteredOut.push(filtered[0]);
+          // console.log(filteredOut)
+          db.Business.findByIdAndUpdate({ _id: dbModel._id },
             {
               $set: {
-                reservations: filtered[0]
+                reservations: filteredOut
               }
-            }
-            ,{ new: true }
+            },
+            { new: true }
           ).then((newRes) => {
-            console.log("line 48" + newRes);
+            console.log("hi", newRes)
             res.json(newRes)
           }).catch((err) => res.status(422).json(err));
+          // db.Business.findOne({ _id: dbModel._id, "reservations._id": filtered[0]._id }, 
+          // {"reservations.$": 1},
+          //   // {
+          //   //   $pop: {
+          //   //     reservations
+          //   //   }
+          //   // }
+          //   // ,{ new: true }
+          // ).then((newRes) => {
+          //   console.log("line 48" + newRes);
+          //   res.json(newRes)
+          // }).catch((err) => res.status(422).json(err));
+        } else if (filtered.length === 1 && filtered[0].customerIds.length >= filtered[0].capacity) {
+          res.send("sorry capacity is filled for timeslot!")
         } else {
           console.log('need to create reservation slot')
           db.Business.findByIdAndUpdate({ _id: dbModel._id },
