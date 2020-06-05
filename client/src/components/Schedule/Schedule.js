@@ -97,7 +97,7 @@ const Schedule = ({ dataSelectedDate }) => {
                     {
                         time: time,
                         date: dataSelectedDate,
-                        capacity: bizContext[0].times.capacity - 1,
+                        capacity: bizContext[0].times.capacity,
                         customerIds: [state._id]
                     }
                 ).then(result => {

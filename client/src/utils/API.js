@@ -26,13 +26,9 @@ export default {
     return axios.post("/api/businesses/" + id, businessData);
   },
   updateReservation: function (id, businessData) {
-<<<<<<< HEAD
     return axios.post("/api/businesses/reserve/" + id, businessData)
   },
   getReservation: function (id, resData) {
     return axios.post("/api/businesses/reservation/" + id, resData);
-=======
-    return axios.post("/api/businesses/reserve/" + id, businessData);
->>>>>>> master
   },
 };
