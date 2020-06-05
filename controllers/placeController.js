@@ -35,6 +35,19 @@ module.exports = {
         console.log(filtered)
         if (filtered.length === 1) {
           console.log('need to push customerid to timeslot')
+          filtered[0].customerIds.push(req.body.customerIds[0]);
+          console.log(filtered);
+          db.Business.updateOne({ _id: dbModel._id, "reservations._id": filtered[0]._id }, 
+            {
+              $set: {
+                reservations: filtered[0]
+              }
+            }
+            ,{ new: true }
+          ).then((newRes) => {
+            console.log("line 48" + newRes);
+            res.json(newRes)
+          }).catch((err) => res.status(422).json(err));
         } else {
           console.log('need to create reservation slot')
           db.Business.findByIdAndUpdate({ _id: dbModel._id },
@@ -48,62 +61,7 @@ module.exports = {
             res.json(newRes)
           }).catch((err) => res.status(422).json(err));
         }
-        //     for (let i = 0; i < dbModel.reservations.length; i++) {
-        //       if (dbModel.reservations[i].date === req.body.date) {
-        //         if (dbModel.reservations[i].time === req.body.time) {
-        //           console.log("time")
-        //         } else {
-        //           console.log("no time")
-        //             db.Business.findByIdAndUpdate({ _id: dbModel._id },
-        //               {
-        //                 $push: {
-        //                   reservations: obj
-        //                 }
-        //               },
-        //               { new: true }
-        //             ).then(() => {
-        //               res.json("You are the first in that timeslot!")
-        //             }).catch((err) => res.status(422).json(err));
-        //         }
-        //       } else {
-        //         //     // create reservation object with necessary data       
-        //         //     const obj = {
-        //         //       date: req.body.date,
-        //         //       time: req.body.time,
-        //         //       capacity: req.times.capacity,
-        //         //       customerIds: req.body.customerIds
-        //         //     };
-        //         //     console.log(obj)
-        //         console.log('fired')
-        //         //     // db.Business.findOneAndUpdate({ _id: req.params.id },
-        //         //     //   {
-        //         //     //     $push: {
-
-        //         //     //     }
-        //         //     //   },
-        //         //     //   { new: true }
-        //         //     // ).then((dbModel) => res.json(dbModel))
-        //         //     //   .catch((err) => res.status(422).json(err));
-        //       }
-        //       // }
-        //       // res.json('double fired')
-        //       // console.log(dbModel.reservations[i].date);
-        //     }
-        // //     db.Business.findByIdAndUpdate({ _id: dbModel._id },
-        // //       {
-        // //         $push: {
-        // //           reservations: obj
-        // }
-        // //       },
-        // //       { new: true }
-        // //     ).then(() => {
-        // //       res.json("You are the first in that timeslot!")
-        // //     }).catch((err) => res.status(422).json(err));
       })
-      //     // )
-      //     // .catch((err) => res.status(422).json(err));
-      //   })
-      //   // .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   remove: function (req, res) {
