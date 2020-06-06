@@ -24,7 +24,7 @@ function Business() {
         name: result.data.name,
         address: result.data.address,
         phone: result.data.phone,
-        reservations: [result.data.reservations],
+        reservations: result.data.reservations,
         times: {
           open: result.data.times.open,
           close: result.data.times.close,
@@ -48,19 +48,15 @@ function Business() {
       .catch((err) => console.log(err));
   }, []);
 
-  const navBar = () => {
-    console.log("navbar function");
-    if (userAuth !== "") {
-      return <Navbar status="user" />;
-    } else {
-      return <Navbar />;
-    }
-  };
-
   return (
     <div>
+<<<<<<< HEAD
       {navBar()}
       <div className="container" style={{backgroundColor: "lightblue", borderRadius: "20px"}}>
+=======
+      <Navbar status={userState.username} />
+      <div className="container">
+>>>>>>> master
         <div className="section">
           <ul>
             <li style={{color: "white", fontSize: "3em", textShadow: "1px 2px 3px black"}}>{bizState.name}</li>
@@ -82,7 +78,7 @@ function Business() {
               <h4>Selected date: {date.toLocaleDateString()}</h4>
               {/* <h1>Date: {`${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`}</h1> */}
               {/* <Schedule date={bizState.date}/> */}
-              <Schedule dataSelectedDate={date} />
+              <Schedule dataSelectedDate={date.toLocaleDateString()} />
               {/* bizstate.date */}
             </div>
           </div>

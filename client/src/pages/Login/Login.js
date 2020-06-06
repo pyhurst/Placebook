@@ -12,6 +12,7 @@ const Login = () => {
   const [state, dispatch] = useUserContext();
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     API.userLogin({
       username: usernameRef.current.value,
       password: passwordRef.current.value,
@@ -25,8 +26,13 @@ const Login = () => {
             reservations: result.data.reservations,
             _id: result.data._id,
           });
+          localStorage.setItem("currentUser", JSON.stringify(result.data));
         }
       })
+      .then(() => {
+        window.location = "/user/home";
+      })
+
       .catch((err) => console.log(err));
   };
 
@@ -52,9 +58,7 @@ const Login = () => {
             id="passwordInput"
             ref={passwordRef}
           />
-          <Link onClick={handleSubmit} to="/user/home">
-            Log in
-          </Link>
+          <button onClick={handleSubmit}>Log in</button>
         </form>
       </div>
       </Jumbotron>

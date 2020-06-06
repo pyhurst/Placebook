@@ -8,25 +8,19 @@ const reducer = (state, action) => {
     case "UPDATE_BIZ":
       return {
         ...state,
-        date: action.date,
         businessId: action.businessId,
         name: action.name,
         address: action.address,
         phone: action.phone,
         ownerId: action.ownerId,
-        reservations: [action.reservations],
+        reservations: action.reservations,
         times: {
           open: action.times.open,
           close: action.times.close,
           timeslot_length: action.times.timeslot_length,
           capacity: action.times.capacity,
         },
-      };
-    case "UPDATE_DATE":
-      return {
-        ...state,
-        date: action.date
-        }
+      }
     case "POST_RES":
       return {
         reservations: [action.reservations]
@@ -54,7 +48,6 @@ const reducer = (state, action) => {
 
 const BizProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
-    date: new Date(),
     businessId: "",
     name: "",
     address: "",

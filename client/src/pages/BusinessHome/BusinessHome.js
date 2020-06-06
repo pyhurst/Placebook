@@ -1,42 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Calendar from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
 import Jumbo from "../../components/Jumbotron/JumbotronBusinessHome/JumbotronBusinessHome";
 import Navbar from "../../components/Navbar/Navbar";
 import { useUserContext } from "../../utils/UserContext";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 
 const BusinessHome = () => {
-  const userDispatch = useUserContext();
-  const [userAuth, setuserAuth] = useState("");
+  const [userState, userDispatch] = useUserContext();
+  // const [userAuth, setuserAuth] = useState("");
 
-  useEffect(() => {
-    API.checkUser()
-      .then((userResult) => {
-        setuserAuth(userResult.data.user.username);
-        userDispatch({
-          type: "ADD_USER",
-          username: userResult.data.user.username,
-          email: userResult.data.user.email,
-          reservations: userResult.data.user.reservations,
-          _id: userResult.data.user._id,
-        });
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   API.checkUser()
+  //     .then((userResult) => {
+  //       setuserAuth(userResult.data.user.username);
+  //       userDispatch({
+  //         type: "ADD_USER",
+  //         username: userResult.data.user.username,
+  //         email: userResult.data.user.email,
+  //         reservations: userResult.data.user.reservations,
+  //         _id: userResult.data.user._id,
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
-  const navBar = () => {
-    console.log("navbar function");
-    if (userAuth !== "") {
-      return <Navbar status="user" />;
-    } else {
-      return <Navbar />;
-    }
-  };
+  // const navBar = () => {
+  //   console.log("navbar function");
+  //   if (userAuth !== "") {
+  //     return <Navbar status="user" />;
+  //   } else {
+  //     return <Navbar />;
+  //   }
+  // };
 
   return (
     <div>
-      {navBar()}
+      <Navbar status={userState.username} />
       <div className="container">
         <Jumbo />
         <div className="section">
