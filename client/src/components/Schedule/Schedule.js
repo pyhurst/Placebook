@@ -102,6 +102,7 @@ const Schedule = ({ dataSelectedDate }) => {
                     }
                 ).then(result => {
                     console.log(result);
+                    // console.log(newCapacity);
                 })
                 // API.getReservation(bizContext[0].businessId, 
                 //     {

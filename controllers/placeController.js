@@ -19,9 +19,6 @@ module.exports = {
     console.log(shortid.generate());
     db.Business.findById({ _id: req.params.id })
       .then((dbModel) => {
-        console.log(dbModel);
-        console.log(req.body)
-
         const obj = {
           _id: shortid.generate(),
           date: req.body.date,
@@ -36,32 +33,23 @@ module.exports = {
         // const filteredOut = dbModel.reservations.filter(element => {
         //   return element.time !== req.body.time && element.date !== req.body.date
         // });
-        // const mappedOut = dbModel.reservations.map(element => {
-        //   if(element.time !== req.body.time){
-        //     return element;
-        //   }
-        // })
-        // console.log("mapped", mappedOut);
-        // console.log(filtered)
         if (filtered.length === 1 && filtered[0].customerIds.length < filtered[0].capacity) {
           const filteredOut = [];
           console.log('need to push customerid to timeslot')
-          console.log(dbModel.reservations.length)
+          console.log(dbModel.reservations)
           const array = dbModel;
-          console.log(array);
-          console.log(typeof array);
           console.log(req.body.customerIds[0])
           for (let i = 0; i < array.reservations.length; i++) {
-            if(array.reservations[i]._id !== filtered[0]._id){
+            if (array.reservations[i]._id !== filtered[0]._id) {
               console.log(array.reservations[i]);
               filteredOut.push(array.reservations[i]);
-              // console.log("colin ", filteredOut);
             }
           }
           console.log('after for ', filteredOut)
           filtered[0].customerIds.push(req.body.customerIds[0]);
           // console.log(filtered);
           // console.log(filteredOut);
+          const newCapacity = filtered[0].capacity- filtered[0].customerIds.length;
           filteredOut.push(filtered[0]);
           // console.log(filteredOut)
           db.Business.findByIdAndUpdate({ _id: dbModel._id },
@@ -73,20 +61,15 @@ module.exports = {
             { new: true }
           ).then((newRes) => {
             console.log("hi", newRes)
-            res.json(newRes)
+            // console.log(newCapacity);
+            // newOjb.newCapacity = newCapacity;
+            // console.log("bye", newObj)
+            // res.json(newRes)
+            res.json({
+              business: newRes,
+              capacity: newCapacity
+            });
           }).catch((err) => res.status(422).json(err));
-          // db.Business.findOne({ _id: dbModel._id, "reservations._id": filtered[0]._id }, 
-          // {"reservations.$": 1},
-          //   // {
-          //   //   $pop: {
-          //   //     reservations
-          //   //   }
-          //   // }
-          //   // ,{ new: true }
-          // ).then((newRes) => {
-          //   console.log("line 48" + newRes);
-          //   res.json(newRes)
-          // }).catch((err) => res.status(422).json(err));
         } else if (filtered.length === 1 && filtered[0].customerIds.length >= filtered[0].capacity) {
           res.send("sorry capacity is filled for timeslot!")
         } else {
@@ -134,14 +117,4 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   }
-  // conditionalUpdate: function (req, res) {
-  //   db.Business.findById({ _id: req.params.id })
-  //     .then((dbModel) => {
-  //       const newResult = dbModel.data.reservations.filter(e => {
-  //         return e.time === req.body.time;
-  //       })
-  //       res.json(newResult)
-  //     })
-  //     .catch((err) => res.status(422).json(err));
-  // }
 };
