@@ -12,15 +12,17 @@ const DropdownEl = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
+  
+  // const onSwitch = (e) => {
+  //   console.log(e.target.value)
+  // }
+
 
   if (props.time === "times") {
     return (
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle caret>Select Time</DropdownToggle>
         <DropdownMenu>
-          <DropdownItem>1:00 AM</DropdownItem>
-          <DropdownItem>2:00 AM</DropdownItem>
-          <DropdownItem>3:00 AM</DropdownItem>
           <DropdownItem>4:00 AM</DropdownItem>
           <DropdownItem>5:00 AM</DropdownItem>
           <DropdownItem>6:00 AM</DropdownItem>
@@ -48,15 +50,16 @@ const DropdownEl = (props) => {
   } else if (props.cat === "cat") {
     return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle caret>Category</DropdownToggle>
+      <DropdownToggle caret>Business Category</DropdownToggle>
       <DropdownMenu>
-        <DropdownItem value="Gym" onClick={props.handleOnClick}>Gym</DropdownItem>
-        <DropdownItem value="Salon" onClick={props.handleOnClick}>Salons</DropdownItem>
-        <DropdownItem value="Hardware" onClick={props.handleOnClick}>Hardware</DropdownItem>
-        <DropdownItem value="Retail" onClick={props.handleOnClick}>Retail</DropdownItem>
-        <DropdownItem value="Education" onClick={props.handleOnClick}>Education</DropdownItem>
-        <DropdownItem value="Recreation" onClick={props.handleOnClick}>Recreation</DropdownItem>
-        <DropdownItem value="Other" onClick={props.handleOnClick}>Other</DropdownItem>
+        <DropdownItem value="Gym" onClick={props.onSwitch}>Gym</DropdownItem> 
+        <DropdownItem value="Beauty" onClick={props.onSwitch}>Salons</DropdownItem>
+        <DropdownItem value="Hardware" onClick={props.onSwitch}>Hardware</DropdownItem>
+        <DropdownItem value="Retail" onClick={props.onSwitch}>Retail</DropdownItem>
+        <DropdownItem value="Education" onClick={props.onSwitch}>Education</DropdownItem>
+        <DropdownItem value="Recreation" onClick={props.onSwitch}>Recreation</DropdownItem>
+        <DropdownItem value="Food Sales" onClick={props.onSwitch}>Food Sales</DropdownItem>
+        <DropdownItem value="Other" onClick={props.onSwitch}>Other</DropdownItem>
       </DropdownMenu>
     </Dropdown>
     )
@@ -66,11 +69,12 @@ const DropdownEl = (props) => {
         <DropdownToggle caret>View Businesses by Category</DropdownToggle>
         <DropdownMenu>
           <DropdownItem value="Gym" onClick={props.handleOnClick}>Gym</DropdownItem>
-          <DropdownItem value="Salon" onClick={props.handleOnClick}>Salons</DropdownItem>
+          <DropdownItem value="Beauty" onClick={props.handleOnClick}>Salons</DropdownItem>
           <DropdownItem value="Hardware" onClick={props.handleOnClick}>Hardware</DropdownItem>
           <DropdownItem value="Retail" onClick={props.handleOnClick}>Retail</DropdownItem>
           <DropdownItem value="Education" onClick={props.handleOnClick}>Education</DropdownItem>
           <DropdownItem value="Recreation" onClick={props.handleOnClick}>Recreation</DropdownItem>
+          <DropdownItem value="Food Sales" onClick={props.onSwitch}>Food Sales</DropdownItem>
           <DropdownItem value="Other" onClick={props.handleOnClick}>Other</DropdownItem>
         </DropdownMenu>
       </Dropdown>

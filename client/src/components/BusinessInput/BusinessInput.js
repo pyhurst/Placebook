@@ -1,9 +1,10 @@
 import React, { useRef, useContext } from "react";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
-import Dropdown from "../Dropdown/Dropdown";
+import DropdownEl from "../Dropdown/Dropdown";
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-const BusinessInputs = () => {
+const BusinessInputs = (props) => {
     const businessNameRef = useRef();
     const categoryRef = useRef();
     const addressRef = useRef();
@@ -51,80 +52,127 @@ const BusinessInputs = () => {
 
     }
 
+    // const onSwitch = (e) => {
+    //     console.log(e.target.value)
+    //   }
+
     return (
-        <div id="Signup">
-            <h1>this is our Signup page</h1>
-            <form>
-                <label for="businessName">Business Name: </label>
-                <input
-                    type="text"
-                    name="businessName"
-                    id="businessNameInput"
-                    ref={businessNameRef}
-                />
-                <label for="category">Category: </label>
-                <Dropdown cat="cat" />
-                <input
-                    type="text"
-                    name="category"
-                    id="categoryInput"
-                    ref={categoryRef}
-                />
-                <label for="address">Address: </label>
-                <input
-                    type="text"
-                    name="address"
-                    id="addressInput"
-                    ref={addressRef}
-                />
-                <label for="city">City: </label>
-                <input
-                    type="text"
-                    name="city"
-                    id="cityInput"
-                    ref={cityRef}
-                />
-                <label for="phone">Phone Number: </label>
-                <input
-                    type="text"
-                    name="phone"
-                    id="phoneInput"
-                    ref={phoneRef}
-                />
-                <label for="openTime">Business Open Time: </label>
-                <Dropdown time="times" />
-                <input
-                    type="text"
-                    name="address"
-                    id="addressInput"
-                    ref={openTimeRef}
-                />
-                <label for="closeTime">Business Close Time: </label>
-                <Dropdown time="times" />
-                <input
-                    type="text"
-                    name="address"
-                    id="addressInput"
-                    ref={closeTimeRef}
-                />
-                <label for="timeSlotLength">Length of Timeslots: </label>
-                <input
-                    type="number"
-                    name="timeSlotLength"
-                    id="timeSlotLengthInput"
-                    ref={timeSlotLengthRef}
-                />
-                <label for="capacity">Capacity per slot: </label>
-                <input
-                    type="number"
-                    name="capacity"
-                    id="capacityInput"
-                    ref={capacityRef}
-                />
-                <button onClick={handleSubmit}>Sign Up</button>
-            </form>
-        </div>
-    );
+        //     <div id="Signup" className="container">
+        //         <h1>this is our Signup page</h1>
+        //         <form>
+        //             <label for="businessName">Business Name: </label>
+        //             <input
+        //                 type="text"
+        //                 name="businessName"
+        //                 id="businessNameInput"
+        //                 ref={businessNameRef}
+        //             />
+        //             <label for="category">Category: </label>
+        //             <DropdownEl cat="cat"
+        //                 onSwitch={props.onSwitch}
+        //                 ref={categoryRef}
+        //                 name="category"
+        //                 id="categoryInput" />
+        //             {/* <input
+        //                 type="text"
+        //                 name="category"
+        //                 id="categoryInput"
+        //                 ref={categoryRef}
+        //             /> */}
+        //             <label for="address">Address: </label>
+        //             <input
+        //                 type="text"
+        //                 name="address"
+        //                 id="addressInput"
+        //                 ref={addressRef}
+        //             />
+        //             <label for="city">City: </label>
+        //             <input
+        //                 type="text"
+        //                 name="city"
+        //                 id="cityInput"
+        //                 ref={cityRef}
+        //             />
+        //             <label for="phone">Phone Number: </label>
+        //             <input
+        //                 type="text"
+        //                 name="phone"
+        //                 id="phoneInput"
+        //                 ref={phoneRef}
+        //             />
+        //             <label for="openTime">Business Open Time: </label>
+        //             <DropdownEl time="times" 
+        //             onSwitch={props.onSwitch}
+        //             name="address" 
+        //             id="addressInput"
+        //             ref={openTimeRef}/>
+        //             {/* <input
+        //                 type="text"
+        //                 name="address"
+        //                 id="addressInput"
+        //                 ref={openTimeRef}
+        //             /> */}
+        //             <label for="closeTime">Business Close Time: </label>
+        //             <DropdownEl time="times" 
+        //             onSwitch={props.onSwitch}
+        //             name="address"
+        //             id="addressInput"
+        //             ref={closeTimeRef}/>
+        //             {/* <input
+        //                 type="text"
+        //                 name="address"
+        //                 id="addressInput"
+        //                 ref={closeTimeRef}
+        //             /> */}
+        //             <label for="timeSlotLength">Length of Timeslots (in 30 minute increments): </label>
+        //             <input
+        //                 type="number"
+        //                 name="timeSlotLength"
+        //                 id="timeSlotLengthInput"
+        //                 ref={timeSlotLengthRef}
+        //             />
+        //             <label for="capacity">Capacity per slot: </label>
+        //             <input
+        //                 type="number"
+        //                 name="capacity"
+        //                 id="capacityInput"
+        //                 ref={capacityRef}
+        //             />
+        //             <button onClick={handleSubmit}>Sign Up</button>
+        //         </form>
+        //     </div>
+        // );
+        <Form className="container">
+            <FormGroup>
+                <Label for="businessName">Business Name</Label>
+                <Input type="text" name="businessName" id="businessNameInput" placeholder="Name" ref={businessNameRef} />
+            </FormGroup>
+            <FormGroup>
+                <DropdownEl cat="cat" name="category" id="categoryInput" onSwitch={props.onSwitch} ref={categoryRef} />
+            </FormGroup>
+            <FormGroup>
+                <Label for="address">Business Name</Label>
+                <Input type="text" name="address" id="addressInput" placeholder="Business Address" ref={addressRef} />
+            </FormGroup>
+            <FormGroup>
+                <Label for="openTime">Opening Time:</Label> <br></br>
+                <DropdownEl time="times" name="openTime" id="openTimeInput" onSwitch={props.onSwitch} ref={openTimeRef} />
+            </FormGroup>
+            <FormGroup>
+                <Label for="closeTime">Closing Time:</Label> <br></br>
+                <DropdownEl time="times" name="closeTime" id="closeTimeInput" onSwitch={props.onSwitch} ref={closeTimeRef}/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="timeSlotLength">Timeslot Length</Label>
+                <Input type="number" name="timeSlotLength" id="timeSlotLengthInput" placeholder="Please use increments of 30mins" ref={timeSlotLengthRef} />
+            </FormGroup>
+            <FormGroup>
+                <Label for="capacity">Capacity per Timeslot</Label>
+                <Input type="number" name="capacity" id="timeSlotLengthInput" placeholder="Please use increments of 30mins" ref={capacityRef} />
+            </FormGroup>
+            <Button onClick={handleSubmit}>Add my business!</Button>
+        </Form>
+    )
 };
 
 export default BusinessInputs;
