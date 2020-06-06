@@ -17,12 +17,14 @@ const BusinessInputs = () => {
     // const [state, dispatch] = useUserContext();
     const handleSubmit = (e) => {
         e.preventDefault();
+        let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
         console.log('clicked');
         console.log(openTimeRef.current);
-        console.log(closeTimeRef);
+        console.log(closeTimeRef.current.value);
+        console.log(storageStatus._id)
         API.addBusiness(
             {
-                ownerId: userContext[0]._id,
+                ownerId: storageStatus._id,
                 name: businessNameRef.current.value,
                 category: categoryRef.current.value,
                 address: addressRef.current.value,
