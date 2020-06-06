@@ -3,31 +3,30 @@ import "./About.css";
 import { Jumbotron } from "reactstrap";
 import Navbar from "../../components/Navbar/Navbar";
 import API from "../../utils/API";
+import { useUserContext } from "../../utils/UserContext";
 
 const About = () => {
-  const [userAuth, setuserAuth] = useState("");
+  const [userState, userDispatch] = useUserContext();
 
-  useEffect(() => {
-    API.checkUser()
-      .then((userResult) => {
-        setuserAuth(userResult.data.user.username);
-      })
-
-      .catch((err) => console.log(err));
-  }, []);
-
-  const navBar = () => {
-    console.log("navbar function");
-    if (userAuth !== "") {
-      return <Navbar status="user" />;
-    } else {
-      return <Navbar />;
+  const checkLocal = () => {
+    let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
+    if (storageStatus) {
+      if (storageStatus.email !== null && userState.username === "") {
+        userDispatch({
+          type: "ADD_USER",
+          username: storageStatus.username,
+          email: storageStatus.email,
+          reservations: storageStatus.reservations,
+          _id: storageStatus._id,
+        });
+      }
     }
   };
+  checkLocal();
 
   return (
     <div>
-      {navBar()}
+      <Navbar status={userState.username} />
       <div id="about">
         <Jumbotron>
           <h1 className="display-3">We're Placebook.</h1>
