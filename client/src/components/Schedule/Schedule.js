@@ -102,6 +102,16 @@ const Schedule = ({ dataSelectedDate }) => {
                     }
                 ).then(result => {
                     console.log(result);
+                    console.log(result.status)
+                    if(result.status === 200) {
+                        API.addUserReservation(state._id, {
+                            time: time,
+                            date: dataSelectedDate,
+                            businessId: result.data.business._id
+                        }).then(userData => {
+                            console.log(userData)
+                        })
+                    }
                     // console.log(newCapacity);
                 })
                 // API.getReservation(bizContext[0].businessId, 

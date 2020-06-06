@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../../models/user");
 const passport = require("../../passport");
+const userController = require("../../controllers/userController");
+
 
 router.route("/signup").post((req, res) => {
   console.log("user signup");
@@ -69,5 +71,7 @@ router.route("/logout").post((req, res) => {
     res.send({ message: "No user to log out" });
   }
 });
+
+router.route("/reservation/:id").post(userController.addUserReservation)
 
 module.exports = router;

@@ -31,4 +31,7 @@ export default {
   getReservation: function (id, resData) {
     return axios.post("/api/businesses/reservation/" + id, resData);
   },
+  addUserReservation: function (id, userData) {
+    return axios.post("/api/user/reservation/" + id, userData);
+  }
 };
