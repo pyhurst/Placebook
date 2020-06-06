@@ -24,6 +24,7 @@ router.route("/reserve/:id")
 router.route("/reservation/:id")
     .post(placeController.findReservation)
 
+router.route("/add").post(placeController.create);
 
 
 // Matches with "/api/businesses/:id"
@@ -33,5 +34,4 @@ router.route("/:id")
 //   .put(placeController.update)
 //   .delete(placeController.remove);
 
-router.route("/add").post(placeController.create);
 module.exports = router;
