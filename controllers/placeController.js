@@ -35,12 +35,26 @@ module.exports = {
         //   return element.time !== req.body.time && element.date !== req.body.date
         // });
         if (filtered.length === 1 && filtered[0].customerIds.length < filtered[0].capacity) {
+          const customerArray = filtered[0].customerIds
+          // console.log("customers", customerArray)
+          // console.log("req.body.customerIds", req.body.customerIds)
+          const send = res.send("sorry you are in that timeslot");
+          for (let j = 0; j < customerArray.length; j++) {
+            if(customerArray[j] === req.body.customerIds){
+              return send;
+            }
+          }
           const filteredOut = [];
           console.log('need to push customerid to timeslot')
           console.log(dbModel.reservations)
           const array = dbModel;
           console.log(req.body.customerIds[0])
           for (let i = 0; i < array.reservations.length; i++) {
+          //   for (let j = 0; j < array.reservations[i].customerIds.length; j++) {
+          //     if(array.reservations[i].customerIds[j] === req.body.customerIds){
+          //       return console.log("gotcha")
+          //     }
+          //   }
             if (array.reservations[i]._id !== filtered[0]._id) {
               console.log(array.reservations[i]);
               filteredOut.push(array.reservations[i]);

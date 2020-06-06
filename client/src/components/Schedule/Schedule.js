@@ -103,7 +103,9 @@ const Schedule = ({ dataSelectedDate }) => {
                 ).then(result => {
                     console.log(result);
                     console.log(result.status)
-                    if(result.status === 200) {
+                    if(result.data === "sorry you are in that timeslot") {
+                        alert(`You are in that timeslot already. Check your reservations in your user profile for reservation options`)
+                    } else {
                         API.addUserReservation(state._id, {
                             time: time,
                             date: dataSelectedDate,
