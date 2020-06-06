@@ -47,18 +47,9 @@ function Business() {
       .catch((err) => console.log(err));
   }, []);
 
-  const navBar = () => {
-    console.log("navbar function");
-    if (userAuth !== "") {
-      return <Navbar status="user" />;
-    } else {
-      return <Navbar />;
-    }
-  };
-
   return (
     <div>
-      {navBar()}
+      <Navbar status={userState.username} />
       <div className="container">
         <div className="section">
           <ul>
