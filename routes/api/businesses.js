@@ -17,12 +17,12 @@ router.route("/all").get(placeController.findAll).post(placeController.create);
 //         }
 //     })
 
-router.route("/reserve/:id")
-    .post(placeController.updateReservation)
-// .get(placeController.findReservation)
+// router.route("/reserve/:id")
+//     .post(placeController.updateReservation)
+// // .get(placeController.findReservation)
 
-router.route("/reservation/:id")
-    .post(placeController.findReservation)
+// router.route("/reservation/:id")
+//     .post(placeController.findReservation)
 
 router.route("/add").post(placeController.create);
 
