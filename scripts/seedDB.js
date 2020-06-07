@@ -125,7 +125,7 @@ const userSeed = [
     reservations: [
       {
         business: "CorePower Yoga",
-        timeslot: 1600,
+        timeslot: 16,
         date: "2020-06-01",
       },
     ],
@@ -137,7 +137,7 @@ const userSeed = [
     reservations: [
       {
         business: "UFC Gym",
-        timeslot: 0900,
+        timeslot: 9,
         date: "2020-06-01",
       },
     ],
@@ -149,7 +149,7 @@ const userSeed = [
     reservations: [
       {
         business: "UFC Gym",
-        timeslot: 1100,
+        timeslot: 11,
         date: "2020-06-01",
       },
     ],
@@ -161,7 +161,7 @@ const userSeed = [
     reservations: [
       {
         business: "Museum of Contemporary Art",
-        timeslot: 1300,
+        timeslot: 13,
         date: "2020-06-03",
       },
     ],
@@ -173,7 +173,7 @@ const userSeed = [
     reservations: [
       {
         business: "Pinstripes Bowling",
-        timeslot: 2130,
+        timeslot: 21.5,
         date: "2020-06-01",
       },
     ],
