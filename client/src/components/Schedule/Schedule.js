@@ -100,14 +100,18 @@ const Schedule = ({ dataSelectedDate }) => {
         customerIds: [state._id],
       })
         .then((result) => {
-          console.log(result);
-          console.log(result.status);
+          let bizinfo = {
+            name: result.data.business.name,
+            _id: result.data.business._id,
+          };
           if (result.status === 200) {
             API.addUserReservation(state._id, {
               time: time,
               date: dataSelectedDate,
               businessId: result.data.business._id,
             }).then((userData) => {
+              console.log("lol");
+              console.log(bizinfo);
               console.log(userData);
               let theStorage = JSON.parse(localStorage.getItem("currentUser"));
               theStorage.reservations = userData.data.reservations;

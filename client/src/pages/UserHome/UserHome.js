@@ -44,7 +44,10 @@ const Business = () => {
     need to do an API call to delete reservation from the business model
     need to update local storage with the removed reservation
 
-    API.deleteReservation()
+      API.deletReservation({
+        
+      })
+  
     
     
     */
