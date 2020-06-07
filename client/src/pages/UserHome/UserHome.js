@@ -37,20 +37,27 @@ const Business = () => {
     console.log(e.target.getAttribute("date"));
     console.log(e.target.getAttribute("time"));
     console.log(e.target.getAttribute("businessId"));
-    console.log(e.target.getAttribute("userid"));
+    console.log(e.target.getAttribute("userId"));
+    console.log(e.target.getAttribute("resId"));
 
-    /*
-    need to do an API call to delete reservation from the user model
-    need to do an API call to delete reservation from the business model
-    need to update local storage with the removed reservation
+    
+    // need to do an API call to delete reservation from the user model
+    // need to do an API call to delete reservation from the business model
+    // need to update local storage with the removed reservation
 
-      API.deletReservation({
-        
+      API.deleteUserReservation(e.target.getAttribute("userId"), {
+        businessId: e.target.getAttribute("businessId"),
+        date: e.target.getAttribute("date"),
+        time: e.target.getAttribute("time"),
+        resId: e.target.getAttribute("resId"),
       })
-  
+        .then(userData => {
+          console.log(userData);
+          localStorage.setItem("currentUser", JSON.stringify(userData.data));
+          window.location.reload();
+        })
+        .catch((err) => console.log(err));  
     
-    
-    */
   };
 
   const renderAppts = () => {
@@ -61,13 +68,14 @@ const Business = () => {
             className="button"
             style={{ display: "block", margin: "10px", width: "auto" }}
           >
-            Day: {e.date} Time: {e.time} Place: {e.businessId}
+            Day: {e.date} Time: {e.time} Place: {e.businessName}
           </button>
           <button
             businessId={e.businessId}
             date={e.date}
             time={e.time}
-            userid={userId}
+            userId={userId}
+            resId={e._id}
             className="button"
             style={{ display: "block", margin: "10px", width: "auto" }}
             onClick={deleteInfo}
