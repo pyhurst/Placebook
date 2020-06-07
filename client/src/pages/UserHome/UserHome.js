@@ -45,7 +45,7 @@ const Business = () => {
     // need to do an API call to delete reservation from the business model
     // need to update local storage with the removed reservation
 
-      API.deleteReservation(e.target.getAttribute("userId"), {
+      API.deleteUserReservation(e.target.getAttribute("userId"), {
         businessId: e.target.getAttribute("businessId"),
         date: e.target.getAttribute("date"),
         time: e.target.getAttribute("time"),
@@ -54,11 +54,9 @@ const Business = () => {
         .then(userData => {
           console.log(userData);
           localStorage.setItem("currentUser", JSON.stringify(userData.data));
-          checkLocal();
           window.location.reload();
         })
-        .catch((err) => console.log(err));
-  
+        .catch((err) => console.log(err));  
     
   };
 

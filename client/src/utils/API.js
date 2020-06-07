@@ -37,7 +37,7 @@ export default {
   addUserReservation: function (id, userData) {
     return axios.post("/api/user/reservation/" + id, userData);
   },
-  deleteReservation: function(id, resData) {
+  deleteUserReservation: function(id, resData) {
     return axios.post("/api/user/reservation/delete/" + id, resData);
   }
 };
