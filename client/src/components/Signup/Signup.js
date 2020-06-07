@@ -35,16 +35,17 @@ const Signup = () => {
         <Form className="container signup-form">
         <FormGroup>
         <Label htmlFor="username">Username: </Label>
-          <Input
+          <Input style={{"width": "200px"}}
             type="text"
             name="username"
             id="usernameInput"
             ref={usernameRef}
           />
           <Label htmlFor="email">Email: </Label>
-          <Input type="text" name="email" id="emailInput" ref={emailRef} />
+          <Input style={{"width": "200px"}} type="text" name="email" id="emailInput" ref={emailRef} />
           <Label htmlFor="password">Password: </Label>
           <Input
+          style={{"width": "200px"}}
             type="password"
             name="password"
             id="passwordInput"
