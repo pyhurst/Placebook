@@ -5,6 +5,7 @@ import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 import { STATES } from "mongoose";
 import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Business = () => {
   const [userState, userDispatch] = useUserContext();
@@ -40,24 +41,22 @@ const Business = () => {
     console.log(e.target.getAttribute("userId"));
     console.log(e.target.getAttribute("resId"));
 
-    
     // need to do an API call to delete reservation from the user model
     // need to do an API call to delete reservation from the business model
     // need to update local storage with the removed reservation
 
-      API.deleteUserReservation(e.target.getAttribute("userId"), {
-        businessId: e.target.getAttribute("businessId"),
-        date: e.target.getAttribute("date"),
-        time: e.target.getAttribute("time"),
-        resId: e.target.getAttribute("resId"),
+    API.deleteUserReservation(e.target.getAttribute("userId"), {
+      businessId: e.target.getAttribute("businessId"),
+      date: e.target.getAttribute("date"),
+      time: e.target.getAttribute("time"),
+      resId: e.target.getAttribute("resId"),
+    })
+      .then((userData) => {
+        console.log(userData);
+        localStorage.setItem("currentUser", JSON.stringify(userData.data));
+        window.location.reload();
       })
-        .then(userData => {
-          console.log(userData);
-          localStorage.setItem("currentUser", JSON.stringify(userData.data));
-          window.location.reload();
-        })
-        .catch((err) => console.log(err));  
-    
+      .catch((err) => console.log(err));
   };
 
   const renderAppts = () => {
@@ -96,6 +95,14 @@ const Business = () => {
           <div className="columns">
             <div className="column">Welcome, {userState.username} </div>
             <div className="column">Appointments: {apptData.amount}</div>
+            <div className="column">
+              <Link
+                style={{ color: "rgb(120, 200, 166)" }}
+                to="/businessSignUp"
+              >
+                Create a business
+              </Link>
+            </div>
           </div>
           {renderAppts()}
         </div>
