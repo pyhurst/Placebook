@@ -4,6 +4,9 @@ import API from "../../utils/API";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import { Jumbotron, InputGroup } from "reactstrap";
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+
 
 const Signup = () => {
   const usernameRef = useRef();
@@ -12,6 +15,7 @@ const Signup = () => {
   const [state, dispatch] = useUserContext();
 
   const handleSubmit = (e) => {
+
     API.addUser({
       username: usernameRef.current.value,
       password: passwordRef.current.value,
@@ -26,8 +30,33 @@ const Signup = () => {
   return (
     <div>
       <Navbar />
-      <div id="Signup" className="container">
+      <div id="Signup"> 
+        <Jumbotron>
         <h1>Signup for Placebook</h1>
+        {/* <Form className="container signup-form">
+        <FormGroup>
+        <Label htmlFor="username">Username: </Label>
+          <Input style={{"width": "200px"}}
+            type="text"
+            name="username"
+            id="usernameInput"
+            ref={usernameRef}
+          />
+          <Label htmlFor="email">Email: </Label>
+          <Input style={{"width": "200px"}} type="text" name="email" id="emailInput" ref={emailRef} />
+          <Label htmlFor="password">Password: </Label>
+          <Input
+          style={{"width": "200px"}}
+            type="password"
+            name="password"
+            id="passwordInput"
+            ref={passwordRef}
+          />
+          <Link to="/login" onClick={handleSubmit}>
+            Sign Up
+          </Link>
+        </FormGroup>
+        </Form> */}
         <form className="signup-form">
           <label htmlFor="username">Username: </label>
           <input
@@ -49,8 +78,9 @@ const Signup = () => {
             Sign Up
           </Link>
         </form>
+        </Jumbotron>
       </div>
-    </div>
+     </div>
   );
 };
 

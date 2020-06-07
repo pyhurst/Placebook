@@ -30,7 +30,7 @@ const About = () => {
       <div id="about">
         <Jumbotron>
           <h1 className="display-3">We're Placebook.</h1>
-          <p className="lead">How can Placebook benefit you?</p>
+          <h5 className="lead">How can Placebook benefit you?</h5>
           <hr className="my-2" />
           <h6>Perfect for businesses</h6>
           <hr className="my-2" />
@@ -48,7 +48,7 @@ const About = () => {
           <p>
             Skip the 6-feet-apart lines and reserve your timeslots for any
             outing in advance. Placebook allows users to easily search through
-            available businesses, create an account, and make, update, or cancel
+            available businesses, create an account, and make or cancel
             upcoming reservations. Don't see a business you think should be
             here? Have questions or comments? Email us at{" "}
             <a href="#">placebookservices@placebook.com</a>.

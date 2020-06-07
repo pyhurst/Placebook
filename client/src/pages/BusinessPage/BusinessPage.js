@@ -8,6 +8,7 @@ import { useUserContext } from "../../utils/UserContext";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
+
 function Business() {
   const { id } = useParams();
   const [bizState, bizDispatch] = useBizContext();
@@ -53,16 +54,15 @@ function Business() {
   return (
     <div>
       <Navbar status={userState.username} />
-      <div className="container">
+      <div className="container" style={{backgroundColor: "lightblue", borderRadius: "20px"}}>
         <div className="section">
           <ul>
-            <li>{bizState.name}</li>
-            <li>Name: {userState.username}</li>
+            <li style={{color: "white", fontSize: "3em", textShadow: "1px 2px 3px black"}}>{bizState.name}</li>
+            {/* <li>Name: {userState.username}</li> */}
             <li>{bizState.address}</li>
             <li>{bizState.phone}</li>
-            <li>Opens at: {bizState.times.open}</li>
-            <li>Closes at: {bizState.times.close}</li>
-            <li>Owner Id: {bizState.ownerId}</li>
+            <li>Opens at: {bizState.times.open}, Closes at: {bizState.times.close}</li>
+            {/* <li>Owner Id: {bizState.ownerId}</li> */}
             <li>Timeslots: {bizState.times.timeslot_length} Minutes</li>
           </ul>
         </div>
@@ -73,7 +73,7 @@ function Business() {
               {/* <Calendar handleOnChange={handleOnChange} value={date}/> */}
             </div>
             <div className="column is-three-fifths-desktop is-full-mobile is-full-tablet">
-              <h1>Selected date: {date.toLocaleDateString()}</h1>
+              <h4>Selected date: {date.toLocaleDateString()}</h4>
               {/* <h1>Date: {`${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`}</h1> */}
               {/* <Schedule date={bizState.date}/> */}
               <Schedule dataSelectedDate={date.toLocaleDateString()} todaysReservations={bizState.reservations} />

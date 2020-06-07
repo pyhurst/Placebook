@@ -8,6 +8,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/placebook");
 const businessSeed = [
   {
     name: "UFC Gym",
+    image: "https://d1y2dxfrtv74ad.cloudfront.net/images/_950x624_crop_center-center/ufcGym-newsArticle.jpg?mtime=20180117150848",
     category: "Gym",
     times: {
       open: 7,
@@ -42,6 +43,7 @@ const businessSeed = [
   },
   {
     name: "Chicago Public Library",
+    image: "https://pbs.twimg.com/media/DayLQmOVMAA2etO.jpg",
     category: "Education",
     times: {
       open: 8,
@@ -57,6 +59,7 @@ const businessSeed = [
   },
   {
     name: "Museum of Contemporary Art",
+    image: "https://assets-production.mcachicago.org/media/attachments/W1siZiIsIjIwMTcvMTAvMjMvMTgvNTgvNTZlOWMyOGQtMmZiNS00M2IyLWFjMWQtNDIyMDEzOTE4Y2E4Il0sWyJwIiwidGh1bWIiLCIxMjAweD4iLHt9XV0/01b_mca_logo_two_units_black.jpg?sha=0ef42b6ff21b6395",
     category: "Education",
     times: {
       open: 10,
@@ -72,6 +75,7 @@ const businessSeed = [
   },
   {
     name: "Pinstripes Bowling",
+    image: "https://media-cdn.tripadvisor.com/media/photo-s/0c/dd/f7/b3/pinstripes-chicago.jpg",
     category: "Entertainment",
     times: {
       open: 12,
@@ -87,6 +91,7 @@ const businessSeed = [
   },
   {
     name: "CorePower Yoga",
+    image: "https://images.squarespace-cdn.com/content/v1/5bfc6a87f93fd4e73b6c3b29/1580414421273-TXLDZMPZ7YRP6XMF968V/ke17ZwdGBToddI8pDm48kAT_5OwHWIODJo-m1R2vBrMUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKc1BSSDNYpOOgf6WFGDhOUwth-ckpqd2asWxMoMH8DC68pVgjJeuOSirocRUPz19W0/corepoweryoga1.jpg",
     category: "Gym",
     times: {
       open: 8,
@@ -102,6 +107,7 @@ const businessSeed = [
   },
   {
     name: "Custom Business",
+    image: "https://i1.wp.com/nicfraternity.org/wp-content/uploads/2020/04/small-business.jpg?fit=1592%2C886&ssl=1",
     category: "Other",
     times: {
       open: 8,

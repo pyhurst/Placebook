@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../Images/logo.png";
+import logo from "../../Images/placebook logo.png";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import { useUserContext } from "../../utils/UserContext";
@@ -33,7 +33,7 @@ const Navbar = (props) => {
               src={logo}
               alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
               width="112"
-              height="28"
+              height="30"
             />
           </Link>
           <Link
@@ -49,20 +49,20 @@ const Navbar = (props) => {
           </Link>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
-          <Link className="navbar-item" to="/about">
+          <Link style={{"color": "rgb(120, 200, 166)"}} className="navbar-item" to="/about">
             About Us
           </Link>
         </div>
         <div className="navbar-end">
           <div id="business-link" className="navbar-item">
-            <Link to="/business/pitch">For Businesses</Link>
+            <Link style={{"color": "rgb(120, 200, 166)"}} to="/business/pitch">For Businesses</Link>
           </div>
           <div className="navbar-item">
             <div id="business-link" className="navbar-item">
-              <Link to="/user/home">My Homepage</Link>
+              <Link style={{"color": "rgb(120, 200, 166)"}} to="/user/home">My Homepage</Link>
             </div>
             <div id="actionButtons" className="buttons">
-              <Link to="/" className="button is-light" onClick={loGout}>
+              <Link style={{"color": "rgb(120, 200, 166)"}} to="/" className="button btn-secondary" onClick={loGout}>
                 Log Out
               </Link>
             </div>
@@ -79,7 +79,7 @@ const Navbar = (props) => {
               src={logo}
               alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
               width="112"
-              height="28"
+              height="30"
             />
           </Link>
           <Link
@@ -95,20 +95,20 @@ const Navbar = (props) => {
           </Link>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
-          <Link className="navbar-item" to="/about">
+          <Link style={{"color": "rgb(120, 200, 166)"}} className="navbar-item" to="/about">
             About Us
           </Link>
         </div>
         <div className="navbar-end">
           <div id="business-link" className="navbar-item">
-            <Link to="/business/pitch">For Businesses</Link>
+            <Link style={{"color": "rgb(120, 200, 166)"}} to="/business/pitch">For Businesses</Link>
           </div>
           <div className="navbar-item">
             <div id="actionButtons" className="buttons">
-              <Link to="/signup" id="sign-up" className="button">
+              <Link style={{"color": "rgb(120, 200, 166)"}} to="/signup" id="sign-up" className="button">
                 <strong>Sign up</strong>
               </Link>
-              <Link to="/login" className="button is-light">
+              <Link style={{"color": "rgb(120, 200, 166)"}} to="/login" className="button is-light">
                 Log in
               </Link>
             </div>

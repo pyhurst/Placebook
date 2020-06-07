@@ -16,7 +16,7 @@ const Card = (props) => {
         <MDBCard style={{ width: "15rem" }}>
           <MDBCardImage
             className="img-fluid"
-            src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+            src={props.image}
             waves
           />
           <MDBCardBody>

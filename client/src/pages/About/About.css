@@ -5,3 +5,16 @@
   background-size: cover;
   background-position: center;
 } */
+
+div.jumbotron {
+  background-color: rgb(100, 180, 214);
+  color: white
+}
+
+h1 {
+  text-shadow: 1px 2px 3px black;
+}
+
+h5, h6 {
+  text-shadow: 1px 2px 3px gray;
+}
