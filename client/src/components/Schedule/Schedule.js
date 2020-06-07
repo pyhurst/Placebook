@@ -4,11 +4,12 @@ import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 
-const Schedule = ({ dataSelectedDate }) => {
+const Schedule = ({ dataSelectedDate, todaysReservations }) => {
     const bizContext = useBizContext();
     const [timeblockState, setTimeblockState] = React.useState([]);
     const array = [];
     const [state, dispatch] = useUserContext();
+    console.log(todaysReservations);
 
     function timeblocks() {
         if (bizContext[0].times.timeslot_length === 60) {
@@ -109,7 +110,8 @@ const Schedule = ({ dataSelectedDate }) => {
                         API.addUserReservation(state._id, {
                             time: time,
                             date: dataSelectedDate,
-                            businessId: result.data.business._id
+                            businessId: result.data.business._id,
+                            businessName: result.data.business.name
                         }).then(userData => {
                             console.log(userData)
                         })
@@ -154,19 +156,51 @@ const Schedule = ({ dataSelectedDate }) => {
             }
         }
 
+        // const capacityOnDivs = (time) => {
+        //     for (let i = 0; i < todaysReservations.length; i++) {
+        //         if(todaysReservations[i].time === time) {
+        //             return todaysReservations[i].capacity - todaysReservations[i].customerIds.length;
+        //         } else {
+        //             return todaysReservations[i].capacity;
+        //         }
+        //     }
+        // }
+
+        // const capacityOnDivs = (time) => {
+        //     for (let i = 0; i < todaysReservations.length; i++) {
+        //         if(todaysReservations[i].time === time) {
+        //             return todaysReservations[i].capacity - todaysReservations[i].customerIds.length;
+        //         } else {
+        //             return todaysReservations[i].capacity;
+        //         }
+        //     }
+        // }
+
+        // const changeCapacity = (time) => {
+        //     for (let i = 0; i < todaysReservations.length; i++) {
+        //         if(document.getElementById(time) == todaysReservations.time) {
+        //             document.getElementById(time).innerHTML += `${todaysReservations.capacity} - ${todaysReservations.customerIds.length}`
+        //         }
+        //     }
+        // }
+   
+
         return (
             <div>
                 {timeblockState.map((time) => (
                     <div className="schedule">
                         <h4>Time: {time}</h4>
-                        <h4>{bizContext[0].times.capacity} spots left!</h4>
+                        <h4 id={time}>{bizContext[0].times.capacity} spots!</h4>
+                        {/* <h4 id={time}>{todaysReservations.map(res => (
+                            res.time === time ? (res.capacity - res.customerIds.length) : bizContext[0].times.capacity
+                        ))} spots left!</h4> */}
+                        {/* <h4>{() => capacityOnDivs(time)} spots left!</h4> */}
                         <button
                             className="reserveBtn"
                             onClick={() => userCheck(time, dataSelectedDate)}
                         >
                             Reserve!
                         </button>
-
                     </div>
                 ))}
             </div>

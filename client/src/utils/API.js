@@ -19,6 +19,9 @@ export default {
   getBusinessById: function (id) {
     return axios.get("/api/businesses/" + id);
   },
+  getBusinessByIdPost: function (id, date) {
+    return axios.post("/api/businesses/post/" + id, date);
+  },
   checkUser: function () {
     return axios.get("/api/user/user");
   },

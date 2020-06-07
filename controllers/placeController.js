@@ -111,7 +111,27 @@ module.exports = {
   },
   findOne: function (req, res) {
     db.Business.findById({ _id: req.params.id })
-      .then((dbModel) => res.json(dbModel))
+      .then((dbModel) => {
+        res.json(dbModel)
+      })
+      .catch((err) => res.status(422).json(err));
+  },
+  findBusiness: function (req, res) {
+    db.Business.findById({ _id: req.params.id })
+      .then((dbModel) => {
+        const todaysReservations = [];
+        for (let i = 0; i < dbModel.reservations.length; i++) {
+            if (dbModel.reservations[i].date === req.body.date) {
+              console.log(dbModel.reservations[i]);
+              todaysReservations.push(dbModel.reservations[i]);
+            }
+          }
+        console.log("asdf", todaysReservations)
+        res.json({
+          business: dbModel,
+          todaysReservations: todaysReservations
+        })
+      })
       .catch((err) => res.status(422).json(err));
   },
   // updateReservation: function (req, res) {
