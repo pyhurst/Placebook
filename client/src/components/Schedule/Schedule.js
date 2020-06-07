@@ -73,51 +73,45 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
         }
     }
 
-    function pushArray(blockCount) {
-        for (let i = 0; i < blockCount; i++) {
-            array.push(bizContext[0].times.open + i);
-        }
-    }
+    React.useEffect(() => {
+        const newArray = timeblocks();
+        setTimeblockState(newArray);
+    }, [bizContext]);
 
-        React.useEffect(() => {
-            const newArray = timeblocks();
-            setTimeblockState(newArray);
-        }, [bizContext]);
-
-        const userCheck = (time, dataSelectedDate) => {
-            // API.checkUser().then(result => {
-            // console.log(result);
-            if (state.username === "") {
-                return window.location.href = "/login"
-            } else {
-                console.log(state)
-                console.log(bizContext)
-                console.log(time)
-                console.log(dataSelectedDate)
-                API.reservation(bizContext[0].businessId,
-                    {
+    const userCheck = (time, dataSelectedDate) => {
+        // API.checkUser().then(result => {
+        // console.log(result);
+        if (state.username === "") {
+            return window.location.href = "/login"
+        } else {
+            console.log(state)
+            console.log(bizContext)
+            console.log(time)
+            console.log(dataSelectedDate)
+            API.reservation(bizContext[0].businessId,
+                {
+                    time: time,
+                    date: dataSelectedDate,
+                    capacity: bizContext[0].times.capacity,
+                    customerIds: [state._id]
+                }
+            ).then(result => {
+                console.log(result);
+                console.log(result.status)
+                if (result.data === "sorry you are in that timeslot") {
+                    alert(`You are in that timeslot already. Check your reservations in your user profile for reservation options`)
+                } else {
+                    API.addUserReservation(state._id, {
                         time: time,
                         date: dataSelectedDate,
-                        capacity: bizContext[0].times.capacity,
-                        customerIds: [state._id]
-                    }
-                ).then(result => {
-                    console.log(result);
-                    console.log(result.status)
-                    if(result.data === "sorry you are in that timeslot") {
-                        alert(`You are in that timeslot already. Check your reservations in your user profile for reservation options`)
-                    } else {
-                        API.addUserReservation(state._id, {
-                            time: time,
-                            date: dataSelectedDate,
-                            businessId: result.data.business._id,
-                            businessName: result.data.business.name
-                        }).then(userData => {
-                            console.log(userData)
-                        })
-                    }
-                    // console.log(newCapacity);
-                })
+                        businessId: result.data.business._id,
+                        businessName: result.data.business.name
+                    }).then(userData => {
+                        console.log(userData)
+                    })
+                }
+                // console.log(newCapacity);
+            })
                 // API.getReservation(bizContext[0].businessId, 
                 //     {
                 //         time: time,
@@ -152,61 +146,59 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
                 // });
                 // }
                 // })
-                    .catch((err) => console.log(err));
-            }
+                .catch((err) => console.log(err));
         }
+    }
 
-        // const capacityOnDivs = (time) => {
-        //     for (let i = 0; i < todaysReservations.length; i++) {
-        //         if(todaysReservations[i].time === time) {
-        //             return todaysReservations[i].capacity - todaysReservations[i].customerIds.length;
-        //         } else {
-        //             return todaysReservations[i].capacity;
-        //         }
-        //     }
-        // }
+    // const capacityOnDivs = (time) => {
+    //     for (let i = 0; i < todaysReservations.length; i++) {
+    //         if(todaysReservations[i].time === time) {
+    //             return todaysReservations[i].capacity - todaysReservations[i].customerIds.length;
+    //         } else {
+    //             return todaysReservations[i].capacity;
+    //         }
+    //     }
+    // }
 
-        // const capacityOnDivs = (time) => {
-        //     for (let i = 0; i < todaysReservations.length; i++) {
-        //         if(todaysReservations[i].time === time) {
-        //             return todaysReservations[i].capacity - todaysReservations[i].customerIds.length;
-        //         } else {
-        //             return todaysReservations[i].capacity;
-        //         }
-        //     }
-        // }
+    // const capacityOnDivs = (time) => {
+    //     for (let i = 0; i < todaysReservations.length; i++) {
+    //         if(todaysReservations[i].time === time) {
+    //             return todaysReservations[i].capacity - todaysReservations[i].customerIds.length;
+    //         } else {
+    //             return todaysReservations[i].capacity;
+    //         }
+    //     }
+    // }
 
-        // const changeCapacity = (time) => {
-        //     for (let i = 0; i < todaysReservations.length; i++) {
-        //         if(document.getElementById(time) == todaysReservations.time) {
-        //             document.getElementById(time).innerHTML += `${todaysReservations.capacity} - ${todaysReservations.customerIds.length}`
-        //         }
-        //     }
-        // }
-   
+    // const changeCapacity = (time) => {
+    //     for (let i = 0; i < todaysReservations.length; i++) {
+    //         if(document.getElementById(time) == todaysReservations.time) {
+    //             document.getElementById(time).innerHTML += `${todaysReservations.capacity} - ${todaysReservations.customerIds.length}`
+    //         }
+    //     }
+    // }
 
-        return (
-            <div>
-                {timeblockState.map((time) => (
-                    <div className="schedule">
-                        <h4>Time: {time}</h4>
-                        <h4 id={time}>{bizContext[0].times.capacity} spots!</h4>
-                        {/* <h4 id={time}>{todaysReservations.map(res => (
+
+    return (
+        <div>
+            {timeblockState.map((time) => (
+                <div className="schedule">
+                    <h4>Time: {time}</h4>
+                    <h4 id={time}>{bizContext[0].times.capacity} spots!</h4>
+                    {/* <h4 id={time}>{todaysReservations.map(res => (
                             res.time === time ? (res.capacity - res.customerIds.length) : bizContext[0].times.capacity
                         ))} spots left!</h4> */}
-                        {/* <h4>{() => capacityOnDivs(time)} spots left!</h4> */}
-                        <button
-                            className="reserveBtn"
-                            onClick={() => userCheck(time, dataSelectedDate)}
-                        >
-                            Reserve!
+                    {/* <h4>{() => capacityOnDivs(time)} spots left!</h4> */}
+                    <button
+                        className="reserveBtn"
+                        onClick={() => userCheck(time, dataSelectedDate)}
+                    >
+                        Reserve!
                         </button>
-                    </div>
-                ))}
-            </div>
+                </div>
+            ))}
+        </div>
+    )
+                    };
 
-        )
-    };
-
-
-    export default Schedule;
+                    export default Schedule;

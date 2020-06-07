@@ -24,20 +24,20 @@ const businessSeed = [
         time: "2 PM",
         date: "06-20-20",
         capacity: 15,
-        customerIds: ["5ed8f5c1ff864a46106f2e09"]
+        customerIds: ["5ed8f5c1ff864a46106f2e09"],
       },
       {
         time: "5 PM",
         date: "06-20-20",
         capacity: 15,
-        customerIds: ["5ed8f5c1ff864a46106f2e09"]
+        customerIds: ["5ed8f5c1ff864a46106f2e09"],
       },
       {
         time: "8 AM",
         date: "06-20-20",
         capacity: 15,
-        customerIds: ["5ed8f5c1ff864a46106f2e09"]
-      }
+        customerIds: ["5ed8f5c1ff864a46106f2e09"],
+      },
     ],
   },
   {
@@ -220,13 +220,13 @@ db.Business.remove({})
     process.exit(1);
   });
 
-// db.User.remove({})
-//   .then(() => db.User.collection.insertMany(userSeed))
-//   .then((data) => {
-//     console.log(data.result.n + " user records inserted!");
-//     process.exit(0);
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//     process.exit(1);
-//   });
+db.User.remove({})
+  .then(() => db.User.collection.insertMany(userSeed))
+  .then((data) => {
+    console.log(data.result.n + " user records inserted!");
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
