@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import "bulma/css/bulma.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 import { STATES } from "mongoose";
+import { Redirect } from "react-router-dom";
 
 const Business = () => {
   const [userState, userDispatch] = useUserContext();
@@ -23,6 +24,58 @@ const Business = () => {
     }
   };
   checkLocal();
+  let theStorage = JSON.parse(localStorage.getItem("currentUser"));
+  let userId = theStorage._id;
+  let apptData = {
+    amount: theStorage.reservations.length,
+    reservations: theStorage.reservations,
+  };
+
+  const deleteInfo = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    console.log(e.target.getAttribute("date"));
+    console.log(e.target.getAttribute("time"));
+    console.log(e.target.getAttribute("businessId"));
+    console.log(e.target.getAttribute("userid"));
+
+    /*
+    need to do an API call to delete reservation from the user model
+    need to do an API call to delete reservation from the business model
+    need to update local storage with the removed reservation
+
+    API.deleteReservation()
+    
+    
+    */
+  };
+
+  const renderAppts = () => {
+    let something = apptData.reservations.map((e) => {
+      return (
+        <div className="row">
+          <button
+            className="button"
+            style={{ display: "block", margin: "10px", width: "auto" }}
+          >
+            Day: {e.date} Time: {e.time} Place: {e.businessId}
+          </button>
+          <button
+            businessId={e.businessId}
+            date={e.date}
+            time={e.time}
+            userid={userId}
+            className="button"
+            style={{ display: "block", margin: "10px", width: "auto" }}
+            onClick={deleteInfo}
+          >
+            Remove
+          </button>
+        </div>
+      );
+    });
+    return something;
+  };
 
   return (
     <div>
@@ -31,8 +84,9 @@ const Business = () => {
         <div className="section">
           <div className="columns">
             <div className="column">Welcome, {userState.username} </div>
-            <div className="column">Appointments: </div>
+            <div className="column">Appointments: {apptData.amount}</div>
           </div>
+          {renderAppts()}
         </div>
       </div>
     </div>
@@ -40,61 +94,3 @@ const Business = () => {
 };
 
 export default Business;
-
-// if (userResult.data.user) {
-//   console.log(userResult.data.user.username);
-//   setuserAuth("user");
-// } else {
-//   console.log("tist");
-//   console.log(userResult.data.user.username);
-// }
-
-// {
-//   userState.username ? (
-//     <Navbar status={userState.username} />
-//   ) : (
-//     <Navbar status={userState.username} />
-//   );
-// }
-
-// useEffect(() => {
-//   API.checkUser()
-//     .then((userResult) => {
-//       setuserAuth(userResult.data.user.username);
-//     })
-
-//     .catch((err) => console.log(err));
-// }, []);
-
-// const navBar = () => {
-//   if (userAuth !== "") {
-//     console.log("1", userAuth);
-//     return <Navbar status="user" />;
-//   } else {
-//     console.log("5", userAuth);
-//     return <Navbar />;
-//   }
-// };
-
-// const random = () => {
-//   console.log("hello");
-//   console.log(localStorage.getItem("currentUser"));
-//   console.log(JSON.parse(localStorage.getItem("currentUser")));
-//   console.log("=================");
-// };
-// random();
-
-// const loggedOut = () => {
-//   console.log("theres no context");
-//   console.log(Boolean(userState.username));
-
-//   API.userLogout(userState).then((e) => {
-//     userDispatch({
-//       username: "",
-//       email: "",
-//       reservations: [],
-//       _id: "",
-//     });
-//   });
-//   return <Navbar status={userState.username} />;
-// };

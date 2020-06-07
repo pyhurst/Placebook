@@ -26,12 +26,18 @@ export default {
     return axios.post("/api/businesses/" + id, businessData);
   },
   updateReservation: function (id, businessData) {
-    return axios.post("/api/businesses/reserve/" + id, businessData)
+    return axios.post("/api/businesses/reserve/" + id, businessData);
   },
   getReservation: function (id, resData) {
     return axios.post("/api/businesses/reservation/" + id, resData);
   },
   addUserReservation: function (id, userData) {
     return axios.post("/api/user/reservation/" + id, userData);
-  }
+  },
 };
+
+/*
+deleteReservation: function() {
+  return axios.post("api/user/reservation");
+}
+*/
