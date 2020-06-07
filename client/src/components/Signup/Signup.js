@@ -15,6 +15,7 @@ const Signup = () => {
   const [state, dispatch] = useUserContext();
 
   const handleSubmit = (e) => {
+
     API.addUser({
       username: usernameRef.current.value,
       password: passwordRef.current.value,
@@ -29,10 +30,10 @@ const Signup = () => {
   return (
     <div>
       <Navbar />
-      {/* <div id="Signup" className="container"> */}
+      <div id="Signup"> 
         <Jumbotron>
         <h1>Signup for Placebook</h1>
-        <Form className="container signup-form">
+        {/* <Form className="container signup-form">
         <FormGroup>
         <Label htmlFor="username">Username: </Label>
           <Input style={{"width": "200px"}}
@@ -55,8 +56,8 @@ const Signup = () => {
             Sign Up
           </Link>
         </FormGroup>
-        </Form>
-        {/* <form className="signup-form">
+        </Form> */}
+        <form className="signup-form">
           <label htmlFor="username">Username: </label>
           <input
             type="text"
@@ -76,10 +77,10 @@ const Signup = () => {
           <Link to="/login" onClick={handleSubmit}>
             Sign Up
           </Link>
-        </form> */}
+        </form>
         </Jumbotron>
       </div>
-    // </div>
+     </div>
   );
 };
 

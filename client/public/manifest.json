@@ -3,7 +3,7 @@
   "name": "Create React App Sample",
   "icons": [
     {
-      "src": "../src/Images/placebookfavicon.png",
+      "src": "./placebookfavicon.png",
       "size": "536×612",
       "type": "image/x-icon"
     }
