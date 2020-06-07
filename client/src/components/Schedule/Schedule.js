@@ -108,6 +108,8 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
                         businessName: result.data.business.name
                     }).then(userData => {
                         console.log(userData)
+                        localStorage.setItem("currentUser", JSON.stringify(userData.data));
+
                     })
                 }
                 // console.log(newCapacity);
