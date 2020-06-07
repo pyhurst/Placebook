@@ -58,6 +58,7 @@ const Signup = () => {
         </FormGroup>
         </Form> */}
         <form className="signup-form">
+        <FormGroup>
           <label htmlFor="username">Username: </label>
           <input
             type="text"
@@ -77,6 +78,7 @@ const Signup = () => {
           <Link to="/login" onClick={handleSubmit}>
             Sign Up
           </Link>
+          </FormGroup>
         </form>
         </Jumbotron>
       </div>
