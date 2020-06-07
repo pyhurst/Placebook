@@ -44,27 +44,27 @@ const Login = () => {
     <div>
       <Navbar />
       <Jumbotron>
-      <div id="Login">
-        <h1>Login to Placebook</h1>
-        <h5>New here? Sign up for an account to log in.</h5>
-        <form>
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text"
-            name="username"
-            id="usernameInput"
-            ref={usernameRef}
-          />
-          <label htmlFor="password">Password: </label>
-          <input
-            type="text"
-            name="password"
-            id="passwordInput"
-            ref={passwordRef}
-          />
-          <button onClick={handleSubmit}>Log in</button>
-        </form>
-      </div>
+        <div id="Login">
+          <h1>Login to Placebook</h1>
+          <h5>New here? Sign up for an account to log in.</h5>
+          <form>
+            <label htmlFor="username">Username: </label>
+            <input
+              type="text"
+              name="username"
+              id="usernameInput"
+              ref={usernameRef}
+            />
+            <label htmlFor="password">Password: </label>
+            <input
+              type="text"
+              name="password"
+              id="passwordInput"
+              ref={passwordRef}
+            />
+            <button onClick={handleSubmit}>Log in</button>
+          </form>
+        </div>
       </Jumbotron>
     </div>
   );

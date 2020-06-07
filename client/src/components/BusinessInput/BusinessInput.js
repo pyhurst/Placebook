@@ -2,57 +2,56 @@ import React, { useRef, useContext } from "react";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 import DropdownEl from "../Dropdown/Dropdown";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const BusinessInputs = (props) => {
-    const businessNameRef = useRef();
-    const categoryRef = useRef();
-    const addressRef = useRef();
-    const cityRef = useRef();
-    const phoneRef = useRef();
-    const openTimeRef = useRef();
-    const closeTimeRef = useRef();
-    const timeSlotLengthRef = useRef();
-    const capacityRef = useRef();
-    const userContext = useUserContext();
-    // const [state, dispatch] = useUserContext();
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
-        console.log('clicked');
-        console.log(openTimeRef.current);
-        console.log(closeTimeRef.current.value);
-        console.log(storageStatus._id)
-        API.addBusiness(
-            {
-                ownerId: storageStatus._id,
-                name: businessNameRef.current.value,
-                category: categoryRef.current.value,
-                address: addressRef.current.value,
-                city: cityRef.current.value,
-                phone: phoneRef.current.value,
-                times: {
-                    open: openTimeRef.current.value,
-                    close: closeTimeRef.current.value,
-                    timeslot_length: timeSlotLengthRef.current.value,
-                    capacity: capacityRef.current.value,
-                }
-            }
-        )
-            .then(result => {
-                console.log(result);
-                // dispatch(
-                //     {
-                //         type: "ADD_USER",
-                //         username: result.data.username,
-                //         email: result.data.email,
-                //         reservations: result.data.reservations
-                //     }
-                // )
-            })
-            .catch(err => console.log(err));
-
-    }
+  const businessNameRef = useRef();
+  const categoryRef = useRef();
+  const addressRef = useRef();
+  const cityRef = useRef();
+  const phoneRef = useRef();
+  const openTimeRef = useRef();
+  const closeTimeRef = useRef();
+  const timeSlotLengthRef = useRef();
+  const capacityRef = useRef();
+  const userContext = useUserContext();
+  // const [state, dispatch] = useUserContext();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
+    console.log("clicked");
+    console.log(openTimeRef.current);
+    console.log(closeTimeRef.current.value);
+    console.log(storageStatus._id);
+    API.addBusiness({
+      ownerId: storageStatus._id,
+      name: businessNameRef.current.value,
+      category: categoryRef.current.value,
+      address: addressRef.current.value,
+      city: cityRef.current.value,
+      phone: phoneRef.current.value,
+      times: {
+        open: openTimeRef.current.value,
+        close: closeTimeRef.current.value,
+        timeslot_length: timeSlotLengthRef.current.value,
+        capacity: capacityRef.current.value,
+      },
+    })
+      .then((result) => {
+        console.log(result);
+        localStorage.setItem("type", "business");
+        window.location = "/business/home"
+        // dispatch(
+        //     {
+        //         type: "ADD_USER",
+        //         username: result.data.username,
+        //         email: result.data.email,
+        //         reservations: result.data.reservations
+        //     }
+        // )
+      })
+      .catch((err) => console.log(err));
+  };
 
     // const onSwitch = (e) => {
     //     console.log(e.target.value)

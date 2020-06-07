@@ -1,5 +1,5 @@
 import React from "react";
-import Calendar from "../../components/Calendar/Calendar";
+import Calendarapp from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
 import Jumbo from "../../components/Jumbotron/JumbotronBusinessHome/JumbotronBusinessHome";
 import Navbar from "../../components/Navbar/Navbar";
@@ -90,6 +90,8 @@ const BusinessHome = () => {
     return something;
   };
 
+ 
+
   return (
     <div>
       <Navbar status={userState.username} />
@@ -98,7 +100,7 @@ const BusinessHome = () => {
         <div className="section">
           <div className="columns">
             <div className="column">
-              <Calendar />
+              <Calendarapp handleOnChange={setDate} />
             </div>
             <div className="column">
               <h6>Date:</h6>
