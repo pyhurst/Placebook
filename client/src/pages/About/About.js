@@ -48,7 +48,7 @@ const About = () => {
           <p>
             Skip the 6-feet-apart lines and reserve your timeslots for any
             outing in advance. Placebook allows users to easily search through
-            available businesses, create an account, and make, update, or cancel
+            available businesses, create an account, and make or cancel
             upcoming reservations. Don't see a business you think should be
             here? Have questions or comments? Email us at{" "}
             <a href="#">placebookservices@placebook.com</a>.
