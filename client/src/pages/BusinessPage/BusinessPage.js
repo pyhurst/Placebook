@@ -17,19 +17,22 @@ function Business() {
   const [userAuth, setuserAuth] = useState("");
 
   useEffect(() => {
-    API.getBusinessById(id).then((result) => {
+    API.getBusinessByIdPost(id, {
+      date: date.toLocaleDateString()
+    }).then((result) => {
+      console.log(result)
       bizDispatch({
         type: "UPDATE_BIZ",
-        businessId: result.data._id,
-        name: result.data.name,
-        address: result.data.address,
-        phone: result.data.phone,
-        reservations: result.data.reservations,
+        businessId: result.data.business._id,
+        name: result.data.business.name,
+        address: result.data.business.address,
+        phone: result.data.business.phone,
+        reservations: result.data.todaysReservations,
         times: {
-          open: result.data.times.open,
-          close: result.data.times.close,
-          timeslot_length: result.data.times.timeslot_length,
-          capacity: result.data.times.capacity,
+          open: result.data.business.times.open,
+          close: result.data.business.times.close,
+          timeslot_length: result.data.business.times.timeslot_length,
+          capacity: result.data.business.times.capacity,
         },
       });
     });
@@ -73,7 +76,7 @@ function Business() {
               <h4>Selected date: {date.toLocaleDateString()}</h4>
               {/* <h1>Date: {`${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`}</h1> */}
               {/* <Schedule date={bizState.date}/> */}
-              <Schedule dataSelectedDate={date.toLocaleDateString()} />
+              <Schedule dataSelectedDate={date.toLocaleDateString()} todaysReservations={bizState.reservations} />
               {/* bizstate.date */}
             </div>
           </div>

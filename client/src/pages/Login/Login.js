@@ -26,6 +26,7 @@ const Login = () => {
             reservations: result.data.reservations,
             _id: result.data._id,
           });
+          // console.log("hiiii", result);
           localStorage.setItem("currentUser", JSON.stringify(result.data));
         }
       })

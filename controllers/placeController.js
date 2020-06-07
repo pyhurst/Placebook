@@ -35,12 +35,26 @@ module.exports = {
         //   return element.time !== req.body.time && element.date !== req.body.date
         // });
         if (filtered.length === 1 && filtered[0].customerIds.length < filtered[0].capacity) {
+          const customerArray = filtered[0].customerIds
+          // console.log("customers", customerArray)
+          // console.log("req.body.customerIds", req.body.customerIds)
+          const send = res.send("sorry you are in that timeslot");
+          for (let j = 0; j < customerArray.length; j++) {
+            if(customerArray[j] === req.body.customerIds){
+              return send;
+            }
+          }
           const filteredOut = [];
           console.log('need to push customerid to timeslot')
           console.log(dbModel.reservations)
           const array = dbModel;
           console.log(req.body.customerIds[0])
           for (let i = 0; i < array.reservations.length; i++) {
+          //   for (let j = 0; j < array.reservations[i].customerIds.length; j++) {
+          //     if(array.reservations[i].customerIds[j] === req.body.customerIds){
+          //       return console.log("gotcha")
+          //     }
+          //   }
             if (array.reservations[i]._id !== filtered[0]._id) {
               console.log(array.reservations[i]);
               filteredOut.push(array.reservations[i]);
@@ -97,7 +111,27 @@ module.exports = {
   },
   findOne: function (req, res) {
     db.Business.findById({ _id: req.params.id })
-      .then((dbModel) => res.json(dbModel))
+      .then((dbModel) => {
+        res.json(dbModel)
+      })
+      .catch((err) => res.status(422).json(err));
+  },
+  findBusiness: function (req, res) {
+    db.Business.findById({ _id: req.params.id })
+      .then((dbModel) => {
+        const todaysReservations = [];
+        for (let i = 0; i < dbModel.reservations.length; i++) {
+            if (dbModel.reservations[i].date === req.body.date) {
+              console.log(dbModel.reservations[i]);
+              todaysReservations.push(dbModel.reservations[i]);
+            }
+          }
+        console.log("asdf", todaysReservations)
+        res.json({
+          business: dbModel,
+          todaysReservations: todaysReservations
+        })
+      })
       .catch((err) => res.status(422).json(err));
   },
   // updateReservation: function (req, res) {

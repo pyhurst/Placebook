@@ -25,20 +25,20 @@ const businessSeed = [
         time: "2 PM",
         date: "06-20-20",
         capacity: 15,
-        customerIds: ["5ed8f5c1ff864a46106f2e09"]
+        customerIds: ["5ed8f5c1ff864a46106f2e09"],
       },
       {
         time: "5 PM",
         date: "06-20-20",
         capacity: 15,
-        customerIds: ["5ed8f5c1ff864a46106f2e09"]
+        customerIds: ["5ed8f5c1ff864a46106f2e09"],
       },
       {
         time: "8 AM",
         date: "06-20-20",
         capacity: 15,
-        customerIds: ["5ed8f5c1ff864a46106f2e09"]
-      }
+        customerIds: ["5ed8f5c1ff864a46106f2e09"],
+      },
     ],
   },
   {
@@ -131,7 +131,7 @@ const userSeed = [
     reservations: [
       {
         business: "CorePower Yoga",
-        timeslot: 1600,
+        timeslot: 16,
         date: "2020-06-01",
       },
     ],
@@ -143,7 +143,7 @@ const userSeed = [
     reservations: [
       {
         business: "UFC Gym",
-        timeslot: 0900,
+        timeslot: 9,
         date: "2020-06-01",
       },
     ],
@@ -155,7 +155,7 @@ const userSeed = [
     reservations: [
       {
         business: "UFC Gym",
-        timeslot: 1100,
+        timeslot: 11,
         date: "2020-06-01",
       },
     ],
@@ -167,7 +167,7 @@ const userSeed = [
     reservations: [
       {
         business: "Museum of Contemporary Art",
-        timeslot: 1300,
+        timeslot: 13,
         date: "2020-06-03",
       },
     ],
@@ -179,7 +179,7 @@ const userSeed = [
     reservations: [
       {
         business: "Pinstripes Bowling",
-        timeslot: 2130,
+        timeslot: 21.5,
         date: "2020-06-01",
       },
     ],
@@ -226,13 +226,13 @@ db.Business.remove({})
     process.exit(1);
   });
 
-// db.User.remove({})
-//   .then(() => db.User.collection.insertMany(userSeed))
-//   .then((data) => {
-//     console.log(data.result.n + " user records inserted!");
-//     process.exit(0);
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//     process.exit(1);
-//   });
+db.User.remove({})
+  .then(() => db.User.collection.insertMany(userSeed))
+  .then((data) => {
+    console.log(data.result.n + " user records inserted!");
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });

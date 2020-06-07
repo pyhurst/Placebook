@@ -26,6 +26,10 @@ router.route("/all").get(placeController.findAll).post(placeController.create);
 
 router.route("/add").post(placeController.create);
 
+router.route("/post/:id")
+    .post(placeController.findBusiness);
+
+
 
 // Matches with "/api/businesses/:id"
 router.route("/:id")
