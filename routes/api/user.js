@@ -61,8 +61,7 @@ router.route("/login").post(
         } else {
           res.json({
             type: "business",
-            data: userInfo,
-            bizData: result
+            data: userInfo
           })
         }
       })

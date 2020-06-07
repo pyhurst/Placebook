@@ -116,6 +116,24 @@ module.exports = {
       })
       .catch((err) => res.status(422).json(err));
   },
+  findOneBiz: function (req, res) {
+    db.Business.findOne({ ownerId: req.params.id })
+        .then(bizModel => {
+        const todaysReservations = [];
+        for (let i = 0; i < bizModel.reservations.length; i++) {
+            if (bizModel.reservations[i].date === req.body.date) {
+              console.log(bizModel.reservations[i]);
+              todaysReservations.push(bizModel.reservations[i]);
+            }
+          }
+        console.log("asdf", todaysReservations)
+        res.json({
+          business: bizModel,
+          todaysReservations: todaysReservations
+        })
+      })
+      .catch((err) => res.status(422).json(err));
+  },
   findBusiness: function (req, res) {
     db.Business.findById({ _id: req.params.id })
       .then((dbModel) => {

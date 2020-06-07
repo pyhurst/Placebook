@@ -18,11 +18,20 @@ const Navbar = (props) => {
           _id: "",
         });
         localStorage.removeItem("currentUser");
+        localStorage.removeItem("type");
       })
       .then(() => {
         window.location.reload();
       });
   };
+
+  const bizCheck = () => {
+    if(localStorage.getItem("type")){
+      window.location = "/business/home"
+    } else {
+      window.location = "/user/home"
+    }
+  }
 
   if (props.status) {
     return (
@@ -59,7 +68,7 @@ const Navbar = (props) => {
           </div>
           <div className="navbar-item">
             <div id="business-link" className="navbar-item">
-              <Link style={{"color": "rgb(120, 200, 166)"}} to="/user/home">My Homepage</Link>
+              <Link style={{"color": "rgb(120, 200, 166)"}} onClick={bizCheck}>My Homepage</Link>
             </div>
             <div id="actionButtons" className="buttons">
               <Link style={{"color": "rgb(120, 200, 166)"}} to="/" className="button btn-secondary" onClick={loGout}>

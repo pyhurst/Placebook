@@ -33,6 +33,7 @@ const Login = () => {
         if(result.data.type === "user") {
           window.location = "/user/home"
         } else {
+          localStorage.setItem("type", "business");
           window.location = "/business/home"
         }
       })
