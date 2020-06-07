@@ -18,22 +18,25 @@ const Login = () => {
       password: passwordRef.current.value,
     })
       .then((result) => {
+        console.log(result)
         if (result.status === 200) {
           dispatch({
             type: "ADD_USER",
-            username: result.data.username,
-            email: result.data.email,
-            reservations: result.data.reservations,
-            _id: result.data._id,
+            username: result.data.data.username,
+            email: result.data.data.email,
+            reservations: result.data.data.reservations,
+            _id: result.data.data._id,
           });
           // console.log("hiiii", result);
-          localStorage.setItem("currentUser", JSON.stringify(result.data));
+          localStorage.setItem("currentUser", JSON.stringify(result.data.data));
+        }
+        if(result.data.type === "user") {
+          window.location = "/user/home"
+        } else {
+          localStorage.setItem("type", "business");
+          window.location = "/business/home"
         }
       })
-      .then(() => {
-        window.location = "/user/home";
-      })
-
       .catch((err) => console.log(err));
   };
 

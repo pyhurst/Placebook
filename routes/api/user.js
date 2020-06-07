@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../../models/user");
 const passport = require("../../passport");
+const db = require("../../models");
+const User = require("../../models/user");
 const userController = require("../../controllers/userController");
 
 
@@ -42,14 +43,37 @@ router.route("/login").post(
   },
   passport.authenticate("local"),
   (req, res) => {
-    console.log("Logged in: ", req.user);
-    var userInfo = {
-      username: req.user.username,
-      email: req.user.email,
-      reservations: req.user.reservations,
-      _id: req.user._id,
-    };
-    res.send(userInfo);
+    db.Business.findOne({ ownerId: req.user._id})
+      .then(result => {
+        console.log("result:" , result)
+        var userInfo = {
+          username: req.user.username,
+          email: req.user.email,
+          reservations: req.user.reservations,
+          _id: req.user._id,
+        };
+        if(result === null) {
+          console.log("Logged in: ", req.user);
+          res.json({
+            type: "user",
+            data: userInfo
+          });
+        } else {
+          res.json({
+            type: "business",
+            data: userInfo
+          })
+        }
+      })
+      .catch((err) => res.status(422).json(err));
+    // console.log("Logged in: ", req.user);
+    // var userInfo = {
+    //   username: req.user.username,
+    //   email: req.user.email,
+    //   reservations: req.user.reservations,
+    //   _id: req.user._id,
+    // };
+    // res.send(userInfo);
   }
 );
 

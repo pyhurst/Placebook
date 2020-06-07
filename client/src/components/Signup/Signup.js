@@ -75,31 +75,33 @@ const Signup = () => {
           </Link>
         </FormGroup>
         </Form> */}
-            <form className="signup-form">
-              <label htmlFor="username">Username: </label>
-              <input
-                type="text"
-                name="username"
-                id="usernameInput"
-                ref={usernameRef}
-              />
-              <label htmlFor="email">Email: </label>
-              <input type="text" name="email" id="emailInput" ref={emailRef} />
-              <label htmlFor="password">Password: </label>
-              <input
-                type="text"
-                name="password"
-                id="passwordInput"
-                ref={passwordRef}
-              />
-              <Link to="/login" onClick={handleSubmit}>
-                Sign Up
-              </Link>
-            </form>
-          </Jumbotron>
-        </div>
+        <form className="signup-form">
+        <FormGroup>
+          <label htmlFor="username">Username: </label>
+          <input
+            type="text"
+            name="username"
+            id="usernameInput"
+            ref={usernameRef}
+          />
+          <label htmlFor="email">Email: </label>
+          <input type="text" name="email" id="emailInput" ref={emailRef} />
+          <label htmlFor="password">Password: </label>
+          <input
+            type="text"
+            name="password"
+            id="passwordInput"
+            ref={passwordRef}
+          />
+          <Link to="/login" onClick={handleSubmit}>
+            Sign Up
+          </Link>
+          </FormGroup>
+        </form>
+        </Jumbotron>
+      </div>
       )}
-    </div>
+     </div>
   );
 };
 

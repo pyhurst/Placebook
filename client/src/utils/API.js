@@ -19,6 +19,9 @@ export default {
   getBusinessById: function (id) {
     return axios.get("/api/businesses/" + id);
   },
+  findOneBiz: function (id, date) {
+    return axios.post("/api/businesses/find/" + id, date);
+  },
   getBusinessByIdPost: function (id, date) {
     return axios.post("/api/businesses/post/" + id, date);
   },

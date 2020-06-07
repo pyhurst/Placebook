@@ -26,6 +26,8 @@ router.route("/all").get(placeController.findAll).post(placeController.create);
 
 router.route("/add").post(placeController.create);
 
+router.route("/find/:id").post(placeController.findOneBiz)
+
 router.route("/post/:id")
     .post(placeController.findBusiness);
 
