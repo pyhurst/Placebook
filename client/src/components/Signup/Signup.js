@@ -4,7 +4,9 @@ import API from "../../utils/API";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
-import { Jumbotron } from "reactstrap";
+import { Jumbotron, InputGroup } from "reactstrap";
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+
 
 const Signup = () => {
   const usernameRef = useRef();
@@ -30,8 +32,30 @@ const Signup = () => {
       {/* <div id="Signup" className="container"> */}
         <Jumbotron>
         <h1>Signup for Placebook</h1>
-
-        <form className="signup-form">
+        <Form className="container signup-form">
+        <FormGroup>
+        <Label htmlFor="username">Username: </Label>
+          <Input
+            type="text"
+            name="username"
+            id="usernameInput"
+            ref={usernameRef}
+          />
+          <Label htmlFor="email">Email: </Label>
+          <Input type="text" name="email" id="emailInput" ref={emailRef} />
+          <Label htmlFor="password">Password: </Label>
+          <Input
+            type="password"
+            name="password"
+            id="passwordInput"
+            ref={passwordRef}
+          />
+          <Link to="/login" onClick={handleSubmit}>
+            Sign Up
+          </Link>
+        </FormGroup>
+        </Form>
+        {/* <form className="signup-form">
           <label htmlFor="username">Username: </label>
           <input
             type="text"
@@ -51,7 +75,7 @@ const Signup = () => {
           <Link to="/login" onClick={handleSubmit}>
             Sign Up
           </Link>
-        </form>
+        </form> */}
         </Jumbotron>
       </div>
     // </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../Images/logo.png";
+import logo from "../../Images/placebook logo.png";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import { useUserContext } from "../../utils/UserContext";
@@ -33,7 +33,7 @@ const Navbar = (props) => {
               src={logo}
               alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
               width="112"
-              height="28"
+              height="30"
             />
           </Link>
           <Link
@@ -79,7 +79,7 @@ const Navbar = (props) => {
               src={logo}
               alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
               width="112"
-              height="28"
+              height="30"
             />
           </Link>
           <Link

@@ -6,7 +6,7 @@ const JumboEl = (props) => {
   return (
     <div>
       <Jumbotron>
-        <h1 className="display-3">Placebook</h1>
+        <h1 className="display-3">Welcome to Placebook.</h1>
         <h5 className="lead">
           COVID-19 is changing the way we do business. Find a business
           and book your appointment today using Placebook!

@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   MDBJumbotron,
   MDBBtn,
@@ -26,22 +26,25 @@ const JumbotronPage = () => {
             <SectionContainer noBorder>
               <MDBJumbotron className="text-center">
                 <MDBCardTitle className="card-title h4 pb-2">
-                  <strong>Scheduling for your business</strong>
+                  <strong>Easy Scheduling for Your Business</strong>
                 </MDBCardTitle>
                 <MDBCardImage src={Mallpicture} className="img-fluid" />
                 <MDBCardBody>
                   <MDBCardTitle className="indigo-text h5 m-4">
-                    Placeholder
+                    Click below to add your business to Placebook!
                   </MDBCardTitle>
                   <MDBCardText>
-                    Click below to add your business to Placebook!
+                    Placebook is an innovative app designed to help your business thrive
+              during COVID-19 and onwards. Sign up to allow your business to accept customer reservations and
+              keep track of these reservations via designated time slots and
+              capacities.
                   </MDBCardText>
                   <Link color="primary" to="/businessSignUp">
                     Sign Up
                   </Link>
                   <hr />
 
-                  <MDBNav className="justify-content-center">
+                  {/* <MDBNav className="justify-content-center">
                     <MDBNavLink to="#!">
                       <MDBIcon
                         fab
@@ -66,7 +69,7 @@ const JumbotronPage = () => {
                         size="lg"
                       />
                     </MDBNavLink>
-                  </MDBNav>
+                  </MDBNav> */}
                 </MDBCardBody>
               </MDBJumbotron>
             </SectionContainer>

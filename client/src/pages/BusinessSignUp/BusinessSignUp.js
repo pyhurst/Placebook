@@ -6,6 +6,7 @@ const BusinessSignUp = () => {
 
   const onSwitch = (e) => {
     console.log(e.target.value);
+
     
   }
 

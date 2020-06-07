@@ -2,7 +2,7 @@ import React, { useRef, useContext } from "react";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 import DropdownEl from "../Dropdown/Dropdown";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const BusinessInputs = (props) => {
     const businessNameRef = useRef();
@@ -150,10 +150,14 @@ const BusinessInputs = (props) => {
                 <Input type="text" name="businessName" id="businessNameInput" placeholder="Name" ref={businessNameRef} />
             </FormGroup>
             <FormGroup>
-                <DropdownEl cat="cat" name="category" id="categoryInput" onSwitch={props.onSwitch} ref={categoryRef} />
+                <DropdownEl cat="cat" name="category" id="categoryInput" onSwitch={props.onSwitch} />
+                {/* <select>
+                    <option value="Gym" onClick={props.onSwitch} ref={categoryRef}>Gym</option>
+                    <option value="Beauty" onClick={props.onSwitch} ref={categoryRef}>Beauty</option>
+                </select> */}
             </FormGroup>
             <FormGroup>
-                <Label for="address">Business Name</Label>
+                <Label for="address">Business Address</Label>
                 <Input type="text" name="address" id="addressInput" placeholder="Business Address" ref={addressRef} />
             </FormGroup>
             <FormGroup>
@@ -162,7 +166,7 @@ const BusinessInputs = (props) => {
             </FormGroup>
             <FormGroup>
                 <Label for="closeTime">Closing Time:</Label> <br></br>
-                <DropdownEl time="times" name="closeTime" id="closeTimeInput" onSwitch={props.onSwitch} ref={closeTimeRef}/>
+                <DropdownEl time="times" name="closeTime" id="closeTimeInput" onSwitch={props.onSwitch} ref={closeTimeRef} />
             </FormGroup>
             <FormGroup>
                 <Label for="timeSlotLength">Timeslot Length</Label>
