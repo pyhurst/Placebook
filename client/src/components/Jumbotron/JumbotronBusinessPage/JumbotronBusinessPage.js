@@ -18,6 +18,10 @@ import SectionContainer from "../../SectionMDB/SectionContainer";
 import Mallpicture from "../../../Images/mall.jpg";
 
 const JumbotronPage = () => {
+  const storeLocal = () => {
+    localStorage.setItem("isBusiness", "true");
+  };
+
   return (
     <>
       <MDBContainer className="mt-5">
@@ -34,12 +38,13 @@ const JumbotronPage = () => {
                     Click below to add your business to Placebook!
                   </MDBCardTitle>
                   <MDBCardText>
-                    Placebook is an innovative app designed to help your business thrive
-              during COVID-19 and onwards. Sign up to allow your business to accept customer reservations and
-              keep track of these reservations via designated time slots and
-              capacities.
+                    Placebook is an innovative app designed to help your
+                    business thrive during COVID-19 and onwards. Sign up to
+                    allow your business to accept customer reservations and keep
+                    track of these reservations via designated time slots and
+                    capacities.
                   </MDBCardText>
-                  <Link color="primary" to="/businessSignUp">
+                  <Link color="primary" to="/signup" onClick={storeLocal}>
                     Sign Up
                   </Link>
                   <hr />

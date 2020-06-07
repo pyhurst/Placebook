@@ -49,20 +49,28 @@ const Navbar = (props) => {
           </Link>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
-          <Link style={{"color": "rgb(120, 200, 166)"}} className="navbar-item" to="/about">
+          <Link
+            style={{ color: "rgb(120, 200, 166)" }}
+            className="navbar-item"
+            to="/about"
+          >
             About Us
           </Link>
         </div>
         <div className="navbar-end">
-          <div id="business-link" className="navbar-item">
-            <Link style={{"color": "rgb(120, 200, 166)"}} to="/business/pitch">For Businesses</Link>
-          </div>
           <div className="navbar-item">
             <div id="business-link" className="navbar-item">
-              <Link style={{"color": "rgb(120, 200, 166)"}} to="/user/home">My Homepage</Link>
+              <Link style={{ color: "rgb(120, 200, 166)" }} to="/user/home">
+                My Homepage
+              </Link>
             </div>
             <div id="actionButtons" className="buttons">
-              <Link style={{"color": "rgb(120, 200, 166)"}} to="/" className="button btn-secondary" onClick={loGout}>
+              <Link
+                style={{ color: "rgb(120, 200, 166)" }}
+                to="/"
+                className="button btn-secondary"
+                onClick={loGout}
+              >
                 Log Out
               </Link>
             </div>
@@ -95,20 +103,35 @@ const Navbar = (props) => {
           </Link>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
-          <Link style={{"color": "rgb(120, 200, 166)"}} className="navbar-item" to="/about">
+          <Link
+            style={{ color: "rgb(120, 200, 166)" }}
+            className="navbar-item"
+            to="/about"
+          >
             About Us
           </Link>
         </div>
         <div className="navbar-end">
           <div id="business-link" className="navbar-item">
-            <Link style={{"color": "rgb(120, 200, 166)"}} to="/business/pitch">For Businesses</Link>
+            <Link style={{ color: "rgb(120, 200, 166)" }} to="/business/pitch">
+              For Businesses
+            </Link>
           </div>
           <div className="navbar-item">
             <div id="actionButtons" className="buttons">
-              <Link style={{"color": "rgb(120, 200, 166)"}} to="/signup" id="sign-up" className="button">
+              <Link
+                style={{ color: "rgb(120, 200, 166)" }}
+                to="/signup"
+                id="sign-up"
+                className="button"
+              >
                 <strong>Sign up</strong>
               </Link>
-              <Link style={{"color": "rgb(120, 200, 166)"}} to="/login" className="button is-light">
+              <Link
+                style={{ color: "rgb(120, 200, 166)" }}
+                to="/login"
+                className="button is-light"
+              >
                 Log in
               </Link>
             </div>
