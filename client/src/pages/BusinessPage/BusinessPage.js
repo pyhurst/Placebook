@@ -50,13 +50,8 @@ function Business() {
 
   return (
     <div>
-<<<<<<< HEAD
-      {navBar()}
-      <div className="container" style={{backgroundColor: "lightblue", borderRadius: "20px"}}>
-=======
       <Navbar status={userState.username} />
-      <div className="container">
->>>>>>> master
+      <div className="container" style={{backgroundColor: "lightblue", borderRadius: "20px"}}>
         <div className="section">
           <ul>
             <li style={{color: "white", fontSize: "3em", textShadow: "1px 2px 3px black"}}>{bizState.name}</li>

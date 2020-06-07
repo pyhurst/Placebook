@@ -50,6 +50,7 @@ class MyCarousel extends React.Component {
               return (
                 <Card
                   key={biz._id}
+                  image={biz.image}
                   _id={biz._id}
                   name={biz.name}
                   category={biz.category}
@@ -70,6 +71,7 @@ class MyCarousel extends React.Component {
               return (
                 <Card
                   key={biz._id}
+                  image={biz.image}
                   _id={biz._id}
                   name={biz.name}
                   category={biz.category}
