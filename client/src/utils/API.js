@@ -32,7 +32,7 @@ export default {
     return axios.post("/api/user/reservation/past/" + id, resId);
   },
   reservation: function (id, businessData) {
-    return axios.post("/api/businesses/" + id, businessData);
+    return axios.post("/api/businesses/add/reservation/" + id, businessData);
   },
   updateReservation: function (id, businessData) {
     return axios.post("/api/businesses/reserve/" + id, businessData);
