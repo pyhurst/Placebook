@@ -24,6 +24,7 @@ const Login = () => {
             username: result.data.data.username,
             email: result.data.data.email,
             reservations: result.data.data.reservations,
+            pastReservations: result.data.data.pastReservations,
             _id: result.data.data._id,
           });
           localStorage.setItem("currentUser", JSON.stringify(result.data.data));

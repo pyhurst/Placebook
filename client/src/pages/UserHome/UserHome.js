@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 const Business = () => {
   const [userState, userDispatch] = useUserContext();
+  const [pastResState, setpastResState] = React.useState([]);
 
   const checkLocal = () => {
     let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
@@ -19,6 +20,7 @@ const Business = () => {
           username: storageStatus.username,
           email: storageStatus.email,
           reservations: storageStatus.reservations,
+          pastReservations: storageStatus.pastReservations,
           _id: storageStatus._id,
         });
       }
@@ -70,20 +72,20 @@ const Business = () => {
       const timeSplit = user.reservations[i].time.split(" ");
       // ["8", "AM"]
       // ["8:30", "PM"]
-      // ["12:30", "PM"]
+      // ["12", "PM"]
       const now = Date.now();
       let resStamp;
       if(timeSplit[0].includes(":")){
         console.log("includes")
         const colonSplit = timeSplit[0];
-        if(timeSplit[1] === "PM"){
+        if(timeSplit[1] === "PM" && colonSplit[0] < 12){
           colonSplit[0] = parseInt(timeSplit[0]) + 12;
           resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),colonSplit[0],30,0,0);
         } else {
           resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),colonSplit[0],30,0,0);
         }
       } else {
-        if(timeSplit[1] === "PM"){
+        if(timeSplit[1] === "PM" && timeSplit[0] < 12){
           timeSplit[0] = parseInt(timeSplit[0]) + 12;
         console.log("nope")
         resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
@@ -121,9 +123,33 @@ const Business = () => {
      }
   }
 
+  //manage the state of past favorites
+  const past = () => {
+    // const temp = 
+    console.log('first')
+    console.log(JSON.stringify(userState))
+    console.log(JSON.stringify(userState.pastReservations.length))
+    const length = parseInt(userState.pastReservations.length);
+    console.log(typeof length)
+    const pastArray = [];
+
+    // for (let i = 0; i < length; i++) {
+    //   // console.log('worked')
+    //   // console.log(userState.pastReservations[i])
+    //   // JSON.stringify();
+    //   // let aTag = `<a href="/home">${JSON.stringify(userState.pastReservations[i].businessName)}</a>`
+    //   pastArray.push(userState.pastReservations[i])
+    // }
+    setpastResState(userState.pastReservations.map(reservations => reservations));
+    // console.log(pastResState);
+    // return pastArray;
+
+  }
+
   React.useEffect(() => {
     deletePast();
-  }, []);
+    past();
+  }, [userState]);
 
   const renderAppts = () => {
     let something = apptData.reservations.map((e) => {
@@ -153,6 +179,8 @@ const Business = () => {
     return something;
   };
 
+
+
   return (
     <div>
       <Navbar status={userState.username} />
@@ -161,6 +189,12 @@ const Business = () => {
           <div className="columns">
             <div className="column">Welcome, {userState.username} </div>
             <div className="column">Appointments: {apptData.amount}</div>
+            <div className="column">Favorite Spots: {pastResState.map(pastRes => {
+              return (
+                <a style={{display: "block"}} href={`/business/page/${pastRes.businessId}`} >{pastRes.businessName}</a>
+              )
+            })}
+            </div>
             <div className="column">
               <Link
                 style={{ color: "rgb(120, 200, 166)" }}
