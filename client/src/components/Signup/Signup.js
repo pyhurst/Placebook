@@ -30,10 +30,10 @@ const Signup = () => {
   return (
     <div>
       <Navbar />
-      <div id="Signup"> 
+      <div id="Signup">
         <Jumbotron>
-        <h1>Signup for Placebook</h1>
-        {/* <Form className="container signup-form">
+          <h1>Signup for Placebook</h1>
+          {/* <Form className="container signup-form">
         <FormGroup>
         <Label htmlFor="username">Username: </Label>
           <Input style={{"width": "200px"}}
@@ -57,30 +57,46 @@ const Signup = () => {
           </Link>
         </FormGroup>
         </Form> */}
-        <form className="signup-form">
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text"
-            name="username"
-            id="usernameInput"
-            ref={usernameRef}
-          />
-          <label htmlFor="email">Email: </label>
-          <input type="text" name="email" id="emailInput" ref={emailRef} />
-          <label htmlFor="password">Password: </label>
-          <input
-            type="text"
-            name="password"
-            id="passwordInput"
-            ref={passwordRef}
-          />
-          <Link to="/login" onClick={handleSubmit}>
-            Sign Up
+          <form className="signup-form">
+            <FormGroup>
+            <label htmlFor="username">Username: </label>
+            <br></br>
+            <input
+              style={{"width": "200px"}}
+              type="text"
+              name="username"
+              id="usernameInput"
+              ref={usernameRef}
+            />
+            <br></br>
+            <label htmlFor="email">Email: </label>
+            <br></br>
+            <input
+            style={{"width": "200px"}}
+              type="text"
+              name="email"
+              id="emailInput"
+              ref={emailRef} />
+              <br></br>
+            <label htmlFor="password">Password: </label>
+            <br></br>
+            <input
+            style={{"width": "200px"}}
+              type="password"
+              name="password"
+              id="passwordInput"
+              ref={passwordRef}
+            />
+            <br></br>
+            <br></br>
+            <Link className="button btn-secondary" to="/login" onClick={handleSubmit}>
+              Sign Up
           </Link>
-        </form>
+          </FormGroup>
+          </form>
         </Jumbotron>
       </div>
-     </div>
+    </div>
   );
 };
 

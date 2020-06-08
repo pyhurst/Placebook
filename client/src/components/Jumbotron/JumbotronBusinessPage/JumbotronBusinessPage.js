@@ -26,7 +26,7 @@ const JumbotronPage = () => {
             <SectionContainer noBorder>
               <MDBJumbotron className="text-center">
                 <MDBCardTitle className="card-title h4 pb-2">
-                  <strong>Easy Scheduling for Your Business</strong>
+                  <h2 style={{textShadow: "1px 2px 3px rgb(107, 114, 125)"}}>Easy Scheduling for Your Business</h2>
                 </MDBCardTitle>
                 <MDBCardImage src={Mallpicture} className="img-fluid" />
                 <MDBCardBody>
@@ -39,7 +39,7 @@ const JumbotronPage = () => {
               keep track of these reservations via designated time slots and
               capacities.
                   </MDBCardText>
-                  <Link color="primary" to="/businessSignUp">
+                  <Link className="btn btn-secondary" color="primary" to="/businessSignUp">
                     Sign Up
                   </Link>
                   <hr />
