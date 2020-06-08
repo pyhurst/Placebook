@@ -120,7 +120,7 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
                     }).then(userData => {
                         console.log(userData)
                         localStorage.setItem("currentUser", JSON.stringify(userData.data));
-                        window.location.reload();
+                        window.location = ("/user/home")
                     })
                 }
                 // console.log(newCapacity);
