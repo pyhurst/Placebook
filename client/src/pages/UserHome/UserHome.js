@@ -9,7 +9,9 @@ import { Link } from "react-router-dom";
 
 const Business = () => {
   const [userState, userDispatch] = useUserContext();
-  const [pastResState, setpastResState] = React.useState([]);
+  const [pastResNameState, setpastResNameState] = React.useState([]);
+  const [pastResIdState, setpastResIdState] = React.useState([]);
+  // const [pastResState, setpastResState] = React.useState([]);
 
   const checkLocal = () => {
     let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
@@ -42,10 +44,6 @@ const Business = () => {
     console.log(e.target.getAttribute("businessId"));
     console.log(e.target.getAttribute("userId"));
     console.log(e.target.getAttribute("resId"));
-
-
-
-
 
     API.deleteUserReservation(e.target.getAttribute("userId"), {
       businessId: e.target.getAttribute("businessId"),
@@ -95,11 +93,6 @@ const Business = () => {
       }
       // if(timeSplit[1] === "PM"){
       //   timeSplit[0] = parseInt(timeSplit[0]) + 12;
-      } 
-      // const resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
-      console.log("today ", now);
-      console.log(resStamp)
-
       if(resStamp < now){
         console.log("move to past reservations")
         API.pushPastReservation(user._id, {
@@ -113,6 +106,12 @@ const Business = () => {
       } else {
         console.log("stays here")
       }
+      } 
+      // const resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
+      // console.log("today ", now);
+      // console.log(resStamp)
+
+      
       // console.log(toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0]))
     }
     // ideas from
@@ -126,12 +125,12 @@ const Business = () => {
   //manage the state of past favorites
   const past = () => {
     // const temp = userState.pastReservations.map(reservations => reservations)
-    console.log('first')
-    console.log(JSON.stringify(userState))
-    console.log(JSON.stringify(userState.pastReservations.length))
-    const length = parseInt(userState.pastReservations.length);
-    console.log(typeof length)
-    const pastArray = [];
+    // console.log('first')
+    // console.log(JSON.stringify(userState))
+    // console.log(JSON.stringify(userState.pastReservations.length))
+    // const length = parseInt(userState.pastReservations.length);
+    // console.log(typeof length)
+    // const pastArray = [];
 
     // for (let i = 0; i < length; i++) {
     //   // console.log('worked')
@@ -140,10 +139,23 @@ const Business = () => {
     //   // let aTag = `<a href="/home">${JSON.stringify(userState.pastReservations[i].businessName)}</a>`
     //   pastArray.push(userState.pastReservations[i])
     // }
-    setpastResState(userState.pastReservations.map(reservations => reservations));
+    const nameArray = [];
+    const IdArray = [];
+
+    // setpastResState(userState.pastReservations.map(reservations => 
+    //   // array = array.push(reservations.businessName);
+    //   reservations
+    // ));
     // console.log(pastResState);
     // return pastArray;
-
+    for (let i = 0; i < userState.pastReservations.length; i++) {
+      if(nameArray.includes(userState.pastReservations[i].businessName) === false){
+        nameArray.push(userState.pastReservations[i].businessName);
+        IdArray.push(userState.pastReservations[i].businessId);
+      }
+    }
+    setpastResNameState(nameArray);
+    setpastResIdState(IdArray);    
   }
 
   React.useEffect(() => {
@@ -189,9 +201,9 @@ const Business = () => {
           <div className="columns">
             <div className="column">Welcome, {userState.username} </div>
             <div className="column">Appointments: {apptData.amount}</div>
-            <div className="column">Favorite Spots: {pastResState.map(pastRes => {
+            <div className="column">Favorite Spots: {pastResNameState.map((pastRes, i) => {
               return (
-                <a style={{display: "block"}} href={`/business/page/${pastRes.businessId}`} >{pastRes.businessName}</a>
+                <a style={{display: "block"}} href={`/business/page/${pastResIdState[i]}`} >{pastRes}</a>
               )
             })}
             </div>
