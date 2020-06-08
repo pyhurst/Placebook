@@ -77,12 +77,16 @@ const BusinessInputs = (props) => {
                         <br></br>
                         <label for="category">Category: </label>
                         <br></br>
-                        <input
-                            type="text"
-                            name="category"
-                            id="categoryInput"
-                            ref={categoryRef}
-                        />
+                        <select placeholder="Choose a category..." ref={categoryRef} name="category" id="categoryInput">
+                            <option>Gym</option>
+                            <option>Beauty</option>
+                            <option>Food Sales</option>
+                            <option>Recreation</option>
+                            <option>Education</option>
+                            <option>Hardware</option>
+                            <option>Retail</option>
+                            <option>Other</option>
+                        </select>
                         <br></br>
                         <label for="address">Address: </label>
                         <br></br>
@@ -114,21 +118,58 @@ const BusinessInputs = (props) => {
                     <div className="col">
                         <label for="openTime">Business Open Time: </label>
                         <br></br>
-                        <input
+                        {/* <input
                             type="text"
                             name="address"
                             id="addressInput"
                             ref={openTimeRef}
-                        />
+                        /> */}
+                        <select defaultValue="4AM" ref={openTimeRef} name="openTime" id="openTimeInput">
+                            <option selected="selected">In 24 Hour Time</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                        </select>
                         <br></br>
                         <label for="closeTime">Business Close Time: </label>
                         <br></br>
-                        <input
+                        {/* <input
                             type="text"
                             name="address"
                             id="addressInput"
                             ref={closeTimeRef}
-                        />
+                        /> */}
+                         <select defaultValue="9AM" ref={closeTimeRef} name="closeTime" id="closeTimeInput">
+                            <option selected="selected">In 24 Hour Time</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
                         <br></br>
                         <label for="timeSlotLength">Length of Timeslots (in 30 minute increments): </label>
                         <br></br>
