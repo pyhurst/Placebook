@@ -29,10 +29,18 @@ const Signup = () => {
   };
   checkLocal();
   const handleSubmit = (e) => {
-    if (usernameRef.current.value === "" || passwordRef.current.value === "" || emailRef.current.value === "") {
-      alert("All Fields must be filled")
-    } else if (usernameRef.current.value && passwordRef.current.value && emailRef.current.value) {
-      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    if (
+      usernameRef.current.value === "" ||
+      passwordRef.current.value === "" ||
+      emailRef.current.value === ""
+    ) {
+      alert("All Fields must be filled");
+    } else if (
+      usernameRef.current.value &&
+      passwordRef.current.value &&
+      emailRef.current.value
+    ) {
+      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (emailRegex.test(emailRef.current.value)) {
         if (passwordRef.current.value.length > 7) {
           if (passwordRef.current.value === confirmPasswordRef.current.value) {
@@ -43,37 +51,37 @@ const Signup = () => {
             })
               .then((result) => {
                 console.log("this", result);
-                window.location = ("/login")
+                if (result.data.error === "userTaken") {
+                  alert("This username is already in use");
+                } else if (result.data.name === "MongoError") {
+                  alert("This email is already in use");
+                } else {
+                  window.location = "/login";
+                }
               })
               .catch((err) => console.log(err));
             return true;
           } else {
-            alert("Password and confirm password must match!")
+            alert("Password and confirm password must match!");
             return false;
           }
-
         } else {
-          alert("Password must be greater than 7 characters")
+          alert("Password must be greater than 7 characters");
           return false;
         }
-
       } else {
-        alert("This is not a valid email, try again")
+        alert("This is not a valid email, try again");
         return false;
       }
     }
-    // else {
-    //   API.addUser({
-    //     username: usernameRef.current.value,
-    //     password: passwordRef.current.value,
-    //     email: emailRef.current.value,
-    //   })
-    //     .then((result) => {
-    //       console.log("this", result);
-    //       window.location = ("/login")
-    //     })
-    //     .catch((err) => console.log(err));
-    // }
+  };
+
+  const typeSignUp = () => {
+    if (localStorage.getItem("isBusiness")) {
+      return <p>Business Sign In</p>;
+    } else {
+      return <p>User Sign In</p>;
+    }
   };
   return (
     <div>
@@ -81,44 +89,50 @@ const Signup = () => {
       {userState.username ? (
         <div></div>
       ) : (
-          <div id="Signup">
-            <Jumbotron>
-              <h1>Signup for Placebook</h1>
-              <form className="signup-form">
-                <FormGroup>
-                  <label htmlFor="username">Username: </label>
-                  <input
-                    type="text"
-                    name="username"
-                    id="usernameInput"
-                    ref={usernameRef}
-                  />
-                  <label htmlFor="email">Email: </label>
-                  <input type="text" name="email" id="emailInput" ref={emailRef} />
-                  <label htmlFor="password">Password: </label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="passwordInput"
-                    ref={passwordRef}
-                  />
-                  <label htmlFor="confirmPassword">Confirm Password: </label>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    id="confirmPasswordInput"
-                    ref={confirmPasswordRef}
-                  />
-                  <Link onClick={handleSubmit} className="btn btn-secondary">
-                    Sign Up
-          <br></br>
-                    <br></br>
-                  </Link>
-                </FormGroup>
-              </form>
-            </Jumbotron>
-          </div>
-        )}
+        <div id="Signup">
+          <Jumbotron>
+            {typeSignUp()}
+            <h1>Signup for Placebook</h1>
+            <form className="signup-form">
+              <FormGroup>
+                <label htmlFor="username">Username: </label>
+                <input
+                  type="text"
+                  name="username"
+                  id="usernameInput"
+                  ref={usernameRef}
+                />
+                <label htmlFor="email">Email: </label>
+                <input
+                  type="text"
+                  name="email"
+                  id="emailInput"
+                  ref={emailRef}
+                />
+                <label htmlFor="password">Password: </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="passwordInput"
+                  ref={passwordRef}
+                />
+                <label htmlFor="confirmPassword">Confirm Password: </label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  id="confirmPasswordInput"
+                  ref={confirmPasswordRef}
+                />
+                <Link onClick={handleSubmit} className="btn btn-secondary">
+                  Sign Up
+                  <br></br>
+                  <br></br>
+                </Link>
+              </FormGroup>
+            </form>
+          </Jumbotron>
+        </div>
+      )}
     </div>
   );
 };

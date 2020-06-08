@@ -39,7 +39,12 @@ const Login = () => {
           window.location = "/business/home";
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+          alert("Please enter a valid username or password");
+        }
+      });
   };
 
   return (
@@ -48,13 +53,18 @@ const Login = () => {
       <Jumbotron>
         <div id="Login">
           <h1>Login to Placebook</h1>
-          <h5>New here? <Link style={{color: "rgb(120, 200, 166)"}}to="/signup">Sign up</Link> for an account to log in.</h5>
+          <h5>
+            New here?{" "}
+            <Link style={{ color: "rgb(120, 200, 166)" }} to="/signup">
+              Sign up
+            </Link>{" "}
+            for an account to log in.
+          </h5>
           <form>
-        
             <label htmlFor="username">Username: </label>
             <br></br>
             <input
-              style={{ width: "200px"}}
+              style={{ width: "200px" }}
               type="text"
               name="username"
               id="usernameInput"
@@ -64,15 +74,17 @@ const Login = () => {
             <label htmlFor="password">Password: </label>
             <br></br>
             <input
-              style={{ "width": "200px" }}
-              type="text"
+              style={{ width: "200px" }}
+              type="password"
               name="password"
               id="passwordInput"
               ref={passwordRef}
             />
             <br></br>
             <br></br>
-            <button className="button btn-secondary" onClick={handleSubmit}>Log in</button>
+            <button className="button btn-secondary" onClick={handleSubmit}>
+              Log in
+            </button>
           </form>
         </div>
       </Jumbotron>

@@ -8,7 +8,6 @@ import { useUserContext } from "../../utils/UserContext";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
-
 function Business() {
   const { id } = useParams();
   const [bizState, bizDispatch] = useBizContext();
@@ -18,9 +17,8 @@ function Business() {
 
   useEffect(() => {
     API.getBusinessByIdPost(id, {
-      date: date.toLocaleDateString()
+      date: date.toLocaleDateString(),
     }).then((result) => {
-      console.log(result)
       bizDispatch({
         type: "UPDATE_BIZ",
         businessId: result.data.business._id,
@@ -54,28 +52,42 @@ function Business() {
   return (
     <div>
       <Navbar status={userState.username} />
-      <div className="container" style={{backgroundColor: "rgb(100, 180, 214)", borderRadius: "5px"}}>
+      <div
+        className="container"
+        style={{ backgroundColor: "rgb(100, 180, 214)", borderRadius: "5px" }}
+      >
         <div className="section">
-          <ul style={{color: "rgb(107, 114, 125)"}}>
-            <li style={{color: "white", fontSize: "3em", textShadow: "1px 2px 3px rgb(120, 200, 166)"}}>{bizState.name}</li>
-            {/* <li>Name: {userState.username}</li> */}
+          <ul style={{ color: "rgb(107, 114, 125)" }}>
+            <li
+              style={{
+                color: "white",
+                fontSize: "3em",
+                textShadow: "1px 2px 3px rgb(120, 200, 166)",
+              }}
+            >
+              {bizState.name}
+            </li>
             <li>{bizState.address}</li>
             <li>{bizState.phone}</li>
-            <li>Opens at: {bizState.times.open}, Closes at: {bizState.times.close}</li>
-            {/* <li>Owner Id: {bizState.ownerId}</li> */}
+            <li>
+              Opens at: {bizState.times.open}, Closes at: {bizState.times.close}
+            </li>
             <li>Timeslots: {bizState.times.timeslot_length} Minutes</li>
           </ul>
         </div>
         <div className="section">
           <div className="row">
             <div className="column is-two-fifths-desktop is-full-mobile is-full-tablet">
-              <Calendarapp handleOnChange={setDate}/>
-              {/* <Calendar handleOnChange={handleOnChange} value={date}/> */}
+              <Calendarapp handleOnChange={setDate} />
             </div>
             <div className="column is-three-fifths-desktop is-full-mobile is-full-tablet">
-              <h4 style={{color: "white"}}>Selected Date: {date.toLocaleDateString()}</h4>
-              <Schedule dataSelectedDate={date.toLocaleDateString()} todaysReservations={bizState.reservations} />
-              {/* bizstate.date */}
+              <h4 style={{ color: "white" }}>
+                Selected Date: {date.toLocaleDateString()}
+              </h4>
+              <Schedule
+                dataSelectedDate={date.toLocaleDateString()}
+                todaysReservations={bizState.reservations}
+              />
             </div>
           </div>
         </div>
