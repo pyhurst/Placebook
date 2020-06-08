@@ -19,10 +19,10 @@ const JumbotronPage = () => {
     <>
       <hr />
       <MDBJumbotron fluid>
-        <MDBContainer>
+        
           <h2 className="display-4">Welcome, businessname</h2>
           <p className="lead">See your appointments</p>
-        </MDBContainer>
+  
       </MDBJumbotron>
 
       <hr />
