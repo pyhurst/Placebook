@@ -13,15 +13,20 @@ import {
   MDBCardBody,
   MDBCardText,
 } from "mdbreact";
+import { useBizContext } from "../../../utils/BusinessContext";
 
 const JumbotronPage = () => {
+  const [bizState, bizDispatch] = useBizContext();
+
   return (
     <>
       <hr />
       <MDBJumbotron fluid>
         <MDBContainer>
-          <h2 className="display-4">Welcome, businessname</h2>
-          <p className="lead">See your appointments</p>
+          <div className="column">
+            <h2 className="display-4">Welcome, {bizState.name}</h2>
+            <p className="lead">See your appointments</p>
+          </div>
         </MDBContainer>
       </MDBJumbotron>
 
