@@ -10,6 +10,7 @@ import { Form, FormGroup, Label, Input } from "reactstrap";
 const Signup = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
   const emailRef = useRef();
   const [state, dispatch] = useUserContext();
   const [userState, userDispatch] = useUserContext();
@@ -35,19 +36,25 @@ const Signup = () => {
       alert("All Fields must be filled")
     } else if (usernameRef.current.value && passwordRef.current.value && emailRef.current.value) {
       const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      if(emailRegex.test(emailRef.current.value)){
-        if(passwordRef.current.value.length > 7){
-          API.addUser({
-            username: usernameRef.current.value,
-            password: passwordRef.current.value,
-            email: emailRef.current.value,
-          })
-            .then((result) => {
-              console.log("this", result);
-              window.location = ("/login")
+      if (emailRegex.test(emailRef.current.value)) {
+        if (passwordRef.current.value.length > 7) {
+          if (passwordRef.current.value === confirmPasswordRef.current.value){
+            API.addUser({
+              username: usernameRef.current.value,
+              password: passwordRef.current.value,
+              email: emailRef.current.value,
             })
-            .catch((err) => console.log(err));
-          return true;
+              .then((result) => {
+                console.log("this", result);
+                window.location = ("/login")
+              })
+              .catch((err) => console.log(err));
+            return true;
+          } else {
+            alert("Password and confirm password must match!")
+            return false;
+          }
+         
         } else {
           alert("Password must be greater than 7 characters")
           return false;
@@ -57,7 +64,7 @@ const Signup = () => {
         alert("This is not a valid email, try again")
         return false;
       }
-    } 
+    }
     // else {
     //   API.addUser({
     //     username: usernameRef.current.value,
@@ -122,6 +129,13 @@ const Signup = () => {
                     name="password"
                     id="passwordInput"
                     ref={passwordRef}
+                  />
+                  <label htmlFor="confirmPassword">Confirm Password: </label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    id="confirmPasswordInput"
+                    ref={confirmPasswordRef}
                   />
                   <Link onClick={handleSubmit}>
                     Sign Up
