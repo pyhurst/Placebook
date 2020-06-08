@@ -91,11 +91,6 @@ const Business = () => {
       }
       // if(timeSplit[1] === "PM"){
       //   timeSplit[0] = parseInt(timeSplit[0]) + 12;
-      } 
-      // const resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
-      console.log("today ", now);
-      console.log(resStamp)
-
       if(resStamp < now){
         console.log("move to past reservations")
         API.pushPastReservation(user._id, {
@@ -109,6 +104,12 @@ const Business = () => {
       } else {
         console.log("stays here")
       }
+      } 
+      // const resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
+      // console.log("today ", now);
+      // console.log(resStamp)
+
+      
       // console.log(toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0]))
     }
     // ideas from
