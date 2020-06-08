@@ -65,7 +65,7 @@ const Login = () => {
             <br></br>
             <input
               style={{ "width": "200px" }}
-              type="text"
+              type="password"
               name="password"
               id="passwordInput"
               ref={passwordRef}
