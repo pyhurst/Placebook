@@ -49,7 +49,7 @@ function Business() {
         });
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [date]);
 
   return (
     <div>
