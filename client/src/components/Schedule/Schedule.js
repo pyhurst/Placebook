@@ -79,30 +79,39 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
     }, [bizContext]);
 
     const userCheck = (time, dataSelectedDate) => {
+        const user = JSON.parse(localStorage.getItem("currentUser"));
         // API.checkUser().then(result => {
         // console.log(result);
         if (state.username === "") {
             return window.location.href = "/login"
+        } else if (localStorage.getItem("type")) {
+            return alert("Sorry you are a business account now, please create a non-business account to make reservations.")
         } else {
-            console.log(state)
+            for (let i = 0; i < bizContext[0].reservations.length; i++) {
+                for (let j = 0; j < bizContext[0].reservations[i].customerIds.length; j++) {
+                    if (bizContext[0].reservations[i].customerIds[j] === user._id) {
+                        return alert("Sorry you may only reserve 1 spot a day per business! Try another day or business.")
+                    }
+                }
+            }
             console.log(bizContext)
             console.log(time)
             console.log(dataSelectedDate)
-            const user = JSON.parse(localStorage.getItem("currentUser"));
             const id = user._id
             API.reservation(bizContext[0].businessId,
                 {
                     time: time,
                     date: dataSelectedDate,
                     capacity: bizContext[0].times.capacity,
-                    customerIds: id
+                    customerIds: [id]
                 }
             ).then(result => {
                 console.log(result);
                 console.log(result.status)
-                if (result.data === "sorry you are in that timeslot") {
-                    alert(`You are in that timeslot already. Check your reservations in your user profile for reservation options`)
-                } else {
+                // if (result.data === "sorry you are in that timeslot") {
+                //     alert(`You are in that timeslot already. Check your reservations in your user profile for reservation options`)
+                // } else {
+                if (result.status === 200) {
                     API.addUserReservation(state._id, {
                         time: time,
                         date: dataSelectedDate,
@@ -111,7 +120,7 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
                     }).then(userData => {
                         console.log(userData)
                         localStorage.setItem("currentUser", JSON.stringify(userData.data));
-
+                        window.location.reload();
                     })
                 }
                 // console.log(newCapacity);
@@ -174,34 +183,41 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
     //     }
     // }
 
-    // const changeCapacity = (time) => {
-    //     for (let i = 0; i < todaysReservations.length; i++) {
-    //         if(document.getElementById(time) == todaysReservations.time) {
-    //             document.getElementById(time).innerHTML += `${todaysReservations.capacity} - ${todaysReservations.customerIds.length}`
-    //         }
-    //     }
-    // }
+    const changeCapacity = (time) => {
+        if (bizContext[0].reservations.length === 0) {
+            return bizContext[0].times.capacity
+        } else {
+            for (let i = 0; i < bizContext[0].reservations.length; i++) {
+                if (time === bizContext[0].reservations[i].time) {
+                    // React.getElementById(time).innerHTML += `${bizContext[0].reservations[i].capacity} - ${bizContext[0].reservations[i].customerIds.length}`
+                    return (bizContext[0].reservations[i].capacity - bizContext[0].reservations[i].customerIds.length);
+                }
+            }
+            return bizContext[0].times.capacity;
 
-    
+        }
+    }
+
 
     return (
         <div>
             {timeblockState.map((time) => (
-                <div className="schedule" data-aos="zoom-in">
-                    <h4 style={{color: "rgb(107, 114, 125)"}}>Time: {time}</h4>
-                    <h4 style={{color: "rgb(120, 200, 166)"}}id={time}>{bizContext[0].times.capacity} spots!</h4>
+                <div className="schedule">
+                    <h4>Time: {time}</h4>
+                    {/* <h4 id={time}>{bizContext[0].times.capacity} spots!</h4> */}
                     {/* <h4 id={time}>{todaysReservations.map(res => (
                             res.time === time ? (res.capacity - res.customerIds.length) : bizContext[0].times.capacity
                         ))} spots left!</h4> */}
-                    {/* <h4>{() => capacityOnDivs(time)} spots left!</h4> */}
+                    <h4 id={time}>{changeCapacity(time)} spots left!</h4>
                     <button
-                        className="reserveBtn button btn-secondary"
+                        className="reserveBtn"
                         onClick={() => userCheck(time, dataSelectedDate)}
                     >
                         Reserve!
                         </button>
                 </div>
             ))}
+            {/* {() => changeCapacity()} */}
         </div>
     )
 };
