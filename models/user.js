@@ -7,7 +7,8 @@ const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true, unique: false },
   email: { type: String, required: true, unique: true },
-  reservations: { type: Array }
+  reservations: { type: Array },
+  pastReservations: { type: Array }
 });
 
 userSchema.methods = {

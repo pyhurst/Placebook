@@ -88,12 +88,14 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
             console.log(bizContext)
             console.log(time)
             console.log(dataSelectedDate)
+            const user = JSON.parse(localStorage.getItem("currentUser"));
+            const id = user._id
             API.reservation(bizContext[0].businessId,
                 {
                     time: time,
                     date: dataSelectedDate,
                     capacity: bizContext[0].times.capacity,
-                    customerIds: [state._id]
+                    customerIds: id
                 }
             ).then(result => {
                 console.log(result);

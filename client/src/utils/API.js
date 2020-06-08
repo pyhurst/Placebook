@@ -28,6 +28,9 @@ export default {
   checkUser: function () {
     return axios.get("/api/user/user");
   },
+  pushPastReservation: function (id, resId) {
+    return axios.post("/api/user/reservation/past/" + id, resId);
+  },
   reservation: function (id, businessData) {
     return axios.post("/api/businesses/" + id, businessData);
   },
@@ -38,7 +41,7 @@ export default {
     return axios.post("/api/businesses/reservation/" + id, resData);
   },
   addUserReservation: function (id, userData) {
-    return axios.post("/api/user/reservation/" + id, userData);
+    return axios.post("/api/user/reservation/user/" + id, userData);
   },
   deleteUserReservation: function(id, resData) {
     return axios.post("/api/user/reservation/delete/" + id, resData);
