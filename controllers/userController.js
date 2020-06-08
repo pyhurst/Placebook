@@ -22,6 +22,46 @@ module.exports = {
             .then((dbModel) => res.json(dbModel))
             .catch((err) => res.status(422).json(err));
     },
+    pushPastReservation: function (req, res) {
+        db.User.findById({ _id: req.params.id })
+            .then((userModel) => {
+                console.log(userModel);
+                const filteredOut = [];
+                const filteredIn = [];
+                console.log('delete reservatoin')
+                // console.log(userModel.reservations)
+                // console.log(req.body.customerIds[0])
+                for (let i = 0; i < userModel.reservations.length; i++) {
+                    if (userModel.reservations[i]._id === req.body.resId) {
+                        filteredIn.push(userModel.reservations[i])
+                    } else {
+                        console.log(userModel.reservations[i]);
+                        filteredOut.push(userModel.reservations[i]);
+                    }
+                    // res.json(filteredOut);
+                }
+
+                db.User.findByIdAndUpdate(
+                    { _id: req.params.id },
+                    {
+                        $set: {
+                            reservations: filteredOut,
+                        },
+                        $push: {
+                            pastReservations: filteredIn
+                        }
+                    },
+                    { new: true }
+                )
+                    .then((dbModel) => {
+                        console.log(dbModel)
+                        res.json(dbModel);
+                    })
+                    .catch((err) => res.status(422).json(err));
+            })
+
+            .catch((err) => console.log(err));
+    },
     deleteUserReservation: function (req, res) {
         db.User.findById({ _id: req.params.id })
             .then((userModel) => {
@@ -75,7 +115,7 @@ module.exports = {
                     .then((dbModel) => res.json(dbModel))
                     .catch((err) => res.status(422).json(err));
 
-                    // res.json(filteredOut);
+                // res.json(filteredOut);
 
             })
             .catch((err) => console.log(err));

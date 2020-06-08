@@ -8,6 +8,7 @@ import "bulma/css/bulma.css";
 
 const Navbar = (props) => {
   const [userState, userDispatch] = useUserContext();
+
   const loGout = () => {
     API.userLogout(userState)
       .then((e) => {
@@ -18,10 +19,22 @@ const Navbar = (props) => {
           _id: "",
         });
         localStorage.removeItem("currentUser");
+        localStorage.removeItem("type");
+        if (localStorage.getItem("isBusiness")) {
+          localStorage.removeItem("isBusiness");
+        }
       })
       .then(() => {
         window.location.reload();
       });
+  };
+
+  const bizCheck = () => {
+    if (localStorage.getItem("type")) {
+      window.location = "/business/home";
+    } else {
+      window.location = "/user/home";
+    }
   };
 
   if (props.status) {
@@ -49,20 +62,28 @@ const Navbar = (props) => {
           </Link>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
-          <Link style={{"color": "rgb(120, 200, 166)"}} className="navbar-item" to="/about">
+          <Link
+            style={{ color: "rgb(120, 200, 166)" }}
+            className="navbar-item"
+            to="/about"
+          >
             About Us
           </Link>
         </div>
         <div className="navbar-end">
-          <div id="business-link" className="navbar-item">
-            <Link style={{"color": "rgb(120, 200, 166)"}} to="/business/pitch">For Businesses</Link>
-          </div>
           <div className="navbar-item">
             <div id="business-link" className="navbar-item">
-              <Link style={{"color": "rgb(120, 200, 166)"}} to="/user/home">My Homepage</Link>
+              <Link style={{ color: "rgb(120, 200, 166)" }} onClick={bizCheck}>
+                My Homepage
+              </Link>
             </div>
             <div id="actionButtons" className="buttons">
-              <Link style={{"color": "rgb(120, 200, 166)"}} to="/" className="button btn-secondary" onClick={loGout}>
+              <Link
+                style={{ color: "rgb(120, 200, 166)" }}
+                to="/"
+                className="button btn-secondary"
+                onClick={loGout}
+              >
                 Log Out
               </Link>
             </div>
@@ -96,20 +117,35 @@ const Navbar = (props) => {
           </Link>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
-          <Link style={{"color": "rgb(120, 200, 166)"}} className="navbar-item" to="/about">
+          <Link
+            style={{ color: "rgb(120, 200, 166)" }}
+            className="navbar-item"
+            to="/about"
+          >
             About Us
           </Link>
         </div>
         <div className="navbar-end">
           <div id="business-link" className="navbar-item">
-            <Link style={{"color": "rgb(120, 200, 166)"}} to="/business/pitch">For Businesses</Link>
+            <Link style={{ color: "rgb(120, 200, 166)" }} to="/business/pitch">
+              For Businesses
+            </Link>
           </div>
           <div className="navbar-item">
             <div id="actionButtons" className="buttons">
-              <Link style={{"color": "white"}} to="/signup" id="sign-up" className="button">
-                <strong>Sign up</strong>
+              <Link
+                style={{ color: "rgb(120, 200, 166)" }}
+                to="/signup"
+                id="sign-up"
+                className="button"
+              >
+                <strong style={{color: "white"}}>Sign up</strong>
               </Link>
-              <Link style={{"color": "rgb(120, 200, 166)"}} to="/login" className="button btn-secondary">
+              <Link
+                style={{ color: "rgb(120, 200, 166)" }}
+                to="/login"
+                className="button is-light"
+              >
                 Log in
               </Link>
             </div>

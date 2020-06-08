@@ -5,17 +5,29 @@ import "./Signup.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { Jumbotron, InputGroup } from "reactstrap";
-import { Form, FormGroup, Label, Input } from 'reactstrap';
-
-
+import { Form, FormGroup, Label, Input } from "reactstrap";
 const Signup = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const emailRef = useRef();
   const [state, dispatch] = useUserContext();
-
+  const [userState, userDispatch] = useUserContext();
+  const checkLocal = () => {
+    let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
+    if (storageStatus) {
+      if (storageStatus.email !== null && userState.username === "") {
+        userDispatch({
+          type: "ADD_USER",
+          username: storageStatus.username,
+          email: storageStatus.email,
+          reservations: storageStatus.reservations,
+          _id: storageStatus._id,
+        });
+      }
+    }
+  };
+  checkLocal();
   const handleSubmit = (e) => {
-
     API.addUser({
       username: usernameRef.current.value,
       password: passwordRef.current.value,
@@ -26,78 +38,49 @@ const Signup = () => {
       })
       .catch((err) => console.log(err));
   };
-
   return (
     <div>
-      <Navbar />
-      <div id="Signup">
-        <Jumbotron>
-          <h1>Signup for Placebook</h1>
-          {/* <Form className="container signup-form">
+      <Navbar status={userState.username} />
+      {userState.username ? (
+        <div></div>
+      ) : (
+        <div id="Signup">
+          <Jumbotron>
+            <h1>Signup for Placebook</h1>
+        <form className="signup-form">
         <FormGroup>
-        <Label htmlFor="username">Username: </Label>
-          <Input style={{"width": "200px"}}
+          <label htmlFor="username">Username: </label>
+          <br></br>
+          <input
             type="text"
             name="username"
             id="usernameInput"
             ref={usernameRef}
           />
-          <Label htmlFor="email">Email: </Label>
-          <Input style={{"width": "200px"}} type="text" name="email" id="emailInput" ref={emailRef} />
-          <Label htmlFor="password">Password: </Label>
-          <Input
-          style={{"width": "200px"}}
+          <br></br>
+          <label htmlFor="email">Email: </label>
+          <br></br>
+          <input type="text" name="email" id="emailInput" ref={emailRef} />
+          <br></br>
+          <label htmlFor="password">Password: </label>
+          <br></br>
+          <input
             type="password"
             name="password"
             id="passwordInput"
             ref={passwordRef}
           />
-          <Link to="/login" onClick={handleSubmit}>
+          <br></br>
+          <br></br>
+          <Link className="btn btn-secondary" to="/login" onClick={handleSubmit}>
             Sign Up
           </Link>
-        </FormGroup>
-        </Form> */}
-          <form className="signup-form">
-            <FormGroup>
-            <label htmlFor="username">Username: </label>
-            <br></br>
-            <input
-              style={{"width": "200px"}}
-              type="text"
-              name="username"
-              id="usernameInput"
-              ref={usernameRef}
-            />
-            <br></br>
-            <label htmlFor="email">Email: </label>
-            <br></br>
-            <input
-            style={{"width": "200px"}}
-              type="text"
-              name="email"
-              id="emailInput"
-              ref={emailRef} />
-              <br></br>
-            <label htmlFor="password">Password: </label>
-            <br></br>
-            <input
-            style={{"width": "200px"}}
-              type="password"
-              name="password"
-              id="passwordInput"
-              ref={passwordRef}
-            />
-            <br></br>
-            <br></br>
-            <Link className="button btn-secondary" to="/login" onClick={handleSubmit}>
-              Sign Up
-          </Link>
           </FormGroup>
-          </form>
+        </form>
         </Jumbotron>
       </div>
-    </div>
+      )}
+     </div>
   );
 };
-
 export default Signup;
