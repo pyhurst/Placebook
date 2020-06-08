@@ -33,18 +33,37 @@ const Signup = () => {
   const handleSubmit = (e) => {
     if (usernameRef.current.value === "" || passwordRef.current.value === "" || emailRef.current.value === "") {
       alert("All Fields must be filled")
-    } else {
-      API.addUser({
-        username: usernameRef.current.value,
-        password: passwordRef.current.value,
-        email: emailRef.current.value,
-      })
-        .then((result) => {
-          console.log("this", result);
-          window.location = ("/login")
+    } else if (usernameRef.current.value && passwordRef.current.value && emailRef.current.value) {
+      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      if(emailRegex.test(emailRef.current.value)){
+        API.addUser({
+          username: usernameRef.current.value,
+          password: passwordRef.current.value,
+          email: emailRef.current.value,
         })
-        .catch((err) => console.log(err));
-    }
+          .then((result) => {
+            console.log("this", result);
+            window.location = ("/login")
+          })
+          .catch((err) => console.log(err));
+        return true;
+      } else {
+        alert("This is not a valid email, try again")
+        return false;
+      }
+    } 
+    // else {
+    //   API.addUser({
+    //     username: usernameRef.current.value,
+    //     password: passwordRef.current.value,
+    //     email: emailRef.current.value,
+    //   })
+    //     .then((result) => {
+    //       console.log("this", result);
+    //       window.location = ("/login")
+    //     })
+    //     .catch((err) => console.log(err));
+    // }
   };
 
   return (
