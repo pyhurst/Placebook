@@ -6,6 +6,7 @@ import API from "../../utils/API";
 import { STATES } from "mongoose";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Jumbotron } from "reactstrap";
 
 const Business = () => {
   const [userState, userDispatch] = useUserContext();
@@ -73,41 +74,41 @@ const Business = () => {
       // ["12:30", "PM"]
       const now = Date.now();
       let resStamp;
-      if(timeSplit[0].includes(":")){
+      if (timeSplit[0].includes(":")) {
         console.log("includes")
         const colonSplit = timeSplit[0];
-        if(timeSplit[1] === "PM"){
+        if (timeSplit[1] === "PM") {
           colonSplit[0] = parseInt(timeSplit[0]) + 12;
-          resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),colonSplit[0],30,0,0);
+          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), colonSplit[0], 30, 0, 0);
         } else {
-          resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),colonSplit[0],30,0,0);
+          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), colonSplit[0], 30, 0, 0);
         }
       } else {
-        if(timeSplit[1] === "PM"){
+        if (timeSplit[1] === "PM") {
           timeSplit[0] = parseInt(timeSplit[0]) + 12;
-        console.log("nope")
-        resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
+          console.log("nope")
+          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), timeSplit[0], 0, 0, 0);
 
-      } else {
-        resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
+        } else {
+          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), timeSplit[0], 0, 0, 0);
+        }
+        // if(timeSplit[1] === "PM"){
+        //   timeSplit[0] = parseInt(timeSplit[0]) + 12;
       }
-      // if(timeSplit[1] === "PM"){
-      //   timeSplit[0] = parseInt(timeSplit[0]) + 12;
-      } 
       // const resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
       console.log("today ", now);
       console.log(resStamp)
 
-      if(resStamp < now){
+      if (resStamp < now) {
         console.log("move to past reservations")
         API.pushPastReservation(user._id, {
           resId: user.reservations[i]._id
         })
-        .then(result => {
-          console.log(result)
-          localStorage.setItem("currentUser", JSON.stringify(result.data));
-          window.location.reload("/user/home");
-        })
+          .then(result => {
+            console.log(result)
+            localStorage.setItem("currentUser", JSON.stringify(result.data));
+            window.location.reload("/user/home");
+          })
       } else {
         console.log("stays here")
       }
@@ -115,10 +116,10 @@ const Business = () => {
     }
     // ideas from
     // https://www.hashbangcode.com/article/convert-date-timestamp-javascript
-    function toTimestamp(year,month,day,hour,minute,second,millisecond){
-      var datum = new Date(Date.UTC(year,month-1,day,hour-1,minute,second,millisecond));
+    function toTimestamp(year, month, day, hour, minute, second, millisecond) {
+      var datum = new Date(Date.UTC(year, month - 1, day, hour - 1, minute, second, millisecond));
       return datum.getTime();
-     }
+    }
   }
 
   React.useEffect(() => {
@@ -157,21 +158,23 @@ const Business = () => {
     <div>
       <Navbar status={userState.username} />
       <div className="container">
-        <div className="section">
-          <div className="columns">
-            <div className="column">Welcome, {userState.username} </div>
-            <div className="column">Appointments: {apptData.amount}</div>
-            <div className="column">
-              <Link
-                style={{ color: "rgb(120, 200, 166)" }}
-                to="/businessSignUp"
-              >
-                Create a business
+
+          <Jumbotron>
+            <h1>Welcome, {userState.username} </h1>
+          
+          <h2>
+            Your Appointments: {apptData.amount}
+          </h2>
+            <Link
+              className="btn btn-secondary"
+              style={{ color: "white"}}
+              to="/businessSignUp"
+            >
+              Create a business
               </Link>
-            </div>
-          </div>
-          {renderAppts()}
-        </div>
+          </Jumbotron>
+       
+        {renderAppts()}
       </div>
     </div>
   );

@@ -10,8 +10,8 @@ _________________________
 - [How It Works](###HowItWorks)
 - [Future Davelopment](###FutureDevelopmentForPlacebook)
 - [Authors](###Authors)
-- [License](##License)
 _________________________
+
 ### What We Used
 - React and Reactstrap
 - NodeJS
@@ -43,7 +43,7 @@ Business accounts cannot make reservations at other businesses, so they will nee
 Individual users have access to a Homepage that allows them to view and cancel their upcoming reservations. Business Homepage's allow businesses to view any reservations that users have made to visit their location.
 ![Business Homepage]("./src/Images/business_homepage.png")
 
-## Future Development For Placebook
+### Future Development For Placebook
 
 We believe that Placebook has the ability to be used nation-wide, or bigger! 
 There are some things that we would love to add in the future to make this possible:
@@ -51,7 +51,7 @@ There are some things that we would love to add in the future to make this possi
 - Shaded time slots to easily determine which timelslots are in the past or future
 - Modals to confirm chosen timeslots
 
-## Authors
+### Authors
 [Peter Blank]("https://github.com/blapete")
 ![profile pic](http://avatars0.githubusercontent.com/blapete) 
 [Emily Resch]("https://github.com/emilyresch")
