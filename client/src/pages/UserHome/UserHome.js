@@ -11,7 +11,7 @@ const Business = () => {
   const [userState, userDispatch] = useUserContext();
   const [pastResNameState, setpastResNameState] = React.useState([]);
   const [pastResIdState, setpastResIdState] = React.useState([]);
-  const [pastResState, setpastResState] = React.useState([]);
+  // const [pastResState, setpastResState] = React.useState([]);
 
   const checkLocal = () => {
     let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
@@ -142,10 +142,10 @@ const Business = () => {
     const nameArray = [];
     const IdArray = [];
 
-    setpastResState(userState.pastReservations.map(reservations => 
-      // array = array.push(reservations.businessName);
-      reservations
-    ));
+    // setpastResState(userState.pastReservations.map(reservations => 
+    //   // array = array.push(reservations.businessName);
+    //   reservations
+    // ));
     // console.log(pastResState);
     // return pastArray;
     for (let i = 0; i < userState.pastReservations.length; i++) {
