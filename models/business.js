@@ -16,6 +16,7 @@ const businessSchema = new Schema({
     },
     ownerId: { type: Schema.Types.ObjectId, ref: "User" },
     reservations: { type: Array },
+    image: { type: Array }
 });
 
 const Business = mongoose.model("Business", businessSchema);

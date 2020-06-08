@@ -54,10 +54,10 @@ function Business() {
   return (
     <div>
       <Navbar status={userState.username} />
-      <div className="container" style={{backgroundColor: "lightblue", borderRadius: "20px"}}>
+      <div className="container" style={{backgroundColor: "rgb(100, 180, 214)", borderRadius: "5px"}}>
         <div className="section">
-          <ul>
-            <li style={{color: "white", fontSize: "3em", textShadow: "1px 2px 3px black"}}>{bizState.name}</li>
+          <ul style={{color: "rgb(107, 114, 125)"}}>
+            <li style={{color: "white", fontSize: "3em", textShadow: "1px 2px 3px rgb(120, 200, 166)"}}>{bizState.name}</li>
             {/* <li>Name: {userState.username}</li> */}
             <li>{bizState.address}</li>
             <li>{bizState.phone}</li>
@@ -69,13 +69,11 @@ function Business() {
         <div className="section">
           <div className="row">
             <div className="column is-two-fifths-desktop is-full-mobile is-full-tablet">
-              <Calendarapp handleOnChange={setDate} />
+              <Calendarapp handleOnChange={setDate}/>
               {/* <Calendar handleOnChange={handleOnChange} value={date}/> */}
             </div>
             <div className="column is-three-fifths-desktop is-full-mobile is-full-tablet">
-              <h4>Selected date: {date.toLocaleDateString()}</h4>
-              {/* <h1>Date: {`${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`}</h1> */}
-              {/* <Schedule date={bizState.date}/> */}
+              <h4 style={{color: "white"}}>Selected Date: {date.toLocaleDateString()}</h4>
               <Schedule dataSelectedDate={date.toLocaleDateString()} todaysReservations={bizState.reservations} />
               {/* bizstate.date */}
             </div>

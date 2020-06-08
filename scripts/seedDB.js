@@ -8,7 +8,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/placebook");
 const businessSeed = [
   {
     name: "UFC Gym",
-    image: "https://d1y2dxfrtv74ad.cloudfront.net/images/_950x624_crop_center-center/ufcGym-newsArticle.jpg?mtime=20180117150848",
+    image: "https://clubsolutionsmagazine.com/wp-content/uploads/2017/12/16.jpg",
     category: "Gym",
     times: {
       open: 7,
@@ -59,7 +59,7 @@ const businessSeed = [
   },
   {
     name: "Museum of Contemporary Art",
-    image: "https://assets-production.mcachicago.org/media/attachments/W1siZiIsIjIwMTcvMTAvMjMvMTgvNTgvNTZlOWMyOGQtMmZiNS00M2IyLWFjMWQtNDIyMDEzOTE4Y2E4Il0sWyJwIiwidGh1bWIiLCIxMjAweD4iLHt9XV0/01b_mca_logo_two_units_black.jpg?sha=0ef42b6ff21b6395",
+    image: "https://assets-production.mcachicago.org/media/attachments/W1siZiIsIjIwMTgvMDEvMzAvMjEvNDQvOWEwMzk1NDEtYjhiNC00ZjM1LWFmMjgtMDVmN2JlNmNjM2QzIl0sWyJwIiwidGh1bWIiLCIxMjAweD4iLHt9XV0/10909607c05_R1_MCA-Exteriors_0174.jpg?sha=efa10ccc39beaaca",
     category: "Education",
     times: {
       open: 10,

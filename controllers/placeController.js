@@ -50,11 +50,11 @@ module.exports = {
           const array = dbModel;
           console.log("51", req.body.customerIds[0])
           for (let i = 0; i < array.reservations.length; i++) {
-          //   for (let j = 0; j < array.reservations[i].customerIds.length; j++) {
-          //     if(array.reservations[i].customerIds[j] === req.body.customerIds){
-          //       return console.log("gotcha")
-          //     }
-          //   }
+            //   for (let j = 0; j < array.reservations[i].customerIds.length; j++) {
+            //     if(array.reservations[i].customerIds[j] === req.body.customerIds){
+            //       return console.log("gotcha")
+            //     }
+            //   }
             if (array.reservations[i]._id !== filtered[0]._id) {
               console.log(array.reservations[i]);
               filteredOut.push(array.reservations[i]);
@@ -64,7 +64,7 @@ module.exports = {
           filtered[0].customerIds.push(req.body.customerIds[0]);
           // console.log(filtered);
           // console.log(filteredOut);
-          const newCapacity = filtered[0].capacity- filtered[0].customerIds.length;
+          const newCapacity = filtered[0].capacity - filtered[0].customerIds.length;
           filteredOut.push(filtered[0]);
           // console.log(filteredOut)
           db.Business.findByIdAndUpdate({ _id: dbModel._id },
@@ -80,9 +80,16 @@ module.exports = {
             // newOjb.newCapacity = newCapacity;
             // console.log("bye", newObj)
             // res.json(newRes)
+            const todaysReservations = [];
+            for (let i = 0; i < newRes.reservations.length; i++) {
+              if (newRes.reservations[i].date === req.body.date) {
+                console.log(newRes.reservations[i]);
+                todaysReservations.push(newRes.reservations[i]);
+              }
+            }
             res.json({
               business: newRes,
-              capacity: newCapacity
+              todaysReservations: todaysReservations
             });
           }).catch((err) => res.status(422).json(err));
         } else if (filtered.length === 1 && filtered[0].customerIds.length >= filtered[0].capacity) {
@@ -97,7 +104,7 @@ module.exports = {
             },
             { new: true }
           ).then((newRes) => {
-            res.json({business: newRes})
+            res.json({ business: newRes })
           }).catch((err) => res.status(422).json(err));
         }
       })
@@ -118,14 +125,14 @@ module.exports = {
   },
   findOneBiz: function (req, res) {
     db.Business.findOne({ ownerId: req.params.id })
-        .then(bizModel => {
+      .then(bizModel => {
         const todaysReservations = [];
         for (let i = 0; i < bizModel.reservations.length; i++) {
-            if (bizModel.reservations[i].date === req.body.date) {
-              console.log(bizModel.reservations[i]);
-              todaysReservations.push(bizModel.reservations[i]);
-            }
+          if (bizModel.reservations[i].date === req.body.date) {
+            console.log(bizModel.reservations[i]);
+            todaysReservations.push(bizModel.reservations[i]);
           }
+        }
         console.log("asdf", todaysReservations)
         res.json({
           business: bizModel,
@@ -139,11 +146,11 @@ module.exports = {
       .then((dbModel) => {
         const todaysReservations = [];
         for (let i = 0; i < dbModel.reservations.length; i++) {
-            if (dbModel.reservations[i].date === req.body.date) {
-              console.log(dbModel.reservations[i]);
-              todaysReservations.push(dbModel.reservations[i]);
-            }
+          if (dbModel.reservations[i].date === req.body.date) {
+            console.log(dbModel.reservations[i]);
+            todaysReservations.push(dbModel.reservations[i]);
           }
+        }
         console.log("asdf", todaysReservations)
         res.json({
           business: dbModel,

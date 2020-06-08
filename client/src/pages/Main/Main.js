@@ -4,6 +4,7 @@ import Jumbotron from "../../components/Jumbotron/JumbotronHomePage/Jumbotron";
 import API from "../../utils/API.js";
 import Navbar from "../../components/Navbar/Navbar";
 import { UserContext } from "../../utils/UserContext";
+import Footer from "../../components/Footer/Footer.js"
 
 class Main extends React.Component {
   static contextType = UserContext;
@@ -49,7 +50,7 @@ class Main extends React.Component {
         <section>
           <div id="main">
             <Jumbotron handleOnClick={this.handleOnClick} />
-            {this.state.username ? <h1>Hi, {this.state.username}</h1> : ""}
+            {this.state.username ? <h2 style={{textAlign: "center"}}>Hi, {this.state.username}!</h2> : ""}
           </div>
           <MyCarousel businessCategory={this.state.businessCategory} />
         </section>

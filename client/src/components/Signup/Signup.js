@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { Jumbotron, InputGroup } from "reactstrap";
 import { Form, FormGroup, Label, Input } from "reactstrap";
-
 const Signup = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
@@ -14,7 +13,6 @@ const Signup = () => {
   const emailRef = useRef();
   const [state, dispatch] = useUserContext();
   const [userState, userDispatch] = useUserContext();
-
   const checkLocal = () => {
     let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
     if (storageStatus) {
@@ -30,7 +28,6 @@ const Signup = () => {
     }
   };
   checkLocal();
-
   const handleSubmit = (e) => {
     if (usernameRef.current.value === "" || passwordRef.current.value === "" || emailRef.current.value === "") {
       alert("All Fields must be filled")
@@ -38,7 +35,7 @@ const Signup = () => {
       const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       if (emailRegex.test(emailRef.current.value)) {
         if (passwordRef.current.value.length > 7) {
-          if (passwordRef.current.value === confirmPasswordRef.current.value){
+          if (passwordRef.current.value === confirmPasswordRef.current.value) {
             API.addUser({
               username: usernameRef.current.value,
               password: passwordRef.current.value,
@@ -54,7 +51,7 @@ const Signup = () => {
             alert("Password and confirm password must match!")
             return false;
           }
-         
+
         } else {
           alert("Password must be greater than 7 characters")
           return false;
@@ -78,7 +75,6 @@ const Signup = () => {
     //     .catch((err) => console.log(err));
     // }
   };
-
   return (
     <div>
       <Navbar status={userState.username} />
@@ -88,30 +84,6 @@ const Signup = () => {
           <div id="Signup">
             <Jumbotron>
               <h1>Signup for Placebook</h1>
-              {/* <Form className="container signup-form">
-        <FormGroup>
-        <Label htmlFor="username">Username: </Label>
-          <Input style={{"width": "200px"}}
-            type="text"
-            name="username"
-            id="usernameInput"
-            ref={usernameRef}
-          />
-          <Label htmlFor="email">Email: </Label>
-          <Input style={{"width": "200px"}} type="text" name="email" id="emailInput" ref={emailRef} />
-          <Label htmlFor="password">Password: </Label>
-          <Input
-          style={{"width": "200px"}}
-            type="password"
-            name="password"
-            id="passwordInput"
-            ref={passwordRef}
-          />
-          <Link to="/login" onClick={handleSubmit}>
-            Sign Up
-          </Link>
-        </FormGroup>
-        </Form> */}
               <form className="signup-form">
                 <FormGroup>
                   <label htmlFor="username">Username: </label>
@@ -137,9 +109,11 @@ const Signup = () => {
                     id="confirmPasswordInput"
                     ref={confirmPasswordRef}
                   />
-                  <Link onClick={handleSubmit}>
+                  <Link onClick={handleSubmit} className="btn btn-secondary">
                     Sign Up
-          </Link>
+          <br></br>
+                    <br></br>
+                  </Link>
                 </FormGroup>
               </form>
             </Jumbotron>
@@ -148,5 +122,4 @@ const Signup = () => {
     </div>
   );
 };
-
 export default Signup;
