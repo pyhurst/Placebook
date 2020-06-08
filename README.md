@@ -5,9 +5,10 @@ _________________________
 _________________________
 
 ### Table of Contents
-- [About Placebook](###AboutPlacebook)
 - [What We Used](###WhatWeUsed)
+- [About Placebook](###AboutPlacebook)
 - [How It Works](###HowItWorks)
+- [Future Davelopment](###FutureDevelopmentForPlacebook)
 - [Authors](###Authors)
 - [License](##License)
 _________________________
@@ -40,9 +41,15 @@ For business owners, There is a "For Businesses" option in the Navbar that direc
 Business accounts cannot make reservations at other businesses, so they will need to make a regular user account to do so. 
 ![Sorry]("./src/Images/sorryprompt.png")
 Individual users have access to a Homepage that allows them to view and cancel their upcoming reservations. Business Homepage's allow businesses to view any reservations that users have made to visit their location.
-(business homepage)
+![Business Homepage]("./src/Images/business_homepage.png")
 
-## Future Development for Placebook
+## Future Development For Placebook
+
+We believe that Placebook has the ability to be used nation-wide, or bigger! 
+There are some things that we would love to add in the future to make this possible:
+- React Native app capabilites (PWA)
+- Shaded time slots to easily determine which timelslots are in the past or future
+- Modals to confirm chosen timeslots
 
 ## Authors
 [Peter Blank]("https://github.com/blapete")
