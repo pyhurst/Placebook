@@ -83,6 +83,8 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
         // console.log(result);
         if (state.username === "") {
             return window.location.href = "/login"
+        } else if (localStorage.getItem("type")) {
+            return alert("Sorry you are a business account now, please create a non-business account to make reservations.")
         } else {
             console.log(state)
             console.log(bizContext)
