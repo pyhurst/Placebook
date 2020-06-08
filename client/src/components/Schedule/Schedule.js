@@ -182,19 +182,20 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
     //     }
     // }
 
+    
 
     return (
         <div>
             {timeblockState.map((time) => (
-                <div className="schedule">
-                    <h4>Time: {time}</h4>
-                    <h4 id={time}>{bizContext[0].times.capacity} spots!</h4>
+                <div className="schedule" data-aos="zoom-in">
+                    <h4 style={{color: "rgb(107, 114, 125)"}}>Time: {time}</h4>
+                    <h4 style={{color: "rgb(120, 200, 166)"}}id={time}>{bizContext[0].times.capacity} spots!</h4>
                     {/* <h4 id={time}>{todaysReservations.map(res => (
                             res.time === time ? (res.capacity - res.customerIds.length) : bizContext[0].times.capacity
                         ))} spots left!</h4> */}
                     {/* <h4>{() => capacityOnDivs(time)} spots left!</h4> */}
                     <button
-                        className="reserveBtn"
+                        className="reserveBtn button btn-secondary"
                         onClick={() => userCheck(time, dataSelectedDate)}
                     >
                         Reserve!
@@ -203,6 +204,6 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
             ))}
         </div>
     )
-                    };
+};
 
-                    export default Schedule;
+export default Schedule;

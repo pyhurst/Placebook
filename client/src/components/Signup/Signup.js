@@ -6,14 +6,12 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { Jumbotron, InputGroup } from "reactstrap";
 import { Form, FormGroup, Label, Input } from "reactstrap";
-
 const Signup = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const emailRef = useRef();
   const [state, dispatch] = useUserContext();
   const [userState, userDispatch] = useUserContext();
-
   const checkLocal = () => {
     let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
     if (storageStatus) {
@@ -29,7 +27,6 @@ const Signup = () => {
     }
   };
   checkLocal();
-
   const handleSubmit = (e) => {
     API.addUser({
       username: usernameRef.current.value,
@@ -41,7 +38,6 @@ const Signup = () => {
       })
       .catch((err) => console.log(err));
   };
-
   return (
     <div>
       <Navbar status={userState.username} />
@@ -51,49 +47,32 @@ const Signup = () => {
         <div id="Signup">
           <Jumbotron>
             <h1>Signup for Placebook</h1>
-            {/* <Form className="container signup-form">
+        <form className="signup-form">
         <FormGroup>
-        <Label htmlFor="username">Username: </Label>
-          <Input style={{"width": "200px"}}
+          <label htmlFor="username">Username: </label>
+          <br></br>
+          <input
             type="text"
             name="username"
             id="usernameInput"
             ref={usernameRef}
           />
-          <Label htmlFor="email">Email: </Label>
-          <Input style={{"width": "200px"}} type="text" name="email" id="emailInput" ref={emailRef} />
-          <Label htmlFor="password">Password: </Label>
-          <Input
-          style={{"width": "200px"}}
+          <br></br>
+          <label htmlFor="email">Email: </label>
+          <br></br>
+          <input type="text" name="email" id="emailInput" ref={emailRef} />
+          <br></br>
+          <label htmlFor="password">Password: </label>
+          <br></br>
+          <input
             type="password"
             name="password"
             id="passwordInput"
             ref={passwordRef}
           />
-          <Link to="/login" onClick={handleSubmit}>
-            Sign Up
-          </Link>
-        </FormGroup>
-        </Form> */}
-        <form className="signup-form">
-        <FormGroup>
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text"
-            name="username"
-            id="usernameInput"
-            ref={usernameRef}
-          />
-          <label htmlFor="email">Email: </label>
-          <input type="text" name="email" id="emailInput" ref={emailRef} />
-          <label htmlFor="password">Password: </label>
-          <input
-            type="text"
-            name="password"
-            id="passwordInput"
-            ref={passwordRef}
-          />
-          <Link to="/login" onClick={handleSubmit}>
+          <br></br>
+          <br></br>
+          <Link className="btn btn-secondary" to="/login" onClick={handleSubmit}>
             Sign Up
           </Link>
           </FormGroup>
@@ -104,5 +83,4 @@ const Signup = () => {
      </div>
   );
 };
-
 export default Signup;

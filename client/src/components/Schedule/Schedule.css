@@ -3,6 +3,7 @@
     background-color:white;
     padding: 10px 15px;
     margin-bottom: 5px;
+    border-radius: 5px;
 }
 
 h4:nth-child(2) {
