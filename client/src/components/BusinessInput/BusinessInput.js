@@ -2,7 +2,7 @@ import React, { useRef, useContext } from "react";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 import DropdownEl from "../Dropdown/Dropdown";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input, Jumbotron } from "reactstrap";
 
 const BusinessInputs = (props) => {
     const businessNameRef = useRef();
@@ -59,9 +59,13 @@ const BusinessInputs = (props) => {
     //   }
     return (
         <div id="Signup" className="container">
+            <Jumbotron>
                 <form>
                 <div className="row">
                     <div className="col">
+                        <h2>Please fill out this form to add your business.</h2>
+                        </div>
+                        <div className="col">
                         <label for="businessName">Business Name: </label>
                         <br></br>
                         <input
@@ -154,11 +158,15 @@ const BusinessInputs = (props) => {
                         />
                         <br></br>
                         <br></br>
-                        <Button onClick={handleSubmit}>Add my business!</Button>
-                        
+                    </div>
+                    </div>
+                    <div className="row">
+                    <div className="col" style={{margin: "auto"}}>
+                    <Button onClick={handleSubmit}>Add my business!</Button>
                     </div>
                     </div>
                 </form>
+                </Jumbotron>
                 <div style={{height: "200px"}}></div>        
         </div>
     );

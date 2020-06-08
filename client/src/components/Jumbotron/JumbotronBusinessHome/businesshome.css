@@ -1,0 +1,9 @@
+h2 {
+    text-shadow: 1px 2px 3px darkcyan;
+}
+
+div.jumbotron.jumbotron-fluid {
+    border-radius: 5px;
+    margin-left: none;
+    margin-right: none;
+}

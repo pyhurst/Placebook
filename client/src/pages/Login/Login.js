@@ -47,8 +47,8 @@ const Login = () => {
       <Navbar />
       <Jumbotron>
         <div id="Login">
-          <h1>Login to Placebook</h1>
-          <h5>New here? <Link style={{color: "rgb(120, 200, 166)"}}to="/signup">Sign up</Link> for an account to log in.</h5>
+          <h1>Log In to Placebook</h1>
+          <h5>New here? <Link style={{color: "rgb(120, 200, 166)", textShadow:"1px 2px 3px black"}}to="/signup">Sign up</Link> for an account to log in.</h5>
           <form>
         
             <label htmlFor="username">Username: </label>
