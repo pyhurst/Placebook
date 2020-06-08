@@ -18,7 +18,6 @@ const Login = () => {
       password: passwordRef.current.value,
     })
       .then((result) => {
-        console.log(result)
         if (result.status === 200) {
           dispatch({
             type: "ADD_USER",
@@ -27,14 +26,17 @@ const Login = () => {
             reservations: result.data.data.reservations,
             _id: result.data.data._id,
           });
-          // console.log("hiiii", result);
           localStorage.setItem("currentUser", JSON.stringify(result.data.data));
         }
-        if(result.data.type === "user") {
-          window.location = "/user/home"
+        if (JSON.parse(localStorage.getItem("isBusiness"))) {
+          localStorage.setItem("type", "business");
+          return (window.location = "/businessSignup");
+        }
+        if (result.data.type === "user") {
+          window.location = "/user/home";
         } else {
           localStorage.setItem("type", "business");
-          window.location = "/business/home"
+          window.location = "/business/home";
         }
       })
       .catch((err) => console.log(err));

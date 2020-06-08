@@ -8,6 +8,7 @@ import "bulma/css/bulma.css";
 
 const Navbar = (props) => {
   const [userState, userDispatch] = useUserContext();
+
   const loGout = () => {
     API.userLogout(userState)
       .then((e) => {
@@ -19,6 +20,9 @@ const Navbar = (props) => {
         });
         localStorage.removeItem("currentUser");
         localStorage.removeItem("type");
+        if (localStorage.getItem("isBusiness")) {
+          localStorage.removeItem("isBusiness");
+        }
       })
       .then(() => {
         window.location.reload();
@@ -26,12 +30,12 @@ const Navbar = (props) => {
   };
 
   const bizCheck = () => {
-    if(localStorage.getItem("type")){
-      window.location = "/business/home"
+    if (localStorage.getItem("type")) {
+      window.location = "/business/home";
     } else {
-      window.location = "/user/home"
+      window.location = "/user/home";
     }
-  }
+  };
 
   if (props.status) {
     return (
@@ -69,7 +73,9 @@ const Navbar = (props) => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div id="business-link" className="navbar-item">
-              <Link style={{"color": "rgb(120, 200, 166)"}} onClick={bizCheck}>My Homepage</Link>
+              <Link style={{ color: "rgb(120, 200, 166)" }} onClick={bizCheck}>
+                My Homepage
+              </Link>
             </div>
             <div id="actionButtons" className="buttons">
               <Link
