@@ -32,13 +32,15 @@ router.route("/post/:id")
     .post(placeController.findBusiness);
 
 
+    router.route("/add/reservation/:id")
+        .post(placeController.addReservation);
 
 
 
 // Matches with "/api/businesses/:id"
 router.route("/:id")
     .get(placeController.findOne)
-    .post(placeController.addReservation);
+    // .post(placeController.addReservation);
 //   .put(placeController.update)
 //   .delete(placeController.remove);
 
