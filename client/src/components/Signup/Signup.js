@@ -31,15 +31,20 @@ const Signup = () => {
   checkLocal();
 
   const handleSubmit = (e) => {
-    API.addUser({
-      username: usernameRef.current.value,
-      password: passwordRef.current.value,
-      email: emailRef.current.value,
-    })
-      .then((result) => {
-        console.log("this", result);
+    if (usernameRef.current.value === "" || passwordRef.current.value === "" || emailRef.current.value === "") {
+      alert("All Fields must be filled")
+    } else {
+      API.addUser({
+        username: usernameRef.current.value,
+        password: passwordRef.current.value,
+        email: emailRef.current.value,
       })
-      .catch((err) => console.log(err));
+        .then((result) => {
+          console.log("this", result);
+          window.location = ("/login")
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -48,10 +53,10 @@ const Signup = () => {
       {userState.username ? (
         <div></div>
       ) : (
-        <div id="Signup">
-          <Jumbotron>
-            <h1>Signup for Placebook</h1>
-            {/* <Form className="container signup-form">
+          <div id="Signup">
+            <Jumbotron>
+              <h1>Signup for Placebook</h1>
+              {/* <Form className="container signup-form">
         <FormGroup>
         <Label htmlFor="username">Username: </Label>
           <Input style={{"width": "200px"}}
@@ -75,33 +80,33 @@ const Signup = () => {
           </Link>
         </FormGroup>
         </Form> */}
-        <form className="signup-form">
-        <FormGroup>
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text"
-            name="username"
-            id="usernameInput"
-            ref={usernameRef}
-          />
-          <label htmlFor="email">Email: </label>
-          <input type="text" name="email" id="emailInput" ref={emailRef} />
-          <label htmlFor="password">Password: </label>
-          <input
-            type="text"
-            name="password"
-            id="passwordInput"
-            ref={passwordRef}
-          />
-          <Link to="/login" onClick={handleSubmit}>
-            Sign Up
+              <form className="signup-form">
+                <FormGroup>
+                  <label htmlFor="username">Username: </label>
+                  <input
+                    type="text"
+                    name="username"
+                    id="usernameInput"
+                    ref={usernameRef}
+                  />
+                  <label htmlFor="email">Email: </label>
+                  <input type="text" name="email" id="emailInput" ref={emailRef} />
+                  <label htmlFor="password">Password: </label>
+                  <input
+                    type="text"
+                    name="password"
+                    id="passwordInput"
+                    ref={passwordRef}
+                  />
+                  <Link onClick={handleSubmit}>
+                    Sign Up
           </Link>
-          </FormGroup>
-        </form>
-        </Jumbotron>
-      </div>
-      )}
-     </div>
+                </FormGroup>
+              </form>
+            </Jumbotron>
+          </div>
+        )}
+    </div>
   );
 };
 
