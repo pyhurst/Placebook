@@ -50,6 +50,7 @@ router.route("/login").post(
           username: req.user.username,
           email: req.user.email,
           reservations: req.user.reservations,
+          pastReservations: req.user.pastReservations,
           _id: req.user._id,
         };
         if (result === null) {

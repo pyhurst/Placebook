@@ -202,7 +202,7 @@ const Schedule = ({ dataSelectedDate, todaysReservations }) => {
     return (
         <div>
             {timeblockState.map((time) => (
-                <div className="schedule">
+                <div className="schedule" data-aos="zoom-in">
                     <h4>Time: {time}</h4>
                     {/* <h4 id={time}>{bizContext[0].times.capacity} spots!</h4> */}
                     {/* <h4 id={time}>{todaysReservations.map(res => (

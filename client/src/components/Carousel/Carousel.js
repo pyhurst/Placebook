@@ -58,6 +58,7 @@ class MyCarousel extends React.Component {
                   city={biz.city}
                   phone={biz.phone}
                 />
+                
               );
             })}
           </Carousel>

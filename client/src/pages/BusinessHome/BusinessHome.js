@@ -52,7 +52,7 @@ const BusinessHome = () => {
         });
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [date]);
 
   const renderAppts = () => {
     let newThing = JSON.parse(localStorage.getItem("currentUser"));
