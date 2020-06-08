@@ -68,18 +68,33 @@ const Business = () => {
       console.log(user.reservations[i].time.split(" "));
       const dateSplit = user.reservations[i].date.split("/");
       const timeSplit = user.reservations[i].time.split(" ");
+      // ["8", "AM"]
+      // ["8:30", "PM"]
+      // ["12:30", "PM"]
       const now = Date.now();
-      // const date = new Date(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getDate(), new Date().getUTCHours());
-      if(timeSplit[1] === "PM"){
-        timeSplit[0] = parseInt(timeSplit[0]) + 12;
-        // console.log(toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0]))
-        // return timeSplit[0];
+      let resStamp;
+      if(timeSplit[0].includes(":")){
+        console.log("includes")
+        const colonSplit = timeSplit[0];
+        if(timeSplit[1] === "PM"){
+          colonSplit[0] = parseInt(timeSplit[0]) + 12;
+          resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),colonSplit[0],30,0,0);
+        } else {
+          resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),colonSplit[0],30,0,0);
+        }
+      } else {
+        if(timeSplit[1] === "PM"){
+          timeSplit[0] = parseInt(timeSplit[0]) + 12;
+        console.log("nope")
+        resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
+
+      } else {
+        resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
+      }
+      // if(timeSplit[1] === "PM"){
+      //   timeSplit[0] = parseInt(timeSplit[0]) + 12;
       } 
-      // else {
-      //   return timeSplit[0];
-      //   // console.log(toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0]))
-      // }
-      const resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
+      // const resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
       console.log("today ", now);
       console.log(resStamp)
 

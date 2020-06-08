@@ -58,22 +58,6 @@ module.exports = {
                         res.json(dbModel);
                     })
                     .catch((err) => res.status(422).json(err));
-
-                // db.User.findByIdAndUpdate(
-                //     { _id: req.params.id },
-                //     {
-                //         $set: {
-                //             reservations: filteredOut,
-                //         },
-                //     },
-                //     { new: true }
-                // )
-                //     .then((userResponse) => {
-                //         console.log("peter", userResponse)
-                //     })
-                //     .catch((err) => res.status(422).json(err));
-                //     res.json(userResponse)
-
             })
 
             .catch((err) => console.log(err));
