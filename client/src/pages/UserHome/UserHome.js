@@ -122,12 +122,12 @@ const Business = () => {
   //manage the state of past favorites
   const past = () => {
     // const temp = userState.pastReservations.map(reservations => reservations)
-    console.log('first')
-    console.log(JSON.stringify(userState))
-    console.log(JSON.stringify(userState.pastReservations.length))
-    const length = parseInt(userState.pastReservations.length);
-    console.log(typeof length)
-    const pastArray = [];
+    // console.log('first')
+    // console.log(JSON.stringify(userState))
+    // console.log(JSON.stringify(userState.pastReservations.length))
+    // const length = parseInt(userState.pastReservations.length);
+    // console.log(typeof length)
+    // const pastArray = [];
 
     // for (let i = 0; i < length; i++) {
     //   // console.log('worked')
@@ -139,7 +139,7 @@ const Business = () => {
     setpastResState(userState.pastReservations.map(reservations => reservations));
     // console.log(pastResState);
     // return pastArray;
-
+    
   }
 
   React.useEffect(() => {
