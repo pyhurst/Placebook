@@ -43,10 +43,6 @@ const Business = () => {
     console.log(e.target.getAttribute("userId"));
     console.log(e.target.getAttribute("resId"));
 
-
-
-
-
     API.deleteUserReservation(e.target.getAttribute("userId"), {
       businessId: e.target.getAttribute("businessId"),
       date: e.target.getAttribute("date"),
@@ -108,7 +104,6 @@ const Business = () => {
         .then(result => {
           console.log(result)
           localStorage.setItem("currentUser", JSON.stringify(result.data));
-          window.location.reload("/user/home");
         })
       } else {
         console.log("stays here")
@@ -121,6 +116,7 @@ const Business = () => {
       var datum = new Date(Date.UTC(year,month-1,day,hour-1,minute,second,millisecond));
       return datum.getTime();
      }
+     window.location.reload("/user/home");
   }
 
   //manage the state of past favorites
