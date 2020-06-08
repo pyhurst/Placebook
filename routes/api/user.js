@@ -96,8 +96,11 @@ router.route("/logout").post((req, res) => {
   }
 });
 
-router.route("/reservation/:id").post(userController.addUserReservation)
 
 router.route("/reservation/delete/:id").post(userController.deleteUserReservation)
+
+router.route("/reservation/past/:id").post(userController.pushPastReservation)
+
+router.route("/reservation/user/:id").post(userController.addUserReservation)
 
 module.exports = router;

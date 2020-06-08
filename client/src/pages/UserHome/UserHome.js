@@ -41,9 +41,9 @@ const Business = () => {
     console.log(e.target.getAttribute("userId"));
     console.log(e.target.getAttribute("resId"));
 
-    // need to do an API call to delete reservation from the user model
-    // need to do an API call to delete reservation from the business model
-    // need to update local storage with the removed reservation
+
+
+
 
     API.deleteUserReservation(e.target.getAttribute("userId"), {
       businessId: e.target.getAttribute("businessId"),
@@ -58,6 +58,72 @@ const Business = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  const deletePast = () => {
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    for (let i = 0; i < user.reservations.length; i++) {
+      console.log(user.reservations[i].date);
+      console.log(user.reservations[i].time);
+      console.log(user.reservations[i].date.split("/"));
+      console.log(user.reservations[i].time.split(" "));
+      const dateSplit = user.reservations[i].date.split("/");
+      const timeSplit = user.reservations[i].time.split(" ");
+      // ["8", "AM"]
+      // ["8:30", "PM"]
+      // ["12:30", "PM"]
+      const now = Date.now();
+      let resStamp;
+      if(timeSplit[0].includes(":")){
+        console.log("includes")
+        const colonSplit = timeSplit[0];
+        if(timeSplit[1] === "PM"){
+          colonSplit[0] = parseInt(timeSplit[0]) + 12;
+          resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),colonSplit[0],30,0,0);
+        } else {
+          resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),colonSplit[0],30,0,0);
+        }
+      } else {
+        if(timeSplit[1] === "PM"){
+          timeSplit[0] = parseInt(timeSplit[0]) + 12;
+        console.log("nope")
+        resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
+
+      } else {
+        resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
+      }
+      // if(timeSplit[1] === "PM"){
+      //   timeSplit[0] = parseInt(timeSplit[0]) + 12;
+      } 
+      // const resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
+      console.log("today ", now);
+      console.log(resStamp)
+
+      if(resStamp < now){
+        console.log("move to past reservations")
+        API.pushPastReservation(user._id, {
+          resId: user.reservations[i]._id
+        })
+        .then(result => {
+          console.log(result)
+          localStorage.setItem("currentUser", JSON.stringify(result.data));
+          window.location.reload("/user/home");
+        })
+      } else {
+        console.log("stays here")
+      }
+      // console.log(toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0]))
+    }
+    // ideas from
+    // https://www.hashbangcode.com/article/convert-date-timestamp-javascript
+    function toTimestamp(year,month,day,hour,minute,second,millisecond){
+      var datum = new Date(Date.UTC(year,month-1,day,hour-1,minute,second,millisecond));
+      return datum.getTime();
+     }
+  }
+
+  React.useEffect(() => {
+    deletePast();
+  }, []);
 
   const renderAppts = () => {
     let something = apptData.reservations.map((e) => {
