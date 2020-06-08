@@ -83,36 +83,43 @@ const Signup = () => {
       ) : (
           <div id="Signup">
             <Jumbotron>
-              <h1>Signup for Placebook</h1>
+              <h1>Sign Up for Placebook</h1>
               <form className="signup-form">
                 <FormGroup>
                   <label htmlFor="username">Username: </label>
+                  <br></br>
                   <input
                     type="text"
                     name="username"
                     id="usernameInput"
                     ref={usernameRef}
                   />
+                  <br></br>
                   <label htmlFor="email">Email: </label>
+                  <br></br>
                   <input type="text" name="email" id="emailInput" ref={emailRef} />
+                  <br></br>
                   <label htmlFor="password">Password: </label>
+                  <br></br>
                   <input
                     type="password"
                     name="password"
                     id="passwordInput"
                     ref={passwordRef}
                   />
+                  <br></br>
                   <label htmlFor="confirmPassword">Confirm Password: </label>
+                  <br></br>
                   <input
                     type="password"
                     name="confirmPassword"
                     id="confirmPasswordInput"
                     ref={confirmPasswordRef}
                   />
+                  <br></br>
+                  <br></br>
                   <Link onClick={handleSubmit} className="btn btn-secondary">
                     Sign Up
-          <br></br>
-                    <br></br>
                   </Link>
                 </FormGroup>
               </form>

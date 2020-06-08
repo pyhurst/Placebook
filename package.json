@@ -33,6 +33,7 @@
     "passport-local": "^1.0.0",
     "react-multi-carousel": "^2.5.5",
     "reactstrap": "^8.4.1",
+    "serve-favicon": "^2.5.0",
     "shortid": "^2.2.15"
   }
 }

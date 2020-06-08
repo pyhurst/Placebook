@@ -54,6 +54,7 @@ class Main extends React.Component {
           </div>
           <MyCarousel businessCategory={this.state.businessCategory} />
         </section>
+        <div style={{height: "200px"}}></div>
       </div>
     );
   }

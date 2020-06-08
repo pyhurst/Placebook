@@ -50,7 +50,7 @@ const Navbar = (props) => {
             />
           </Link>
           <Link
-            to="#"
+            to="/about"
             role="button"
             className="navbar-burger"
             aria-label="menu"

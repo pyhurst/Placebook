@@ -125,7 +125,7 @@ const Business = () => {
 
   //manage the state of past favorites
   const past = () => {
-    // const temp = 
+    // const temp = userState.pastReservations.map(reservations => reservations)
     console.log('first')
     console.log(JSON.stringify(userState))
     console.log(JSON.stringify(userState.pastReservations.length))
