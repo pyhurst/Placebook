@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Calendarapp from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
 import Jumbo from "../../components/Jumbotron/JumbotronBusinessHome/JumbotronBusinessHome";
@@ -11,7 +11,7 @@ const BusinessHome = () => {
   const [bizState, bizDispatch] = useBizContext();
   const [userState, userDispatch] = useUserContext();
   const [date, setDate] = React.useState(new Date());
-  // const [userAuth, setuserAuth] = useState("");
+  const [appointments, setAppointments] = useState([]);
 
   const checkLocal = () => {
     let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
@@ -33,10 +33,10 @@ const BusinessHome = () => {
     const user = JSON.parse(localStorage.getItem("currentUser"));
     console.log(user._id);
     API.findOneBiz(user._id, {
-      date: date.toLocaleDateString()
+      date: date.toLocaleDateString(),
     })
       .then((bizResult) => {
-        console.log(bizResult)
+        setAppointments(bizResult.data.business.reservations);
         bizDispatch({
           type: "UPDATE_BIZ",
           businessId: bizResult.data.business._id,
@@ -49,21 +49,16 @@ const BusinessHome = () => {
             close: bizResult.data.business.times.close,
             timeslot_length: bizResult.data.business.times.timeslot_length,
             capacity: bizResult.data.business.times.capacity,
-          }
+          },
         });
       })
       .catch((err) => console.log(err));
   }, []);
 
-  // const navBar = () => {
-  //   console.log("navbar function");
-  //   if (userAuth !== "") {
-  //     return <Navbar status="user" />;
-  //   } else {
-  //     return <Navbar />;
-  //   }
-  // };
   const renderAppts = () => {
+    let newThing = JSON.parse(localStorage.getItem("currentUser"));
+    let appointments = newThing.reservations;
+    console.log("appointments", appointments);
     let something = bizState.reservations.map((e) => {
       return (
         <div className="row">
@@ -71,7 +66,7 @@ const BusinessHome = () => {
             className="button"
             style={{ display: "block", margin: "10px", width: "auto" }}
           >
-            Day: {e.date} Time: {e.time} Place: {e.businessName}
+            Time: {e.time}
           </button>
           {/* <button
             businessId={e.businessId}
@@ -90,8 +85,6 @@ const BusinessHome = () => {
     return something;
   };
 
- 
-
   return (
     <div>
       <Navbar status={userState.username} />
@@ -103,14 +96,16 @@ const BusinessHome = () => {
               <Calendarapp handleOnChange={setDate} />
             </div>
             <div className="column">
-              <h6>Date:</h6>
-              <p>Your appointments:</p>
+              <p>Your appointments: </p>
+              {renderAppts()}
             </div>
-
           </div>
-
         </div>
-        {renderAppts()}
+        <div className="section">
+          <div className="column">
+            <h6>Date: {date.toLocaleDateString()}</h6>
+          </div>
+        </div>
       </div>
     </div>
   );
