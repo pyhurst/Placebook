@@ -17,7 +17,7 @@ const DropdownEl = (props) => {
   //   console.log(e.target.value)
   // }
 
-  const categoryRef = React.createRef();
+  // const categoryRef = React.createRef();
 
 
   if (props.time === "times") {
@@ -54,7 +54,7 @@ const DropdownEl = (props) => {
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret>Business Category</DropdownToggle>
       <DropdownMenu>
-        <DropdownItem ref={categoryRef} value="Gym" onClick={props.onSwitch}>Gym</DropdownItem> 
+        <DropdownItem value="Gym" onClick={props.onSwitch}>Gym</DropdownItem> 
         <DropdownItem value="Beauty" onClick={props.onSwitch}>Beauty</DropdownItem>
         <DropdownItem value="Hardware" onClick={props.onSwitch}>Hardware</DropdownItem>
         <DropdownItem value="Retail" onClick={props.onSwitch}>Retail</DropdownItem>
@@ -68,7 +68,7 @@ const DropdownEl = (props) => {
   } else {
     return (
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-        <DropdownToggle caret>View Businesses by Category</DropdownToggle>
+        <DropdownToggle style={{"backgroundColor": "rgb(120, 200, 166)"}} caret>View Businesses by Category</DropdownToggle>
         <DropdownMenu>
           <DropdownItem value="Gym" onClick={props.handleOnClick}>Gym</DropdownItem>
           <DropdownItem value="Beauty" onClick={props.handleOnClick}>Beauty</DropdownItem>

@@ -3,7 +3,7 @@ import logo from "../../Images/placebook logo.png";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import { useUserContext } from "../../utils/UserContext";
-
+import "./Navbar.css";
 import "bulma/css/bulma.css";
 
 const Navbar = (props) => {
@@ -98,13 +98,14 @@ const Navbar = (props) => {
           <Link className="navbar-item" to="/">
             <img
               src={logo}
-              alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
+              alt="Placebook Logo"
+              title="Placebook Home"
               width="112"
               height="30"
             />
           </Link>
           <Link
-            to="#"
+            to="/about"
             role="button"
             className="navbar-burger"
             aria-label="menu"
@@ -138,7 +139,7 @@ const Navbar = (props) => {
                 id="sign-up"
                 className="button"
               >
-                <strong>Sign up</strong>
+                <strong style={{color: "white"}}>Sign up</strong>
               </Link>
               <Link
                 style={{ color: "rgb(120, 200, 166)" }}

@@ -20,10 +20,10 @@ const Card = (props) => {
             waves
           />
           <MDBCardBody>
-            <MDBCardTitle>{props.name}</MDBCardTitle>
+            <MDBCardTitle style={{"color": "rgb(120, 200, 166)"}} >{props.name}</MDBCardTitle>
             <MDBCardText>{props.category}</MDBCardText>
             <MDBCardText>{props.address}</MDBCardText>
-            <Link to={"/business/page/" + props._id}>View Business Page</Link>
+            <Link to={"/business/page/" + props._id} style={{"color": "rgb(100, 180, 214)"}}>View Business Page</Link>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>

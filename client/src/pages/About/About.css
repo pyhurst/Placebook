@@ -5,6 +5,9 @@
   background-size: cover;
   background-position: center;
 } */
+* {
+  font-family: Avenir;
+}
 
 div.jumbotron {
   background-color: rgb(100, 180, 214);
@@ -12,7 +15,7 @@ div.jumbotron {
 }
 
 h1 {
-  text-shadow: 1px 2px 3px black;
+  text-shadow: 1px 2px 3px darkcyan;
 }
 
 h5, h6 {
