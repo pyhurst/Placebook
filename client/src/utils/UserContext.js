@@ -10,7 +10,8 @@ const reducer = (state, action) => {
         ...state,
         username: action.username,
         email: action.email,
-        reservations: [action.reservations],
+        reservations: action.reservations,
+        pastReservations: action.pastReservations,
         _id: action._id,
       };
     default:
@@ -23,6 +24,7 @@ const UserProvider = ({ value = [], ...props }) => {
     username: "",
     email: "",
     reservations: [],
+    pastReservations: [],
     _id: "",
   });
 
