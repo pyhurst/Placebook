@@ -36,17 +36,23 @@ const Signup = () => {
     } else if (usernameRef.current.value && passwordRef.current.value && emailRef.current.value) {
       const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       if(emailRegex.test(emailRef.current.value)){
-        API.addUser({
-          username: usernameRef.current.value,
-          password: passwordRef.current.value,
-          email: emailRef.current.value,
-        })
-          .then((result) => {
-            console.log("this", result);
-            window.location = ("/login")
+        if(passwordRef.current.value.length > 7){
+          API.addUser({
+            username: usernameRef.current.value,
+            password: passwordRef.current.value,
+            email: emailRef.current.value,
           })
-          .catch((err) => console.log(err));
-        return true;
+            .then((result) => {
+              console.log("this", result);
+              window.location = ("/login")
+            })
+            .catch((err) => console.log(err));
+          return true;
+        } else {
+          alert("Password must be greater than 7 characters")
+          return false;
+        }
+
       } else {
         alert("This is not a valid email, try again")
         return false;
@@ -112,7 +118,7 @@ const Signup = () => {
                   <input type="text" name="email" id="emailInput" ref={emailRef} />
                   <label htmlFor="password">Password: </label>
                   <input
-                    type="text"
+                    type="password"
                     name="password"
                     id="passwordInput"
                     ref={passwordRef}
