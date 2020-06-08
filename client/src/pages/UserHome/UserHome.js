@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 
 const Business = () => {
   const [userState, userDispatch] = useUserContext();
+  const [pastResNameState, setpastResNameState] = React.useState([]);
+  const [pastResIdState, setpastResIdState] = React.useState([]);
   const [pastResState, setpastResState] = React.useState([]);
 
   const checkLocal = () => {
@@ -137,10 +139,23 @@ const Business = () => {
     //   // let aTag = `<a href="/home">${JSON.stringify(userState.pastReservations[i].businessName)}</a>`
     //   pastArray.push(userState.pastReservations[i])
     // }
-    setpastResState(userState.pastReservations.map(reservations => reservations));
+    const nameArray = [];
+    const IdArray = [];
+
+    setpastResState(userState.pastReservations.map(reservations => 
+      // array = array.push(reservations.businessName);
+      reservations
+    ));
     // console.log(pastResState);
     // return pastArray;
-    
+    for (let i = 0; i < userState.pastReservations.length; i++) {
+      if(nameArray.includes(userState.pastReservations[i].businessName) === false){
+        nameArray.push(userState.pastReservations[i].businessName);
+        IdArray.push(userState.pastReservations[i].businessId);
+      }
+    }
+    setpastResNameState(nameArray);
+    setpastResIdState(IdArray);    
   }
 
   React.useEffect(() => {
@@ -186,9 +201,9 @@ const Business = () => {
           <div className="columns">
             <div className="column">Welcome, {userState.username} </div>
             <div className="column">Appointments: {apptData.amount}</div>
-            <div className="column">Favorite Spots: {pastResState.map(pastRes => {
+            <div className="column">Favorite Spots: {pastResNameState.map((pastRes, i) => {
               return (
-                <a style={{display: "block"}} href={`/business/page/${pastRes.businessId}`} >{pastRes.businessName}</a>
+                <a style={{display: "block"}} href={`/business/page/${pastResIdState[i]}`} >{pastRes}</a>
               )
             })}
             </div>
