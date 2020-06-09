@@ -63,12 +63,12 @@ There are some things that we would love to add in the future to make this possi
 ### Authors
 [Peter Blank]("https://github.com/blapete")
 ---
-![Peter Blank](http://avatars0.githubusercontent.com/blapete)
+![Github profile pic](https://avatars2.githubusercontent.com/blapete)
 
 [Emily Resch]("https://github.com/emilyresch")
 ---
-![Emily Resch](http://avatars0.githubusercontent.com/emilyresch) 
+![Github profile pic](https://avatars2.githubusercontent.com/emilyresch)
 
 [Phil Hurst]("https://github.com/pyhurst")
 ---
-![Phil Hurst](http://avatars0.githubusercontent.com/pyhurst) 
+![Github profile pic](https://avatars2.githubusercontent.com/pyhurst)
