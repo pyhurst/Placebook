@@ -6,6 +6,7 @@ import { useUserContext } from "../../utils/UserContext";
 import "./Navbar.css";
 import "bulma/css/bulma.css";
 
+//different Navbars based on whether user is logged in 
 const Navbar = (props) => {
   const [userState, userDispatch] = useUserContext();
 

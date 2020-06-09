@@ -24,7 +24,7 @@ const responsive = {
     items: 2,
   },
 };
-
+//MAPS OVER BUSINESSES TO CREATE CARD COMPONENTS
 class MyCarousel extends React.Component {
   constructor(props) {
     super(props);

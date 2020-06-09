@@ -2,6 +2,7 @@ import React, { useRef, useContext } from "react";
 import API from "../../utils/API";
 import { Button, Jumbotron } from "reactstrap";
 
+//FORM TO SIGN UP A BUSINESS
 const BusinessInputs = (props) => {
     const businessNameRef = useRef();
     const categoryRef = useRef();
@@ -13,7 +14,6 @@ const BusinessInputs = (props) => {
     const timeSlotLengthRef = useRef();
     const capacityRef = useRef();
     const photoRef = useRef();
-
     const handleSubmit = (e) => {
         e.preventDefault();
         let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
