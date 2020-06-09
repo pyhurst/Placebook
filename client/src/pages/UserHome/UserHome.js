@@ -75,86 +75,115 @@ const Business = () => {
       const now = Date.now();
       let resStamp;
       if (timeSplit[0].includes(":")) {
-        console.log("includes")
+        console.log("includes");
         const colonSplit = timeSplit[0].split(":");
-        console.log(colonSplit[0])
+        console.log(colonSplit[0]);
 
         if (timeSplit[1] === "PM" && colonSplit[0] < 12) {
-          console.log(colonSplit[0])
+          console.log(colonSplit[0]);
           colonSplit[0] = parseInt(timeSplit[0]) + 12;
-          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), parseInt(colonSplit[0]), 29, 0, 0);
+          resStamp = toTimestamp(
+            parseInt(dateSplit[2]),
+            parseInt(dateSplit[0]),
+            parseInt(dateSplit[1]),
+            parseInt(colonSplit[0]),
+            29,
+            0,
+            0
+          );
           if (resStamp < now) {
-            console.log("move to past reservations")
+            console.log("move to past reservations");
             API.pushPastReservation(user._id, {
-              resId: user.reservations[i]._id
-            })
-              .then(result => {
-                console.log(result)
-                localStorage.setItem("currentUser", JSON.stringify(result.data));
-                window.location.reload("/user/home");
-              })
+              resId: user.reservations[i]._id,
+            }).then((result) => {
+              console.log(result);
+              localStorage.setItem("currentUser", JSON.stringify(result.data));
+              window.location.reload("/user/home");
+            });
           } else {
-            console.log("stays here")
+            console.log("stays here");
           }
         } else {
-          console.log(colonSplit[0])
+          console.log(colonSplit[0]);
 
-          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), parseInt(colonSplit[0]), 29, 0, 0);
+          resStamp = toTimestamp(
+            parseInt(dateSplit[2]),
+            parseInt(dateSplit[0]),
+            parseInt(dateSplit[1]),
+            parseInt(colonSplit[0]),
+            29,
+            0,
+            0
+          );
           if (resStamp < now) {
-            console.log("move to past reservations")
+            console.log("move to past reservations");
             API.pushPastReservation(user._id, {
-              resId: user.reservations[i]._id
-            })
-              .then(result => {
-                console.log(result)
-                localStorage.setItem("currentUser", JSON.stringify(result.data));
-                window.location.reload("/user/home");
-              })
+              resId: user.reservations[i]._id,
+            }).then((result) => {
+              console.log(result);
+              localStorage.setItem("currentUser", JSON.stringify(result.data));
+              window.location.reload("/user/home");
+            });
           } else {
-            console.log("stays here")
+            console.log("stays here");
           }
         }
       } else {
         if (timeSplit[1] === "PM" && timeSplit[0] < 12) {
           timeSplit[0] = parseInt(timeSplit[0]) + 12;
-          console.log("nope")
-          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), parseInt(timeSplit[0]), 0, 0, 0);
-
+          console.log("nope");
+          resStamp = toTimestamp(
+            parseInt(dateSplit[2]),
+            parseInt(dateSplit[0]),
+            parseInt(dateSplit[1]),
+            parseInt(timeSplit[0]),
+            0,
+            0,
+            0
+          );
         } else {
-          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), parseInt(timeSplit[0]), 0, 0, 0);
+          resStamp = toTimestamp(
+            parseInt(dateSplit[2]),
+            parseInt(dateSplit[0]),
+            parseInt(dateSplit[1]),
+            parseInt(timeSplit[0]),
+            0,
+            0,
+            0
+          );
         }
-          console.log("today ", now);
-          console.log(resStamp)
+        console.log("today ", now);
+        console.log(resStamp);
         // if(timeSplit[1] === "PM"){
         //   timeSplit[0] = parseInt(timeSplit[0]) + 12;
         if (resStamp < now) {
-          console.log("move to past reservations")
+          console.log("move to past reservations");
           API.pushPastReservation(user._id, {
-            resId: user.reservations[i]._id
-          })
-            .then(result => {
-              console.log(result)
-              localStorage.setItem("currentUser", JSON.stringify(result.data));
-              window.location.reload("/user/home");
-            })
+            resId: user.reservations[i]._id,
+          }).then((result) => {
+            console.log(result);
+            localStorage.setItem("currentUser", JSON.stringify(result.data));
+            window.location.reload("/user/home");
+          });
         } else {
-          console.log("stays here")
+          console.log("stays here");
         }
       }
       // const resStamp = toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0],0,0,0);
       // console.log("today ", now);
       // console.log(resStamp)
 
-
       // console.log(toTimestamp(parseInt(dateSplit[2]),parseInt(dateSplit[0]),parseInt(dateSplit[1]),timeSplit[0]))
     }
     // ideas from
     // https://www.hashbangcode.com/article/convert-date-timestamp-javascript
     function toTimestamp(year, month, day, hour, minute, second, millisecond) {
-      var datum = new Date(Date.UTC(year, month - 1, day, hour - 1, minute, second, millisecond));
+      var datum = new Date(
+        Date.UTC(year, month - 1, day, hour - 1, minute, second, millisecond)
+      );
       return datum.getTime();
     }
-  }
+  };
 
   //manage the state of past favorites
   const past = () => {
@@ -176,21 +205,23 @@ const Business = () => {
     const nameArray = [];
     const IdArray = [];
 
-    // setpastResState(userState.pastReservations.map(reservations => 
+    // setpastResState(userState.pastReservations.map(reservations =>
     //   // array = array.push(reservations.businessName);
     //   reservations
     // ));
     // console.log(pastResState);
     // return pastArray;
     for (let i = 0; i < userState.pastReservations.length; i++) {
-      if (nameArray.includes(userState.pastReservations[i].businessName) === false) {
+      if (
+        nameArray.includes(userState.pastReservations[i].businessName) === false
+      ) {
         nameArray.push(userState.pastReservations[i].businessName);
         IdArray.push(userState.pastReservations[i].businessId);
       }
     }
     setpastResNameState(nameArray);
     setpastResIdState(IdArray);
-  }
+  };
 
   React.useEffect(() => {
     deletePast();
@@ -225,21 +256,25 @@ const Business = () => {
     return something;
   };
 
-
-
   return (
     <div>
       <Navbar status={userState.username} />
 
       <Jumbotron>
-
         <h1>Welcome, {userState.username} </h1>
         <h2>Appointments: {apptData.amount}</h2>
-        <h4 >Favorite Spots: {pastResNameState.map((pastRes, i) => {
-          return (
-            <a style={{ display: "block" }} href={`/business/page/${pastResIdState[i]}`} >{pastRes}</a>
-          )
-        })}
+        <h4>
+          Favorite Spots:{" "}
+          {pastResNameState.map((pastRes, i) => {
+            return (
+              <a
+                style={{ display: "block" }}
+                href={`/business/page/${pastResIdState[i]}`}
+              >
+                {pastRes}
+              </a>
+            );
+          })}
         </h4>
 
         <br />
@@ -249,15 +284,15 @@ const Business = () => {
           to="/businessSignUp"
         >
           Create a business*
-              </Link>
+        </Link>
         <br />
         <br />
-        <h6>*When you create a business account, you will not be able to make personal reservations.</h6>
+        <h6>
+          *When you create a business account, you will not be able to make
+          personal reservations.
+        </h6>
       </Jumbotron>
-      <div className="container">
-        {renderAppts()}
-      </div>
-
+      <div className="container">{renderAppts()}</div>
     </div>
   );
 };

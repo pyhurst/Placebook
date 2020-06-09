@@ -37,6 +37,10 @@ const Navbar = (props) => {
     }
   };
 
+  const clearStorage = () => {
+    localStorage.clear();
+  };
+
   if (props.status) {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -139,7 +143,9 @@ const Navbar = (props) => {
                 id="sign-up"
                 className="button"
               >
-                <strong style={{color: "white"}}>Sign up</strong>
+                <strong style={{ color: "white" }} onClick={clearStorage}>
+                  Sign up
+                </strong>
               </Link>
               <Link
                 style={{ color: "rgb(120, 200, 166)" }}

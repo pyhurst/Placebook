@@ -5,7 +5,6 @@ const db = require("../../models");
 const User = require("../../models/user");
 const userController = require("../../controllers/userController");
 
-
 router.route("/signup").post((req, res) => {
   console.log("user signup");
   console.log(req.body);
@@ -19,7 +18,7 @@ router.route("/signup").post((req, res) => {
       console.log("User.js post error: ", err);
     } else if (user) {
       res.json({
-        error: `Sorry, already a user with the username: ${username}`,
+        error: `userTaken`,
       });
     } else {
       const newUser = new User({
@@ -43,9 +42,10 @@ router.route("/login").post(
   },
   passport.authenticate("local"),
   (req, res) => {
-    db.Business.findOne({ ownerId: req.user._id})
-      .then(result => {
-        console.log("result:" , result)
+    console.log("hello");
+    db.Business.findOne({ ownerId: req.user._id })
+      .then((result) => {
+        console.log("result:", result);
         var userInfo = {
           username: req.user.username,
           email: req.user.email,
@@ -53,20 +53,22 @@ router.route("/login").post(
           pastReservations: req.user.pastReservations,
           _id: req.user._id,
         };
-        if(result === null) {
+        if (result === null) {
           console.log("Logged in: ", req.user);
           res.json({
             type: "user",
-            data: userInfo
+            data: userInfo,
           });
         } else {
           res.json({
             type: "business",
-            data: userInfo
-          })
+            data: userInfo,
+          });
         }
       })
-      .catch((err) => res.status(422).json(err));
+      .catch((err) => {
+        res.status(422).json(err);
+      });
     // console.log("Logged in: ", req.user);
     // var userInfo = {
     //   username: req.user.username,
@@ -97,11 +99,12 @@ router.route("/logout").post((req, res) => {
   }
 });
 
+router
+  .route("/reservation/delete/:id")
+  .post(userController.deleteUserReservation);
 
-router.route("/reservation/delete/:id").post(userController.deleteUserReservation)
+router.route("/reservation/past/:id").post(userController.pushPastReservation);
 
-router.route("/reservation/past/:id").post(userController.pushPastReservation)
-
-router.route("/reservation/user/:id").post(userController.addUserReservation)
+router.route("/reservation/user/:id").post(userController.addUserReservation);
 
 module.exports = router;

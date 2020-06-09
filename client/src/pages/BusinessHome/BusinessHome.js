@@ -31,7 +31,6 @@ const BusinessHome = () => {
 
   React.useEffect(() => {
     const user = JSON.parse(localStorage.getItem("currentUser"));
-    console.log(user._id);
     API.findOneBiz(user._id, {
       date: date.toLocaleDateString(),
     })
@@ -58,7 +57,6 @@ const BusinessHome = () => {
   const renderAppts = () => {
     let newThing = JSON.parse(localStorage.getItem("currentUser"));
     let appointments = newThing.reservations;
-    console.log("appointments", appointments);
     let something = bizState.reservations.map((e) => {
       return (
         <div className="row">
