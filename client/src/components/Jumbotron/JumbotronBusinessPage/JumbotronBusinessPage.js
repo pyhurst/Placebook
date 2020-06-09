@@ -2,14 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   MDBJumbotron,
-  MDBBtn,
   MDBContainer,
   MDBRow,
   MDBCol,
   MDBCardTitle,
-  MDBIcon,
-  MDBNavLink,
-  MDBNav,
   MDBCardImage,
   MDBCardBody,
   MDBCardText,

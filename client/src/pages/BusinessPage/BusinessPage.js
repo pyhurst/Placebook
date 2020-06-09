@@ -86,7 +86,6 @@ function Business() {
               </h4>
               <Schedule
                 dataSelectedDate={date.toLocaleDateString()}
-                todaysReservations={bizState.reservations}
               />
             </div>
           </div>

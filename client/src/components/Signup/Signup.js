@@ -4,8 +4,9 @@ import API from "../../utils/API";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
-import { Jumbotron, InputGroup } from "reactstrap";
-import { Form, FormGroup, Label, Input } from "reactstrap";
+import { Jumbotron } from "reactstrap";
+import { FormGroup} from "reactstrap";
+
 const Signup = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
@@ -13,6 +14,7 @@ const Signup = () => {
   const emailRef = useRef();
   const [state, dispatch] = useUserContext();
   const [userState, userDispatch] = useUserContext();
+
   const checkLocal = () => {
     let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
     if (storageStatus) {
@@ -27,7 +29,9 @@ const Signup = () => {
       }
     }
   };
+
   checkLocal();
+
   const handleSubmit = (e) => {
     if (
       usernameRef.current.value === "" ||
@@ -50,7 +54,6 @@ const Signup = () => {
               email: emailRef.current.value,
             })
               .then((result) => {
-                console.log("this", result);
                 if (result.data.error === "userTaken") {
                   alert("This username is already in use");
                 } else if (result.data.name === "MongoError") {
@@ -76,13 +79,14 @@ const Signup = () => {
     }
   };
 
-  const typeSignUp = () => {
-    if (localStorage.getItem("isBusiness")) {
-      return <p>Business Sign In</p>;
-    } else {
-      return <p>User Sign In</p>;
-    }
-  };
+  // const typeSignUp = () => {
+  //   if (localStorage.getItem("isBusiness")) {
+  //     return <p>Business Sign In</p>;
+  //   } else {
+  //     return <p>User Sign In</p>;
+  //   }
+  // };
+
   return (
     <div>
       <Navbar status={userState.username} />
