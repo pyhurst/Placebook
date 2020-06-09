@@ -1,5 +1,7 @@
 # Placebook
 ### Peter Blank, Phil Hurst, Emily Resch
+
+Heroku link - http://placebk.herokuapp.com/
 _________________________
 
 _________________________
