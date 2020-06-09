@@ -2,7 +2,6 @@ import React, { Component } from "react";
 // import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Main from "./pages/Main/Main";
-import Footer from "../src/components/Footer/Footer.js"
 import About from "./pages/About/About";
 import Business from "./pages/BusinessPitch/Business";
 import Signup from "./components/Signup/Signup";
