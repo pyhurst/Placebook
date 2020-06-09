@@ -76,22 +76,42 @@ const Business = () => {
       let resStamp;
       if (timeSplit[0].includes(":")) {
         console.log("includes")
-        const colonSplit = timeSplit[0];
+        const colonSplit = timeSplit[0].split(":");
+        console.log(colonSplit[0])
+
         if (timeSplit[1] === "PM" && colonSplit[0] < 12) {
+          console.log(colonSplit[0])
           colonSplit[0] = parseInt(timeSplit[0]) + 12;
-          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), colonSplit[0], 30, 0, 0);
+          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), parseInt(colonSplit[0]), 29, 0, 0);
         } else {
-          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), colonSplit[0], 30, 0, 0);
+          console.log(colonSplit[0])
+
+          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), parseInt(colonSplit[0]), 29, 0, 0);
+          if (resStamp < now) {
+            console.log("move to past reservations")
+            API.pushPastReservation(user._id, {
+              resId: user.reservations[i]._id
+            })
+              .then(result => {
+                console.log(result)
+                localStorage.setItem("currentUser", JSON.stringify(result.data));
+                window.location.reload("/user/home");
+              })
+          } else {
+            console.log("stays here")
+          }
         }
       } else {
         if (timeSplit[1] === "PM" && timeSplit[0] < 12) {
           timeSplit[0] = parseInt(timeSplit[0]) + 12;
           console.log("nope")
-          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), timeSplit[0], 0, 0, 0);
+          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), parseInt(timeSplit[0]), 0, 0, 0);
 
         } else {
-          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), timeSplit[0], 0, 0, 0);
+          resStamp = toTimestamp(parseInt(dateSplit[2]), parseInt(dateSplit[0]), parseInt(dateSplit[1]), parseInt(timeSplit[0]), 0, 0, 0);
         }
+          console.log("today ", now);
+          console.log(resStamp)
         // if(timeSplit[1] === "PM"){
         //   timeSplit[0] = parseInt(timeSplit[0]) + 12;
         if (resStamp < now) {
