@@ -5,11 +5,11 @@ _________________________
 _________________________
 
 ### Table of Contents
-- [What We Used](###WhatWeUsed)
-- [About Placebook](###AboutPlacebook)
-- [How It Works](###HowItWorks)
-- [Future Davelopment](###FutureDevelopmentForPlacebook)
-- [Authors](###Authors)
+- [What We Used](###what-we-used)
+- [About Placebook](###about-placebook)
+- [How It Works](###how-it-works)
+- [Future Davelopment](###future-development-for-placebook)
+- [Authors](###authors)
 _________________________
 
 ### What We Used
@@ -31,17 +31,26 @@ Businesses can add themselves to Placebook by filling out a form to determine th
 ### How It Works
 
 Visitors to our website are presented with a Placebook welcome page. This page displays a Navbar, a dropdown menu, and individual business cards. 
-<img src="client/src/Images/screenshots/welcomepage.png"> 
-If an individual is new to our website, they have the ability to browse our Welcome page, our About page and the individual business pages, however they will not be permitted to reserve a timeslot at any business until they have created a Placebook account. 
-<img src="client/src/Images/screenshots/login.png"> 
-<img src="client/src/Images/screenshots/signup.png">
+
+>> <img src="client/src/Images/screenshots/welcomepage.png" width="550px"> 
+
+If an individual is new to our website, they have the ability to browse our Welcome page, our About page and the individual business pages, however they will not be permitted to reserve a timeslot at any business until they have created a Placebook account.
+
+>> <img src="client/src/Images/screenshots/login.png" width="350px"> 
+>> <img src="client/src/Images/screenshots/signup.png" width="350px">
+
 For business owners, There is a "For Businesses" option in the Navbar that directs users to a business signup page. Business owners, once they have also created a Placebook account, can fill out this form to add their business to the website. 
-<img src="client/src/Images/screenshots/businesspitch.png">
-<img src="client/src/Images/screenshots/businessform.png">
-Business accounts cannot make reservations at other businesses, so they will need to make a regular user account to do so. 
-<img src="client/src/Images/screenshots/sorryprompt.png">
+
+>> <img src="client/src/Images/screenshots/businesspitch.png" width="550px">
+>> <img src="client/src/Images/screenshots/businessform.png" width="550px">
+
+Business accounts cannot make reservations at other businesses, so they will need to make a regular user account to do so.
+
+>> <img src="client/src/Images/screenshots/sorryprompt.png">
+
 Individual users have access to a Homepage that allows them to view and cancel their upcoming reservations. Business Homepage's allow businesses to view any reservations that users have made to visit their location.
-<img src="client/src/Images/screenshots/business_homepage.png">
+
+>> <img src="client/src/Images/screenshots/business_homepage.png" width="550px">
 
 ### Future Development For Placebook
 
@@ -53,10 +62,13 @@ There are some things that we would love to add in the future to make this possi
 
 ### Authors
 [Peter Blank]("https://github.com/blapete")
-![profile pic](http://avatars0.githubusercontent.com/blapete)
+---
+![Peter Blank](http://avatars0.githubusercontent.com/blapete)
 
 [Emily Resch]("https://github.com/emilyresch")
-![profile pic](http://avatars0.githubusercontent.com/emilyresch) 
+---
+![Emily Resch](http://avatars0.githubusercontent.com/emilyresch) 
 
 [Phil Hurst]("https://github.com/pyhurst")
-![profile pic](http://avatars0.githubusercontent.com/pyhurst) 
+---
+![Phil Hurst](http://avatars0.githubusercontent.com/pyhurst) 

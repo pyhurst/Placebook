@@ -6,6 +6,7 @@ import API from "../../utils/API";
 import { STATES } from "mongoose";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Jumbotron } from "reactstrap";
 
 const Business = () => {
   const [userState, userDispatch] = useUserContext();
@@ -216,7 +217,7 @@ const Business = () => {
             style={{ display: "block", margin: "10px", width: "auto" }}
             onClick={deleteInfo}
           >
-            Remove
+            Cancel
           </button>
         </div>
       );
@@ -227,36 +228,40 @@ const Business = () => {
   return (
     <div>
       <Navbar status={userState.username} />
-      <div className="container">
-        <div className="section">
-          <div className="columns">
-            <div className="column">Welcome, {userState.username} </div>
-            <div className="column">Appointments: {apptData.amount}</div>
-            <div className="column">
-              Favorite Spots:{" "}
-              {pastResNameState.map((pastRes, i) => {
-                return (
-                  <a
-                    style={{ display: "block" }}
-                    href={`/business/page/${pastResIdState[i]}`}
-                  >
-                    {pastRes}
-                  </a>
-                );
-              })}
-            </div>
-            <div className="column">
-              <Link
-                style={{ color: "rgb(120, 200, 166)" }}
-                to="/businessSignUp"
+
+      <Jumbotron>
+        <h1>Welcome, {userState.username} </h1>
+        <h2>Appointments: {apptData.amount}</h2>
+        <h4>
+          Favorite Spots:{" "}
+          {pastResNameState.map((pastRes, i) => {
+            return (
+              <a
+                style={{ display: "block" }}
+                href={`/business/page/${pastResIdState[i]}`}
               >
-                Create a business
-              </Link>
-            </div>
-          </div>
-          {renderAppts()}
-        </div>
-      </div>
+                {pastRes}
+              </a>
+            );
+          })}
+        </h4>
+
+        <br />
+        <Link
+          className="btn btn-secondary"
+          style={{ color: "white", textShadow: "1px 1px 1px darkcyan" }}
+          to="/businessSignUp"
+        >
+          Create a business*
+        </Link>
+        <br />
+        <br />
+        <h6>
+          *When you create a business account, you will not be able to make
+          personal reservations.
+        </h6>
+      </Jumbotron>
+      <div className="container">{renderAppts()}</div>
     </div>
   );
 };
