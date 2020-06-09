@@ -1,8 +1,6 @@
 import React, { useRef, useContext } from "react";
-import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
-import DropdownEl from "../Dropdown/Dropdown";
-import { Button, Form, FormGroup, Label, Input, Jumbotron } from "reactstrap";
+import { Button, Jumbotron } from "reactstrap";
 
 const BusinessInputs = (props) => {
     const businessNameRef = useRef();
@@ -15,15 +13,10 @@ const BusinessInputs = (props) => {
     const timeSlotLengthRef = useRef();
     const capacityRef = useRef();
     const photoRef = useRef();
-    const userContext = useUserContext();
-    // const [state, dispatch] = useUserContext();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
-        console.log("clicked");
-        console.log(openTimeRef.current);
-        console.log(closeTimeRef.current.value);
-        console.log(storageStatus._id);
         API.addBusiness({
             ownerId: storageStatus._id,
             name: businessNameRef.current.value,
@@ -40,23 +33,11 @@ const BusinessInputs = (props) => {
             image: photoRef.current.value
         })
             .then((result) => {
-                console.log(result);
                 localStorage.setItem("type", "business");
                 window.location = "/business/home"
-                // dispatch(
-                //     {
-                //         type: "ADD_USER",
-                //         username: result.data.username,
-                //         email: result.data.email,
-                //         reservations: result.data.reservations
-                //     }
-                // )
             })
             .catch((err) => console.log(err));
     };
-    // const onSwitch = (e) => {
-    //     console.log(e.target.value)
-    //   }
     return (
         <div id="Signup" className="container">
             <Jumbotron>
@@ -118,12 +99,6 @@ const BusinessInputs = (props) => {
                     <div className="col">
                         <label for="openTime">Business Open Time: </label>
                         <br></br>
-                        {/* <input
-                            type="text"
-                            name="address"
-                            id="addressInput"
-                            ref={openTimeRef}
-                        /> */}
                         <select defaultValue="4AM" ref={openTimeRef} name="openTime" id="openTimeInput">
                             <option selected="selected">In 24 Hour Time</option>
                             <option>4</option>
@@ -145,12 +120,6 @@ const BusinessInputs = (props) => {
                         <br></br>
                         <label for="closeTime">Business Close Time: </label>
                         <br></br>
-                        {/* <input
-                            type="text"
-                            name="address"
-                            id="addressInput"
-                            ref={closeTimeRef}
-                        /> */}
                          <select defaultValue="9AM" ref={closeTimeRef} name="closeTime" id="closeTimeInput">
                             <option selected="selected">In 24 Hour Time</option>
                             <option>9</option>
@@ -211,40 +180,5 @@ const BusinessInputs = (props) => {
                 <div style={{height: "200px"}}></div>        
         </div>
     );
-    //     <Form className="container">
-    //         <FormGroup>
-    //             <Label for="businessName">Business Name</Label>
-    //             <Input type="text" name="businessName" id="businessNameInput" placeholder="Name" ref={businessNameRef} />
-    //         </FormGroup>
-    //         <FormGroup>
-    //             <DropdownEl cat="cat" name="category" id="categoryInput" onSwitch={props.onSwitch} />
-    //             {/* <select>
-    //                 <option value="Gym" onClick={props.onSwitch} ref={categoryRef}>Gym</option>
-    //                 <option value="Beauty" onClick={props.onSwitch} ref={categoryRef}>Beauty</option>
-    //             </select> */}
-    //         </FormGroup>
-    //         <FormGroup>
-    //             <Label for="address">Business Address</Label>
-    //             <Input type="text" name="address" id="addressInput" placeholder="Business Address" ref={addressRef} />
-    //         </FormGroup>
-    //         <FormGroup>
-    //             <Label for="openTime">Opening Time:</Label> <br></br>
-    //             <DropdownEl time="times" name="openTime" id="openTimeInput" onSwitch={props.onSwitch} ref={openTimeRef} />
-    //         </FormGroup>
-    //         <FormGroup>
-    //             <Label for="closeTime">Closing Time:</Label> <br></br>
-    //             <DropdownEl time="times" name="closeTime" id="closeTimeInput" onSwitch={props.onSwitch} ref={closeTimeRef} />
-    //         </FormGroup>
-    //         <FormGroup>
-    //             <Label for="timeSlotLength">Timeslot Length</Label>
-    //             <Input type="number" name="timeSlotLength" id="timeSlotLengthInput" placeholder="Please use increments of 30mins" ref={timeSlotLengthRef} />
-    //         </FormGroup>
-    //         <FormGroup>
-    //             <Label for="capacity">Capacity per Timeslot</Label>
-    //             <Input type="number" name="capacity" id="timeSlotLengthInput" placeholder="Please use increments of 30mins" ref={capacityRef} />
-    //         </FormGroup>
-    //         <Button onClick={handleSubmit}>Add my business!</Button>
-    //     </Form>
-    // )
 };
 export default BusinessInputs;

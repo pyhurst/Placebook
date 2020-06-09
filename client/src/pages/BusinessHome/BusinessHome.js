@@ -66,17 +66,6 @@ const BusinessHome = () => {
           >
             Time: {e.time}
           </button>
-          {/* <button
-            businessId={e.businessId}
-            date={e.date}
-            time={e.time}
-            resId={e._id}
-            className="button"
-            style={{ display: "block", margin: "10px", width: "auto" }}
-            // onClick={deleteInfo}
-          >
-            Remove
-          </button> */}
         </div>
       );
     });

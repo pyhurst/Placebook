@@ -4,7 +4,6 @@ import Jumbotron from "../../components/Jumbotron/JumbotronHomePage/Jumbotron";
 import API from "../../utils/API.js";
 import Navbar from "../../components/Navbar/Navbar";
 import { UserContext } from "../../utils/UserContext";
-import Footer from "../../components/Footer/Footer.js"
 
 class Main extends React.Component {
   static contextType = UserContext;
