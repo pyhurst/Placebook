@@ -3,7 +3,7 @@ import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
-import { Jumbotron, Form, Input, FormGroup } from "reactstrap";
+import { Jumbotron } from "reactstrap";
 
 const Login = () => {
   const usernameRef = useRef();

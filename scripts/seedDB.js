@@ -23,19 +23,19 @@ const businessSeed = [
     reservations: [
       {
         time: "2 PM",
-        date: "06-20-20",
+        date: "06/20/20",
         capacity: 15,
         customerIds: ["5ed8f5c1ff864a46106f2e09"],
       },
       {
         time: "5 PM",
-        date: "06-20-20",
+        date: "06/20/20",
         capacity: 15,
         customerIds: ["5ed8f5c1ff864a46106f2e09"],
       },
       {
         time: "8 AM",
-        date: "06-20-20",
+        date: "06/20/20",
         capacity: 15,
         customerIds: ["5ed8f5c1ff864a46106f2e09"],
       },
@@ -179,8 +179,8 @@ const userSeed = [
     reservations: [
       {
         business: "CorePower Yoga",
-        timeslot: 16,
-        date: "2020-06-01",
+        timeslot: "4 PM",
+        date: "2020/06/01",
       },
     ],
   },
@@ -191,8 +191,8 @@ const userSeed = [
     reservations: [
       {
         business: "UFC Gym",
-        timeslot: 9,
-        date: "2020-06-01",
+        timeslot: "9 AM",
+        date: "2020/06/01",
       },
     ],
   },
@@ -203,8 +203,8 @@ const userSeed = [
     reservations: [
       {
         business: "UFC Gym",
-        timeslot: 11,
-        date: "2020-06-01",
+        timeslot: "11 AM",
+        date: "2020/06/01",
       },
     ],
   },
@@ -215,8 +215,8 @@ const userSeed = [
     reservations: [
       {
         business: "Museum of Contemporary Art",
-        timeslot: 13,
-        date: "2020-06-03",
+        timeslot: "2 PM",
+        date: "2020/06/03",
       },
     ],
   },
@@ -227,8 +227,8 @@ const userSeed = [
     reservations: [
       {
         business: "Pinstripes Bowling",
-        timeslot: 21.5,
-        date: "2020-06-01",
+        timeslot: "1 PM",
+        date: "2020/06/01",
       },
     ],
   },
@@ -239,8 +239,8 @@ const userSeed = [
     reservations: [
       {
         business: "Chicago Public Library",
-        timeslot: 1000,
-        date: "2020-06-01",
+        timeslot: "2 PM",
+        date: "2020/06/01",
       },
     ],
   },
@@ -251,8 +251,8 @@ const userSeed = [
     reservations: [
       {
         business: "CorePower Yoga",
-        timeslot: 0800,
-        date: "2020-06-02",
+        timeslot: "8 AM",
+        date: "2020/06/02",
       },
     ],
   },

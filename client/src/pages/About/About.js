@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./About.css";
 import { Jumbotron } from "reactstrap";
 import Navbar from "../../components/Navbar/Navbar";
-import API from "../../utils/API";
 import { useUserContext } from "../../utils/UserContext";
 
 const About = () => {

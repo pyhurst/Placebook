@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import { useUserContext } from "../../utils/UserContext";
+import React, { useRef, useContext } from "react";
 import API from "../../utils/API";
 import { Button, Jumbotron } from "reactstrap";
 
@@ -15,14 +14,9 @@ const BusinessInputs = (props) => {
     const timeSlotLengthRef = useRef();
     const capacityRef = useRef();
     const photoRef = useRef();
-    const userContext = useUserContext();
     const handleSubmit = (e) => {
         e.preventDefault();
         let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
-        console.log("clicked");
-        console.log(openTimeRef.current);
-        console.log(closeTimeRef.current.value);
-        console.log(storageStatus._id);
         API.addBusiness({
             ownerId: storageStatus._id,
             name: businessNameRef.current.value,
@@ -39,14 +33,11 @@ const BusinessInputs = (props) => {
             image: photoRef.current.value
         })
             .then((result) => {
-                console.log(result);
                 localStorage.setItem("type", "business");
                 window.location = "/business/home"
-                
             })
             .catch((err) => console.log(err));
     };
-   
     return (
         <div id="Signup" className="container">
             <Jumbotron>
@@ -108,7 +99,6 @@ const BusinessInputs = (props) => {
                     <div className="col">
                         <label for="openTime">Business Open Time: </label>
                         <br></br>
-                       
                         <select defaultValue="4AM" ref={openTimeRef} name="openTime" id="openTimeInput">
                             <option selected="selected">In 24 Hour Time</option>
                             <option>4</option>
@@ -130,7 +120,6 @@ const BusinessInputs = (props) => {
                         <br></br>
                         <label for="closeTime">Business Close Time: </label>
                         <br></br>
-                        
                          <select defaultValue="9AM" ref={closeTimeRef} name="closeTime" id="closeTimeInput">
                             <option selected="selected">In 24 Hour Time</option>
                             <option>9</option>

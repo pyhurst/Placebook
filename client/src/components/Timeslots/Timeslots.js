@@ -1,5 +1,4 @@
 import React from "react";
-// import "./Timeslots.css";
 
 const Timeblock = () => {
   return (

@@ -13,13 +13,6 @@ const DropdownEl = (props) => {
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   
-  // const onSwitch = (e) => {
-  //   console.log(e.target.value)
-  // }
-
-  // const categoryRef = React.createRef();
-
-
   if (props.time === "times") {
     return (
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>

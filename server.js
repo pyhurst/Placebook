@@ -6,7 +6,6 @@ const MongoStore = require("connect-mongo")(session);
 const passport = require("./passport");
 const dbConnection = require("./connection");
 const routes = require("./routes");
-const favicon = require('serve-favicon')
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -38,12 +37,6 @@ app.use(passport.session());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-//Mongoose
-// const mongoose = require("mongoose");
-
-
-// app.use(favicon(path.join(__dirname,'public','placebookfavicon.png')));
 
 // Define API routes here
 app.use(routes);
