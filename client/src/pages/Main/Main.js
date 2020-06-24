@@ -48,7 +48,7 @@ class Main extends React.Component {
     return (
       <div id="all">
         <Navbar status={this.state.username} />
-        <section>
+        <section id="mainSection">
           <div id="main">
             <Jumbotron handleOnClick={this.handleOnClick} />
             {this.state.username ? <h2 style={{textAlign: "center"}}>Hi, {this.state.username}!</h2> : ""}

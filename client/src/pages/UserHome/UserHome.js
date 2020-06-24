@@ -200,7 +200,7 @@ const Business = () => {
     <>
       <Navbar status={userState.username} />
 
-      <Jumbotron style={{marginBottom: 0}}>
+      <Jumbotron style={{marginBottom: 0}} id="userJumbo">
         <div className="container">
         <h1>Welcome, {userState.username} </h1>
         <h2>Appointments: {apptData.amount}</h2>
