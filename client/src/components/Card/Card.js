@@ -24,7 +24,8 @@ const Card = (props) => {
           <MDBCardBody>
             <MDBCardTitle style={{"color": "rgb(120, 200, 166)"}} >{props.name}</MDBCardTitle>
             <MDBCardText>{props.category}</MDBCardText>
-            <MDBCardText>{props.address}</MDBCardText>
+            <MDBCardText>{props.address}, {props.city}</MDBCardText>
+            <MDBCardText>{props.phone}</MDBCardText>
             {/* <Link to={"/business/page/" + props._id} style={{"color": "rgb(100, 180, 214)"}}>View Business Page</Link> */}
           </MDBCardBody>
           </Link>
