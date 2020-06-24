@@ -78,7 +78,10 @@ const Navbar = (props) => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div id="business-link" className="navbar-item">
-              <Link style={{ color: "rgb(120, 200, 166)" }} onClick={bizCheck}>
+              <Link 
+              style={{ color: "rgb(120, 200, 166)" }} 
+              className="navbar-item"
+              onClick={bizCheck}>
                 My Homepage
               </Link>
             </div>
@@ -132,7 +135,10 @@ const Navbar = (props) => {
         </div>
         <div className="navbar-end">
           <div id="business-link" className="navbar-item">
-            <Link style={{ color: "rgb(120, 200, 166)" }} to="/business/pitch">
+            <Link 
+            style={{ color: "rgb(120, 200, 166)" }} 
+            className="navbar-item"
+            to="/business/pitch">
               For Businesses
             </Link>
           </div>

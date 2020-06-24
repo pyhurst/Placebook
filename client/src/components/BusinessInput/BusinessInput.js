@@ -1,6 +1,7 @@
 import React, { useRef, useContext } from "react";
 import API from "../../utils/API";
 import { Button, Jumbotron } from "reactstrap";
+import "./BusinessInput.css";
 
 //FORM TO SIGN UP A BUSINESS
 const BusinessInputs = (props) => {
@@ -40,7 +41,7 @@ const BusinessInputs = (props) => {
     };
     return (
         <div id="Signup" className="container">
-            <Jumbotron>
+            <Jumbotron id="busInputJumbo">
                 <form>
                 <div className="row">
                     <div className="col">
@@ -177,7 +178,6 @@ const BusinessInputs = (props) => {
                     </div>
                 </form>
                 </Jumbotron>
-                <div style={{height: "200px"}}></div>        
         </div>
     );
 };

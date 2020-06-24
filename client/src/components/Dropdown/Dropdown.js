@@ -1,5 +1,5 @@
 // import { Link } from "react-router-dom";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import {
   Dropdown,
   DropdownToggle,
@@ -63,6 +63,7 @@ const DropdownEl = (props) => {
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle style={{"backgroundColor": "rgb(120, 200, 166)"}} caret>View Businesses by Category</DropdownToggle>
         <DropdownMenu>
+          <DropdownItem header>Choose Category</DropdownItem>
           <DropdownItem value="Gym" onClick={props.handleOnClick}>Gym</DropdownItem>
           <DropdownItem value="Beauty" onClick={props.handleOnClick}>Beauty</DropdownItem>
           <DropdownItem value="Hardware" onClick={props.handleOnClick}>Hardware</DropdownItem>

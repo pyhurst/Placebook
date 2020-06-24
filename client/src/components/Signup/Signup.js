@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import { Jumbotron } from "reactstrap";
 import { FormGroup} from "reactstrap";
 
@@ -94,7 +95,7 @@ const Signup = () => {
         <div></div>
       ) : (
         <div id="Signup">
-          <Jumbotron>
+          <Jumbotron id="signupJumbo">
             <h1>Sign Up for Placebook</h1>
             <form className="signup-form">
               <FormGroup>
@@ -141,6 +142,7 @@ const Signup = () => {
               </FormGroup>
             </form>
           </Jumbotron>
+          <Footer />
         </div>
       )}
     </div>

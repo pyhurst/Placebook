@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./About.css";
 import { Jumbotron } from "reactstrap";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import { useUserContext } from "../../utils/UserContext";
 
 const About = () => {
@@ -27,7 +28,7 @@ const About = () => {
     <div>
       <Navbar status={userState.username} />
       <div id="about">
-        <Jumbotron>
+        <Jumbotron id="aboutJumbo">
           <h1 className="display-3">We're Placebook.</h1>
           <h5 className="lead">How can Placebook benefit you?</h5>
           <hr className="my-2" />
@@ -50,9 +51,10 @@ const About = () => {
             available businesses, create an account, and make or cancel
             upcoming reservations. Don't see a business you think should be
             here? Have questions or comments? Email us at{" "}
-            <a href="#">placebookservices@placebook.com</a>.
+            <a href="mailto: placebookservices@gmail.com">placebookservices@gmail.com</a>.
           </p>
         </Jumbotron>
+        <Footer />
       </div>
     </div>
   );

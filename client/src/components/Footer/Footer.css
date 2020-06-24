@@ -7,11 +7,14 @@
     /* color: white; */
     height: 20vh;
   }
-#business{
+.business{
   color: white;
   margin-top: 2em;
 }
 .links {
   display: block;
   text-align: right;
+}
+#contactUs {
+  margin-bottom: 3rem;
 }

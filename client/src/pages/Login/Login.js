@@ -2,8 +2,10 @@ import React, { useRef } from "react";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import { Jumbotron } from "reactstrap";
+import "./Login.css";
 
 const Login = () => {
   const usernameRef = useRef();
@@ -51,7 +53,7 @@ const Login = () => {
   return (
     <div>
       <Navbar />
-      <Jumbotron>
+      <Jumbotron id="loginJumbo">
         <div id="Login">
           <h1>Log In to Placebook</h1>
           <h5>
@@ -95,6 +97,7 @@ const Login = () => {
           </form>
         </div>
       </Jumbotron>
+      <Footer />
     </div>
   );
 };

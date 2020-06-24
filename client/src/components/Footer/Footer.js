@@ -7,11 +7,20 @@ const Footer = (props) => {
     <div id="footer">
       <div className="container">
         <div className="row">
-          <div className="col-8">
-            <p id="business">Placebook is a non-profit website looking to help small to large businesses navigate through COVID-19 economy changes.</p>
+          <div className="col-7 business">
+            <p>Placebook is a non-profit website looking to help small to large businesses navigate through COVID-19 economy changes.</p>
           </div>
-          <div className="col-4">
-            <p id="business" className="links">(Under Construction) 
+          <div className="col-2 business links">
+            <p >Contact Us: </p>
+            <br></br>
+            <a className="links"
+            href= "mailto: placebookservices@gmail.com"
+            >
+            Email
+            </a>
+          </div>
+          <div className="col-3 business">
+            <p className="links">(Under Construction) 
             <div>Check us out at: </div></p>
             <a className="links"
               href="https://facebook.com"

@@ -20,8 +20,8 @@ const JumbotronPage = () => {
 
   return (
     <>
-      <MDBContainer className="mt-5">
-        <MDBRow className="mt-5">
+      <MDBContainer >
+        <MDBRow >
           <MDBCol>
             <SectionContainer noBorder>
               <MDBJumbotron className="text-center">
