@@ -44,33 +44,6 @@ const JumbotronPage = () => {
                     Sign Up
                   </Link>
                   <hr />
-
-                  {/* <MDBNav className="justify-content-center">
-                    <MDBNavLink to="#!">
-                      <MDBIcon
-                        fab
-                        icon="linkedin-in"
-                        className="grey-text"
-                        size="lg"
-                      />
-                    </MDBNavLink>
-                    <MDBNavLink to="#!">
-                      <MDBIcon
-                        fab
-                        icon="twitter"
-                        className="grey-text"
-                        size="lg"
-                      />
-                    </MDBNavLink>
-                    <MDBNavLink to="#!">
-                      <MDBIcon
-                        fab
-                        icon="facebook-f"
-                        className="grey-text"
-                        size="lg"
-                      />
-                    </MDBNavLink>
-                  </MDBNav> */}
                 </MDBCardBody>
               </MDBJumbotron>
             </SectionContainer>

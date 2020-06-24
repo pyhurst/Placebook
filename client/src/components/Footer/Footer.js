@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./Footer.css"
 
 const Footer = (props) => {
@@ -25,18 +25,21 @@ const Footer = (props) => {
             <a className="links"
               href="https://facebook.com"
               target="_blank"
+              rel="noopener noreferrer"
               >
                 Facebook
               </a>
               <a className="links"
               href="https://twitter.com"
               target="_blank"
+              rel="noopener noreferrer"
               >
                 Twitter
               </a>
               <a className="links"
               href="https://instagram.com"
               target="_blank"
+              rel="noopener noreferrer"
               >
                 Instagram
               </a>

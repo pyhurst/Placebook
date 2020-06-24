@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef } from "react";
 import API from "../../utils/API";
 import { Button, Jumbotron } from "reactstrap";
 import "./BusinessInput.css";

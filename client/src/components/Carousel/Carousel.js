@@ -42,7 +42,7 @@ class MyCarousel extends React.Component {
   }
 
   render() {
-    if (this.props.businessCategory.length != 0) {
+    if (this.props.businessCategory.length !== 0) {
       return (
         <div id="carouselContainer">
           <Carousel responsive={responsive}>

@@ -13,7 +13,6 @@ const Signup = () => {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const emailRef = useRef();
-  const [state, dispatch] = useUserContext();
   const [userState, userDispatch] = useUserContext();
 
   const checkLocal = () => {
