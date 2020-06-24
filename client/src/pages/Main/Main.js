@@ -3,7 +3,9 @@ import MyCarousel from "../../components/Carousel/Carousel.js";
 import Jumbotron from "../../components/Jumbotron/JumbotronHomePage/Jumbotron";
 import API from "../../utils/API.js";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import { UserContext } from "../../utils/UserContext";
+import "./Main.css";
 
 class Main extends React.Component {
   static contextType = UserContext;
@@ -44,7 +46,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="all">
         <Navbar status={this.state.username} />
         <section>
           <div id="main">
@@ -53,7 +55,7 @@ class Main extends React.Component {
           </div>
           <MyCarousel businessCategory={this.state.businessCategory} />
         </section>
-        <div style={{height: "200px"}}></div>
+        <Footer />
       </div>
     );
   }

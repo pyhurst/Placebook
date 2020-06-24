@@ -5,6 +5,8 @@ import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Jumbotron } from "reactstrap";
+import Footer from "../../components/Footer/Footer";
+import "./UserHome.css";
 
 const Business = () => {
   const [userState, userDispatch] = useUserContext();
@@ -169,20 +171,21 @@ const Business = () => {
     let something = apptData.reservations.map((e) => {
       return (
         <div className="row">
-          <button
-            className="button"
+          <li
+            // className="button"
             style={{ display: "block", margin: "10px", width: "auto" }}
           >
             Day: {e.date} Time: {e.time} Place: {e.businessName}
-          </button>
+          </li>
           <button
+            id="cancel"
             businessId={e.businessId}
             date={e.date}
             time={e.time}
             userId={userId}
             resId={e._id}
-            className="button"
-            style={{ display: "block", margin: "10px", width: "auto" }}
+            className="btn btn-secondary"
+            style={{ paddingTop: "-.2rem" }}
             onClick={deleteInfo}
           >
             Cancel
@@ -194,10 +197,11 @@ const Business = () => {
   };
 
   return (
-    <div>
+    <>
       <Navbar status={userState.username} />
 
-      <Jumbotron>
+      <Jumbotron style={{marginBottom: 0}}>
+        <div className="container">
         <h1>Welcome, {userState.username} </h1>
         <h2>Appointments: {apptData.amount}</h2>
         <h4>
@@ -217,7 +221,6 @@ const Business = () => {
         <br />
         <Link
           className="btn btn-secondary"
-          style={{ color: "white", textShadow: "1px 1px 1px darkcyan" }}
           to="/businessSignUp"
         >
           Create a business*
@@ -228,9 +231,13 @@ const Business = () => {
           *When you create a business account, you will not be able to make
           personal reservations.
         </h6>
+        </div>
       </Jumbotron>
-      <div className="container">{renderAppts()}</div>
-    </div>
+      <div id="upcoming">
+      <div className="container"><h5>Upcoming Reservations: </h5><ul>{renderAppts()}</ul></div>
+      </div>
+      <Footer />
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../Images/placebook logo.png";
+import logo from "../../Images/logo.png";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import { useUserContext } from "../../utils/UserContext";
