@@ -57,7 +57,7 @@ function Business() {
         style={{ backgroundColor: "rgb(100, 180, 214)", borderRadius: "5px" }}
       >
         <div className="section">
-          <ul style={{ color: "rgb(107, 114, 125)" }}>
+          <ul style={{ color: "white" }}>
             <li
               style={{
                 color: "white",

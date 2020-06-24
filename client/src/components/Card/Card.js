@@ -17,7 +17,7 @@ const Card = (props) => {
           <Link to={"/business/page/" + props._id}>
           <MDBCardImage
             className="img-fluid"
-            style={{"height": "15rem"}}
+            style={{"height": "16rem"}}
             src={props.image}
             waves
           />
