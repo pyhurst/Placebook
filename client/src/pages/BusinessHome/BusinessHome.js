@@ -105,10 +105,11 @@ const BusinessHome = () => {
               <Calendarapp handleOnChange={setDate} />
             </div>
             <div className="column">
-              <p>Your appointments: </p>
+              <h5>Your appointments: </h5>
+              <p>(Click on time to view customer ids)</p>
               {renderAppts()}
               <div id="displayCustomerNames" className={customerDisplayState}>
-                <p>Customer Names: </p>
+                <h5>Customer Ids: </h5>
                 <ul>
                 {customerNamesState.map(e => {
                   return (<li>{e}</li>)
