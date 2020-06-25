@@ -1,0 +1,11 @@
+.busPageSec {
+    background-color: lightgray;
+    margin-top: -2rem;
+    min-height: 30vh;
+}
+.display {
+    display: block;
+}
+.noDisplay {
+    display: none;
+}

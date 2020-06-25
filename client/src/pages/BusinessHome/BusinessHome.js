@@ -3,14 +3,18 @@ import Calendarapp from "../../components/Calendar/Calendar";
 import "bulma/css/bulma.css";
 import Jumbo from "../../components/Jumbotron/JumbotronBusinessHome/JumbotronBusinessHome";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
+import "./BusinessHome.css";
 
 const BusinessHome = () => {
   const [bizState, bizDispatch] = useBizContext();
   const [userState, userDispatch] = useUserContext();
   const [date, setDate] = React.useState(new Date());
+  const [customerNamesState, setCustomerNamesState] = useState([]);
+  const [customerDisplayState, setCustomerDisplayState] = useState("noDisplay");
   const [appointments, setAppointments] = useState([]);
 
   const checkLocal = () => {
@@ -35,6 +39,7 @@ const BusinessHome = () => {
       date: date.toLocaleDateString(),
     })
       .then((bizResult) => {
+        setCustomerDisplayState("noDisplay");
         setAppointments(bizResult.data.business.reservations);
         bizDispatch({
           type: "UPDATE_BIZ",
@@ -55,14 +60,15 @@ const BusinessHome = () => {
   }, [date]);
 
   const renderAppts = () => {
-    let newThing = JSON.parse(localStorage.getItem("currentUser"));
-    let appointments = newThing.reservations;
+    console.log(bizState);
     let something = bizState.reservations.map((e) => {
       return (
         <div className="row">
           <button
-            className="button"
+            className="btn btn-secondary"
             style={{ display: "block", margin: "10px", width: "auto" }}
+            value={e._id}
+            onClick={displayCustomerNames}
           >
             Time: {e.time}
           </button>
@@ -72,12 +78,28 @@ const BusinessHome = () => {
     return something;
   };
 
+  const displayCustomerNames = (e) => {
+    console.log(e.target.value);
+    const findResId = e.target.value;
+    bizState.reservations.map((res) => {
+      if(res._id === findResId){
+        console.log(res.customerIds)
+        // res.customerIds.map(id => {
+        //   setCustomerNamesState(...customerNamesState, id)
+        // })
+        setCustomerNamesState(res.customerIds)
+        console.log(customerNamesState)
+        setCustomerDisplayState("display")
+      }
+    })
+  };
+
   return (
     <div>
       <Navbar status={userState.username} />
       <div className="container">
-        <Jumbo />
-        <div className="section">
+        <Jumbo date={date.toLocaleDateString()}/>
+        <div className="section busPageSec">
           <div className="columns">
             <div className="column">
               <Calendarapp handleOnChange={setDate} />
@@ -85,15 +107,24 @@ const BusinessHome = () => {
             <div className="column">
               <p>Your appointments: </p>
               {renderAppts()}
+              <div id="displayCustomerNames" className={customerDisplayState}>
+                <p>Customer Names: </p>
+                <ul>
+                {customerNamesState.map(e => {
+                  return (<li>{e}</li>)
+                })}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        <div className="section">
-          <div className="column">
+        <div className="section busPageSec">
+          {/* <div className="column">
             <h6>Date: {date.toLocaleDateString()}</h6>
-          </div>
+          </div> */}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

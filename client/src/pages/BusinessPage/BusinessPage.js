@@ -7,6 +7,8 @@ import { useBizContext } from "../../utils/BusinessContext";
 import { useUserContext } from "../../utils/UserContext";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+import "./BusinessPage.css";
 
 function Business() {
   const { id } = useParams();
@@ -90,6 +92,9 @@ function Business() {
             </div>
           </div>
         </div>
+      </div>
+      <div id="busPageFooter">
+      <Footer />
       </div>
     </div>
   );
