@@ -59,7 +59,7 @@ const Navbar = (props) => {
           <Link className="navbar-item" to="/">
             <img
               src={logo}
-              alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
+              alt="Placebook Logo"
               width="112"
               height="30"
             />
@@ -119,19 +119,21 @@ const Navbar = (props) => {
               height="30"
             />
           </Link>
+          </div>
+
           <Link
-            to="/about"
             role="button"
-            className="navbar-burger"
+            className={"navbar-burger burger " + navbarDisplayState}
             aria-label="menu"
             aria-expanded="false"
+            data-target="navbarBasicExample"
           >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </Link>
-        </div>
-        <div id="navbarBasicExample" className="navbar-menu">
+        <div id="navbarBasicExample" className={"navbar-menu " + navbarDisplayState}>
+        <div className="navbar-start">
           <Link
             style={{ color: "rgb(120, 200, 166)" }}
             className="navbar-item"
@@ -140,22 +142,18 @@ const Navbar = (props) => {
             About Us
           </Link>
         </div>
-        <div className="navbar-end">
-          <div id="business-link" className="navbar-item">
+        {/* <div className="navbar-end"> */}
             <Link
               style={{ color: "rgb(120, 200, 166)" }}
               className="navbar-item"
               to="/business/pitch">
               For Businesses
             </Link>
-          </div>
-          <div className="navbar-item">
-            <div id="actionButtons" className="buttons">
               <Link
                 style={{ color: "rgb(120, 200, 166)" }}
                 to="/signup"
                 id="sign-up"
-                className="button"
+                className="button navbar-item"
               >
                 <strong style={{ color: "white" }} onClick={clearStorage}>
                   Sign up
@@ -164,13 +162,11 @@ const Navbar = (props) => {
               <Link
                 style={{ color: "rgb(120, 200, 166)" }}
                 to="/login"
-                className="button is-light"
+                className="button is-light navbar-item"
               >
                 Log in
               </Link>
             </div>
-          </div>
-        </div>
       </nav>
     );
   }

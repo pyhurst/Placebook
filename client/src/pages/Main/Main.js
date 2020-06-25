@@ -50,7 +50,7 @@ class Main extends React.Component {
         <Navbar status={this.state.username} />
         <section id="mainSection">
           <div id="main">
-            <Jumbotron handleOnClick={this.handleOnClick} />
+            <Jumbotron handleOnClick={this.handleOnClick} id="mainJumbo"/>
             {this.state.username ? <h2 style={{textAlign: "center"}}>Hi, {this.state.username}!</h2> : ""}
           </div>
           <MyCarousel businessCategory={this.state.businessCategory} />

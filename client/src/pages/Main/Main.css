@@ -5,3 +5,13 @@
 #mainSection {
     margin-bottom: 2rem;
 }
+#mainJumbo {
+    width: 100%;
+}
+
+/* @media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)
+and (-webkit-device-pixel-ratio : 3) {
+
+} */
