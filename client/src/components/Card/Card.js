@@ -13,7 +13,7 @@ const Card = (props) => {
   return (
     <div>
       <MDBCol>
-        <MDBCard style={{ width: "15rem" , "height": "30rem"}}>
+        <MDBCard style={{ width: "15rem" , "height": "30rem", boxShadow: "1rem 0 .4rem darkcyan, -1rem 0 .4rem darkcyan"}}>
           <Link to={"/business/page/" + props._id}>
           <MDBCardImage
             className="img-fluid"
