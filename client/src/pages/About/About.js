@@ -29,7 +29,7 @@ const About = () => {
       <Navbar status={userState.username} />
       <div id="about">
         <Jumbotron id="aboutJumbo">
-          <h1 className="display-3">We're Placebook.</h1>
+          <h1 className="display-3">We're Placebook</h1>
           <h5 className="lead">How can Placebook benefit you?</h5>
           <hr className="my-2" />
           <h6>Perfect for businesses</h6>

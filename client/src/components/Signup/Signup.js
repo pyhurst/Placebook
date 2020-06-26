@@ -14,6 +14,7 @@ const Signup = () => {
   const confirmPasswordRef = useRef();
   const emailRef = useRef();
   const [userState, userDispatch] = useUserContext();
+  const [errorState, setErrorState] = React.useState();
 
   const checkLocal = () => {
     let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
@@ -38,7 +39,8 @@ const Signup = () => {
       passwordRef.current.value === "" ||
       emailRef.current.value === ""
     ) {
-      alert("All Fields must be filled");
+      // alert("All Fields must be filled");
+      setErrorState("All Fields must be filled!");
     } else if (
       usernameRef.current.value &&
       passwordRef.current.value &&
@@ -55,9 +57,11 @@ const Signup = () => {
             })
               .then((result) => {
                 if (result.data.error === "userTaken") {
-                  alert("This username is already in use");
+                  // alert("This username is already in use");
+                  setErrorState("Please try another Username");
                 } else if (result.data.name === "MongoError") {
-                  alert("This email is already in use");
+                  // alert("This email is already in use");
+                  setErrorState("Email already in use");
                 } else {
                   window.location = "/login";
                 }
@@ -65,15 +69,18 @@ const Signup = () => {
               .catch((err) => console.log(err));
             return true;
           } else {
-            alert("Password and confirm password must match!");
+            // alert("Password and confirm password must match!");
+            setErrorState("Password and confirm password must match");
             return false;
           }
         } else {
-          alert("Password must be greater than 7 characters");
+          // alert("Password must be greater than 7 characters");
+          setErrorState("Password must be at least 8 characters");
           return false;
         }
       } else {
-        alert("This is not a valid email, try again");
+        // alert("This is not a valid email, try again");
+        setErrorState("Not a valid email, try again");
         return false;
       }
     }
@@ -134,7 +141,7 @@ const Signup = () => {
                   ref={confirmPasswordRef}
                 />
                 <br></br>
-                <br></br>
+                <div id="signUpError">{errorState}</div>
                 <Link onClick={handleSubmit} className="btn btn-secondary">
                   Sign Up
                 </Link>

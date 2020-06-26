@@ -12,6 +12,7 @@ const Login = () => {
   const passwordRef = useRef();
 
   const [state, dispatch] = useUserContext();
+  const [errorState, setErrorState] = React.useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +46,8 @@ const Login = () => {
       .catch((err) => {
         if (err) {
           console.log(err);
-          alert("Please enter a valid username or password");
+          // alert("Please enter a valid username or password");
+          setErrorState("Please enter a valid username or password");
         }
       });
   };
@@ -89,8 +91,7 @@ const Login = () => {
               id="passwordInput"
               ref={passwordRef}
             />
-            <br></br>
-            <br></br>
+            <div id="logInError">{errorState}</div>
             <button className="button btn-secondary" onClick={handleSubmit}>
               Log in
             </button>

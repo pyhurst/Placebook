@@ -3,9 +3,7 @@
     bottom: 0;
     width: 100%;
     background-color: rgb(100, 180, 214);
-    /* opacity: 70%; */
-    /* color: white; */
-    height: 20vh;
+    min-height: 20vh;
   }
 .business{
   color: white;
@@ -23,10 +21,17 @@
 and (min-device-width : 375px) 
 and (max-device-width : 812px)
 and (-webkit-device-pixel-ratio : 3) {
-  #footer {
-    height: 30vh;
-  }
+  /* #footer {
+    min-height: 30vh;
+  } */
   .links{
     font-size: 0.85rem;
+    text-align: center;
+  }
+  #emailLink {
+    margin-top: -1.5rem;
+  }
+  .footerTitle {
+    margin-top: 1rem;
   }
 }

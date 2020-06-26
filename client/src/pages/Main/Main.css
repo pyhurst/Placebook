@@ -22,14 +22,11 @@ and (-webkit-device-pixel-ratio : 3) {
         text-align: center;
         width: 100%;
     }
-    #mainCarousel {
+    /* #mainCarousel {
         height: 40rem;
-    }
+    } */
     .busCards{
-        height: 33rem;
-        width: 20rem;
-    }
-    .cardImage {
-        height: 12rem;
+        width: 18rem;
+        margin: 0 auto;
     }
 }
