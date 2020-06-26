@@ -15,6 +15,7 @@ const BusinessInputs = (props) => {
     const timeSlotLengthRef = useRef();
     const capacityRef = useRef();
     const photoRef = useRef();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let storageStatus = JSON.parse(localStorage.getItem("currentUser"));
@@ -44,10 +45,10 @@ const BusinessInputs = (props) => {
             <Jumbotron id="busInputJumbo">
                 <form>
                 <div className="row">
-                    <div className="col">
+                    <div className="col-sm">
                         <h2>Please fill out this form to add your business.</h2>
                         </div>
-                        <div className="col">
+                        <div className="col-sm">
                         <label for="businessName">Business Name: </label>
                         <br></br>
                         <input
@@ -97,7 +98,7 @@ const BusinessInputs = (props) => {
                             ref={phoneRef}
                         />
                     </div>
-                    <div className="col">
+                    <div className="col-sm">
                         <label for="openTime">Business Open Time: </label>
                         <br></br>
                         <select defaultValue="4AM" ref={openTimeRef} name="openTime" id="openTimeInput">
@@ -143,12 +144,17 @@ const BusinessInputs = (props) => {
                         <br></br>
                         <label for="timeSlotLength">Length of Timeslots (in 30 minute increments): </label>
                         <br></br>
-                        <input
+                        {/* <input
                             type="number"
                             name="timeSlotLength"
                             id="timeSlotLengthInput"
                             ref={timeSlotLengthRef}
-                        />
+                        /> */}
+                        <select defaultValue="60" ref={timeSlotLengthRef} name="timeSlotLength" id="timeSlotLengthInput">
+                            <option selected="selected">Select Interval</option>
+                            <option>30</option>
+                            <option>60</option>
+                        </select>
                         <br></br>
                         <label for="capacity">Capacity per slot: </label>
                         <br></br>

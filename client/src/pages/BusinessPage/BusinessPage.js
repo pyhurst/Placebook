@@ -58,7 +58,7 @@ function Business() {
         className="container"
         style={{ backgroundColor: "rgb(100, 180, 214)", borderRadius: "5px" }}
       >
-        <div className="section">
+        <div className="section busPageInfoSection">
           <ul style={{ color: "white" }}>
             <li
               style={{
