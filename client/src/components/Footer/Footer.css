@@ -18,3 +18,15 @@
 #contactUs {
   margin-bottom: 3rem;
 }
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)
+and (-webkit-device-pixel-ratio : 3) {
+  #footer {
+    height: 30vh;
+  }
+  .links{
+    font-size: 0.85rem;
+  }
+}

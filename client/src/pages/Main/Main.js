@@ -53,9 +53,9 @@ class Main extends React.Component {
             <Jumbotron handleOnClick={this.handleOnClick} id="mainJumbo"/>
             {this.state.username ? <h2 style={{textAlign: "center"}}>Hi, {this.state.username}!</h2> : ""}
           </div>
-          <MyCarousel businessCategory={this.state.businessCategory} />
+          <MyCarousel businessCategory={this.state.businessCategory} id="mainCarousel" />
         </section>
-        <Footer />
+        <Footer id="mainFooter" />
       </div>
     );
   }

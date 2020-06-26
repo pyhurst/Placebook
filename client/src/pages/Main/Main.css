@@ -5,13 +5,31 @@
 #mainSection {
     margin-bottom: 2rem;
 }
-#mainJumbo {
-    width: 100%;
+.busCards {
+    width: 15rem;
+    height: 30rem; 
+    box-shadow: 1rem 0 .4rem rgb(120, 200, 166, 0.5), -1rem 0 .4rem rgb(120, 200, 166, 0.5);
+}
+.cardImage {
+    height: 16rem;
 }
 
-/* @media only screen 
+@media only screen 
 and (min-device-width : 375px) 
 and (max-device-width : 812px)
 and (-webkit-device-pixel-ratio : 3) {
-
-} */
+    #main {
+        text-align: center;
+        width: 100%;
+    }
+    #mainCarousel {
+        height: 40rem;
+    }
+    .busCards{
+        height: 33rem;
+        width: 20rem;
+    }
+    .cardImage {
+        height: 12rem;
+    }
+}
