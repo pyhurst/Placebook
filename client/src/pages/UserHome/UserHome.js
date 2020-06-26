@@ -185,7 +185,6 @@ const Business = () => {
             userId={userId}
             resId={e._id}
             className="btn btn-secondary"
-            style={{ paddingTop: "-.2rem" }}
             onClick={deleteInfo}
           >
             Cancel
