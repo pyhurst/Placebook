@@ -1,13 +1,14 @@
 import React from "react";
 import { Jumbotron } from "reactstrap";
 import Dropdown from "../../Dropdown/Dropdown";
+import "./Jumbotron.css";
 
 const JumboEl = (props) => {
   return (
     <div>
       <Jumbotron>
         <div className="container">
-        <h1 className="display-3">Welcome to Placebook</h1>
+        <h1 className="display-3" id="mainTitle">Welcome to Placebook</h1>
         <h5 className="lead">
           Find a business and book your appointment today using Placebook!
         </h5>
