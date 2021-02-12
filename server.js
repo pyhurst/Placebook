@@ -6,6 +6,7 @@ const MongoStore = require("connect-mongo")(session);
 const passport = require("./passport");
 const dbConnection = require("./connection");
 const routes = require("./routes");
+const keys = require("./config/keys");
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -17,7 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Mongoose DB Connection
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+
 
 // Sessions
 app.use(
