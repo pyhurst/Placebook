@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
 const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/placebook';
+
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(
     () => {
         console.log('Connected to Mongo');
