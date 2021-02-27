@@ -26,7 +26,7 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: tru
 app.use(
   session({
     secret: "facebook-special",
-    store: new MongoStore({ mongooseConnection: dbConnection }),
+    store: new MongoStore({ mongooseConnection: keys.mongoURI }),
     resave: false,
     saveUninitialized: false,
   })
