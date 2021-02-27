@@ -15,11 +15,10 @@ const PORT = process.env.PORT || 3002;
 // Define middleware here
 app.use(morgan("dev"));
 const mongoose = require("mongoose");
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
 
 //Mongoose DB Connection
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 
@@ -34,6 +33,8 @@ app.use(
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
