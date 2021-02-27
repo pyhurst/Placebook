@@ -13,13 +13,13 @@ const app = express();
 const PORT = process.env.PORT || 3002;
 
 // Define middleware here
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 const mongoose = require("mongoose");
 
 
 //Mongoose DB Connection
 // mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 
 // Sessions
