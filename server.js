@@ -5,6 +5,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const passport = require("./passport");
 const dbConnection = require("./connection");
+const cookieSession = require('cookie-session');
 const routes = require("./routes");
 const keys = require("./config/keys");
 
@@ -24,12 +25,10 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: tru
 
 // Sessions
 app.use(
-  session({
-    secret: "facebook-special",
-    store: new MongoStore({ mongooseConnection: dbConnection }),
-    resave: false,
-    saveUninitialized: false,
-  })
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
+})
 );
 
 // Passport
