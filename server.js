@@ -44,8 +44,16 @@ app.use(passport.session());
 app.use(routes);
 // Send every other request to the React app
 // Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+app.use((req, res) => {
+  switch (process.env.NODE_ENV) {
+      case 'dev':
+          res.sendFile(path.join(__dirname, './client/public/index.html'))
+          break;
+      case 'production':
+          res.sendFile(path.join(__dirname, "./client/build/index.html"));
+      default:
+          break;
+  }
 });
 
 app.listen(PORT, () => {
